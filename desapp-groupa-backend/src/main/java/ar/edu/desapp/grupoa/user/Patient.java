@@ -39,10 +39,6 @@ public class Patient extends User {
 		return allergies;
 	}
 
-	public void setAllergies(List<Drug> allergies) {
-		this.allergies = allergies;
-	}
-
 	/*
 	////////////////////////////////////////
 	 */
