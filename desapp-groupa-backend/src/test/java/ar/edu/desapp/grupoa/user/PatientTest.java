@@ -1,16 +1,22 @@
 package ar.edu.desapp.grupoa.user;
 
-import static junit.framework.Assert.assertEquals;
+import static org.mockito.Mockito.*;
+import static junit.framework.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import ar.edu.desapp.grupoa.medicine.Drug;
 
 public class PatientTest {
 
 	private Patient patient1;
-	
+	private Drug drug1;
+	private Drug drug2;
 	@Before
 	public void setUp() {
 		patient1 = new Patient("Ezequiel","Seidler",12345678,"pass", 75, 1.81);
+		
+		drug1 = mock(Drug.class);
+		drug2 = mock(Drug.class);
 	}
 	
 	@Test
@@ -50,10 +56,17 @@ public class PatientTest {
 	}
 
 	@Test
-	public void patientTest() {
-		double expected = 1.81;
-		assertEquals(expected, patient1.getHeight());
+	public void addAllergie01Test() {
+		patient1.addAllergie(drug1);
+		boolean expected = patient1.getAllergies().contains(drug1);
+		assertTrue(expected);
 	}
 	
+	@Test
+	public void addAllergie02Test() {
+		patient1.addAllergie(drug1);
+		boolean expected = patient1.getAllergies().contains(drug2);
+		assertFalse(expected);
+	}
 	
 }
