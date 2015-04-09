@@ -16,10 +16,10 @@ public class Patient extends User {
 	private List<Drug> allergies;
 	private List<Disease> diseases;
 	
-	public Patient(String name, String surname, Integer dni, String password, double i, double d) {
+	public Patient(String name, String surname, Integer dni, String password, double wight, double height) {
 		super(name, surname, dni, password);
-		this.setWight(i);
-		this.setHeight(d);
+		this.setWight(wight);
+		this.setHeight(height);
 		this.allergies = new ArrayList<Drug>();
 		this.diseases = new ArrayList<Disease>();
 	}

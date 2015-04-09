@@ -6,6 +6,7 @@ import static junit.framework.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import static ar.edu.desapp.grupoa.builders.PatientBuilder.*;
 import ar.edu.desapp.grupoa.disease.Disease;
 import ar.edu.desapp.grupoa.medicine.Drug;
 
@@ -19,7 +20,17 @@ public class PatientTest {
 	
 	@Before
 	public void setUp() {
-		patient1 = new Patient("Ezequiel","Seidler",12345678,"pass", 75, 1.81);
+		
+		patient1 = aPatient()
+					.withName("Ezequiel")
+					.withSurname("Seidler")
+					.withDNI(12345678)
+					.withPassword("pass")
+					.withWight(75)
+					.withHeight(1.81)
+					.build();
+		
+		//patient1 = new Patient("Ezequiel","Seidler",12345678,"pass", 75, 1.81);
 		
 		drug1 = mock(Drug.class);
 		drug2 = mock(Drug.class);
