@@ -15,7 +15,7 @@ public abstract class User {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -23,7 +23,7 @@ public abstract class User {
 	}
 
 	public String getSurname() {
-		return surname;
+		return this.surname;
 	}
 
 	public void setSurname(String surname) {
@@ -31,7 +31,7 @@ public abstract class User {
 	}
 
 	public Integer getDni() {
-		return dni;
+		return this.dni;
 	}
 
 	public void setDni(Integer dni) {
@@ -39,7 +39,7 @@ public abstract class User {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
