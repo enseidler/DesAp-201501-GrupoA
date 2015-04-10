@@ -25,7 +25,7 @@ public class Patient extends User {
 	}
 
 	public double getWight() {
-		return wight;
+		return this.wight;
 	}
 
 	public void setWight(double wight) {
@@ -33,7 +33,7 @@ public class Patient extends User {
 	}
 
 	public double getHeight() {
-		return height;
+		return this.height;
 	}
 
 	public void setHeight(double height) {
@@ -41,7 +41,7 @@ public class Patient extends User {
 	}
 	
 	public List<Drug> getAllergies() {
-		return allergies;
+		return this.allergies;
 	}
 
 	public List<Disease> getDiseases() {
