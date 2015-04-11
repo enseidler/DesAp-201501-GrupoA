@@ -1,4 +1,4 @@
-package ar.edu.desapp.grupoa.medicalConsultationTest;
+package ar.edu.desapp.grupoa.medicalConsultation;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
