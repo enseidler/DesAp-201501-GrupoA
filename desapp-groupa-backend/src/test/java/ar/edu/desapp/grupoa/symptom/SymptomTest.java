@@ -16,7 +16,7 @@ public class SymptomTest {
 	}
 	
 	@Test
-	public void symptomDataDescription(){
+	public void symptomDataDescriptionTest(){
 		String expected = "Dolor de cabeza";
 		assertEquals(expected, symptom.getDescription());
 	}

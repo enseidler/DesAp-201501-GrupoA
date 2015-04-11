@@ -27,13 +27,13 @@ public class MedicalRecordTest {
 	}
 	
 	@Test
-	public void medicalRecordDataPatient() {
+	public void medicalRecordDataPatientTest() {
 		Patient expected = patient1;
 		assertEquals(expected, medicalRecord.getPatient());
 	}
 	
 	@Test 
-	public void medicalRecordAddConsultation(){
+	public void medicalRecordAddConsultationTest(){
 		medicalRecord.addConsultation(consultation1);
 		boolean expected = medicalRecord.getConsultations().contains(consultation1);
 		assertTrue(expected);
