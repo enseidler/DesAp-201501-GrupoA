@@ -1,10 +1,5 @@
 package ar.edu.desapp.grupoa.builders;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ar.edu.desapp.grupoa.disease.Disease;
-import ar.edu.desapp.grupoa.medicine.Drug;
 import ar.edu.desapp.grupoa.user.Patient;
 
 public class PatientBuilder {

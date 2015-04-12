@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.desapp.grupoa.disease.Disease;
-import ar.edu.desapp.grupoa.medicine.Drug;
 import ar.edu.desapp.grupoa.symptom.Symptom;
 import ar.edu.desapp.grupoa.treatment.Treatment;
 import ar.edu.desapp.grupoa.user.Doctor;
@@ -33,6 +32,10 @@ public class MedicalConsultation {
 	
 	public List<Symptom> getSymptoms() {
 		return symptoms;
+	}
+	
+	public void setSymptoms(List<Symptom> symptoms){
+		this.symptoms = symptoms;
 	}
 	
 	public Disease getDignoseDisease() {

@@ -1,6 +1,5 @@
 package ar.edu.desapp.grupoa.user;
 
-import static org.mockito.Mockito.*;
 import static junit.framework.Assert.*;
 
 import org.junit.Before;
