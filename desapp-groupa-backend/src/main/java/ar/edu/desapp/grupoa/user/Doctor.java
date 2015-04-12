@@ -1,5 +1,6 @@
 package ar.edu.desapp.grupoa.user;
 
+
 public class Doctor extends User {
 
 	private Integer enrollment;
@@ -16,5 +17,9 @@ public class Doctor extends User {
 	public void setEnrollment(int enrolment) {
 		this.enrollment = enrolment;
 	}
+	
+	////////////////////////////////////////////////
+	
+	
 }
 

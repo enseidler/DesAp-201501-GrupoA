@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.desapp.grupoa.disease.Disease;
+import ar.edu.desapp.grupoa.medicine.Drug;
 import ar.edu.desapp.grupoa.symptom.Symptom;
 import ar.edu.desapp.grupoa.treatment.Treatment;
 import ar.edu.desapp.grupoa.user.Doctor;
@@ -13,12 +14,13 @@ public class MedicalConsultation {
 	
 	private Doctor doctor;
 	private List<Symptom> symptoms;
-	private Disease dignoseDiase = null;
+	private Disease dignoseDisease = null;
 	private Treatment treatment = null;
 	
 	public MedicalConsultation(Doctor doctor){
 		this.setDoctor(doctor);
 		this.symptoms = new ArrayList<Symptom>();
+		
 	}
 	
 	public Doctor getDoctor() {
@@ -33,13 +35,14 @@ public class MedicalConsultation {
 		return symptoms;
 	}
 	
-	public Disease getDignoseDiase() {
-		return dignoseDiase;
+	public Disease getDignoseDisease() {
+		return dignoseDisease;
 	}
 	
 	public Treatment getTreatment() {
 		return treatment;
 	}
+	
 	
 	
 	///////////////////////////////////////////////////////
@@ -52,8 +55,8 @@ public class MedicalConsultation {
 		this.treatment = treatament;
 	}
 	
-	public void addDignoseDiase(Disease dignoseDiase) {
-		this.dignoseDiase = dignoseDiase;
+	public void addDignoseDisease(Disease dignoseDiase) {
+		this.dignoseDisease = dignoseDiase;
 	}
-
+	
 }
