@@ -121,8 +121,24 @@ public class Hospital {
 		}
 		return result;
 	}
-
 	
+	public List<MedicalRecord> recordsFromPatientsWhoSuffered(Disease disease) {
+		List<MedicalRecord> recs = new ArrayList<MedicalRecord>();
+		for(MedicalRecord rec : this.getMedicalRecords()) {
+			if(rec.sufferedDisease(disease)) {
+				recs.add(rec);
+			}
+		}
+		return recs;
+	}
+	
+	public List<Disease> whoSufferedXAlsoSufferedY(Disease disease) {
+		List<Disease> result = new ArrayList<Disease>();
+		for(MedicalRecord rec : this.recordsFromPatientsWhoSuffered(disease)) {
+			addWhatNotExist(result, rec.getDiseases());
+		}
+		return result;
+	}
 }
 
 

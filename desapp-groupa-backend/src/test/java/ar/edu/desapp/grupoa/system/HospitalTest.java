@@ -34,7 +34,7 @@ public class HospitalTest {
 	
 	
 	@Before
-	public void setUp(){
+	public void setUp() throws RuntimeException {
 		
 		// -Diseases- //
 		dolorDeCabeza = mock(Symptom.class);
@@ -56,8 +56,24 @@ public class HospitalTest {
 		// -Records- //
 		medRecord1 = mock(MedicalRecord.class);
 		when(medRecord1.getPatient()).thenReturn(patient1);
+		when(medRecord1.sufferedDisease(resfrio)).thenReturn(true);
+		when(medRecord1.sufferedDisease(migraña)).thenReturn(true);
+		when(medRecord1.sufferedDisease(conjuntivitis)).thenReturn(false);
+		List<Disease> rec1Suffered = new ArrayList<Disease>();
+		rec1Suffered.add(resfrio);
+		rec1Suffered.add(migraña);
+		when(medRecord1.getDiseases()).thenReturn(rec1Suffered);
 		medRecord2 = mock(MedicalRecord.class);
 		when(medRecord2.getPatient()).thenReturn(patient2);
+		when(medRecord2.sufferedDisease(resfrio)).thenReturn(false);
+		when(medRecord2.sufferedDisease(migraña)).thenReturn(true);
+		when(medRecord2.sufferedDisease(conjuntivitis)).thenReturn(true);
+		List<Disease> rec2Suffered = new ArrayList<Disease>();
+		rec2Suffered.add(migraña);
+		rec2Suffered.add(conjuntivitis);
+		when(medRecord2.getDiseases()).thenReturn(rec2Suffered);
+		
+
 		
 		// -System- //
 		hospital1 = new Hospital();
@@ -66,6 +82,8 @@ public class HospitalTest {
 		hospital2.addDisease(resfrio);
 		hospital2.addDisease(migraña);
 		hospital2.addDisease(conjuntivitis);
+		hospital2.addMedicalRecord(medRecord1);
+		hospital2.addMedicalRecord(medRecord2);
 	
 	}
 
@@ -161,8 +179,29 @@ public class HospitalTest {
 	}
 	
 	@Test
-	public void patientsWhoSufferXDiseaseTest() {
-		
+	public void recordsFromPatientsWhoSufferedResfrioTest() throws RecordExistException {
+		List<MedicalRecord> expected = new ArrayList<MedicalRecord>();
+		expected.add(medRecord1);
+		List<MedicalRecord> actual = hospital2.recordsFromPatientsWhoSuffered(resfrio);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void recordsFromPatientsWhoSufferedMigrañaTest() throws RecordExistException {
+		List<MedicalRecord> expected = new ArrayList<MedicalRecord>();
+		expected.add(medRecord1);
+		expected.add(medRecord2);
+		List<MedicalRecord> actual = hospital2.recordsFromPatientsWhoSuffered(migraña);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void whoSufferedConjuntivitisAlsoSuffered() {
+		List<Disease> expected = new ArrayList<Disease>();
+		expected.add(migraña);
+		expected.add(conjuntivitis);
+		List<Disease> actual = hospital2.whoSufferedXAlsoSufferedY(conjuntivitis);		
+		assertEquals(expected, actual);
 	}
 
 }

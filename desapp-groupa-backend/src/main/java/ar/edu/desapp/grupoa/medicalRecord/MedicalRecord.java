@@ -60,5 +60,9 @@ public class MedicalRecord {
 	public void addAllergy(Drug allergy) {
 		this.getAllergies().add(allergy);
 	}
+
+	public boolean sufferedDisease(Disease disease) {
+		return this.getDiseases().contains(disease);
+	}
 	
 }

@@ -8,4 +8,10 @@ public class ListUtils {
 			list.add(element);
 		}
 	}
+	
+	public static <E> void addWhatNotExist(List<E> list, List<E> addList) {
+		for(E element : addList) {
+			addIfNotExist(list, element);
+		}
+	}
 }
