@@ -16,8 +16,7 @@ public class Treatment {
 	public Treatment(Repose repose){
 		this.medicalPractices = new ArrayList<MedicalPractice>();
 		this.medicines = new ArrayList<Medicine>();
-		this.setRepose(repose);
-		
+		this.repose = repose;	
 	}
 
 	public Repose getRepose() {

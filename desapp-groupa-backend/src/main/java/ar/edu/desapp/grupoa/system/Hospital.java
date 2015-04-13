@@ -2,6 +2,7 @@ package ar.edu.desapp.grupoa.system;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static ar.edu.desapp.grupoa.utils.ListUtils.*;
 import ar.edu.desapp.grupoa.disease.Disease;
@@ -10,6 +11,7 @@ import ar.edu.desapp.grupoa.exeptions.RecordExistException;
 import ar.edu.desapp.grupoa.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.grupoa.medicalRecord.MedicalRecord;
 import ar.edu.desapp.grupoa.symptom.Symptom;
+import ar.edu.desapp.grupoa.treatment.Treatment;
 import ar.edu.desapp.grupoa.user.Doctor;
 import ar.edu.desapp.grupoa.user.Patient;
 
@@ -139,6 +141,31 @@ public class Hospital {
 		}
 		return result;
 	}
+	
+	/**
+	 * @MISSING TESTS
+	 */
+	public Disease moreProbableDiagnosis(List<Symptom> symptoms) {
+		Disease probDiagnosis = this.getDiseases().get(0); 
+		for(Disease disease : this.getDiseases()) {
+			if(matchs(disease, symptoms) > matchs(probDiagnosis, symptoms)) {
+				probDiagnosis = disease;
+			}
+		}
+		if(matchs(probDiagnosis,symptoms) > 0) {
+			return probDiagnosis;			
+		} else {
+			throw new NotFoundDiseaseException();
+		}
+	}
+	
+	/**
+	 * @MISSING TESTS
+	 */
+	public Integer matchs(Disease disease, List<Symptom> symptoms) {
+		return (intersection(disease.getSymptoms(), symptoms)).size();
+	}
+	
 }
 
 

@@ -204,4 +204,9 @@ public class HospitalTest {
 		assertEquals(expected, actual);
 	}
 
+	@Test
+	public void moreProbableDiagnosisTest() {
+		
+	}
+	
 }
