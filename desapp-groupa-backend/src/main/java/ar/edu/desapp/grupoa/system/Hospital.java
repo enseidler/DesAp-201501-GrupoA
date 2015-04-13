@@ -6,6 +6,7 @@ import java.util.List;
 import static ar.edu.desapp.grupoa.utils.ListUtils.*;
 import ar.edu.desapp.grupoa.disease.Disease;
 import ar.edu.desapp.grupoa.exeptions.NotFoundDiseaseException;
+import ar.edu.desapp.grupoa.exeptions.RecordExistException;
 import ar.edu.desapp.grupoa.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.grupoa.medicalRecord.MedicalRecord;
 import ar.edu.desapp.grupoa.symptom.Symptom;
@@ -27,7 +28,7 @@ public class Hospital {
 	}
 	
 	
-	public List<MedicalRecord> getMedicalConsultations() {
+	public List<MedicalRecord> getMedicalRecords() {
 		return medicalRecords;
 	}
 
@@ -46,10 +47,14 @@ public class Hospital {
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
-	public void addMedicalConsultations(MedicalRecord medicalRecords) {
-		this.getMedicalConsultations().add(medicalRecords);
+	public void addMedicalRecord(MedicalRecord medicalRecord) throws RecordExistException {
+		if(!existRecordFor(medicalRecord.getPatient())) {
+			this.getMedicalRecords().add(medicalRecord);
+		} else {
+			throw new RecordExistException();
+		}
 	}
-
+	
 	public void addPatient(Patient patient) {
 		this.getPatients().add(patient);
 	}
@@ -58,11 +63,19 @@ public class Hospital {
 		this.getDoctors().add(doctor);
 	}
 	
-	public void addDiseases(Disease disease) {
+	public void addDisease(Disease disease) {
 		this.getDiseases().add(disease);
 	}
 	
+	public Boolean existRecordFor(Patient patient) {
+		Boolean exist = false;
+		for(MedicalRecord rec : this.getMedicalRecords()) {
+			exist = exist || (rec.getPatient() == patient);
+		}
+		return exist;
+	}
 	
+	/*
 	public void createNewMedicalConsultation(List<Symptom> symptoms) throws NotFoundDiseaseException{
 		
 		Doctor doctor = this.doctors.get(0);
@@ -79,6 +92,21 @@ public class Hospital {
 	
 	}
 	
+	public Disease compareSymptoms(List<Symptom> symptoms) throws NotFoundDiseaseException{
+		for(int x=0; x<this.getDiseases().size(); x++) {
+			Disease disease = this.getDiseases().get(x);
+			if(symptoms.containsAll(disease.getSymptoms())){
+				return disease;
+			}
+		}
+		throw new NotFoundDiseaseException("Not Found Disease");
+	}
+	*/
+	
+	
+	///////
+	
+	
 	/**
 	 * @param symptoms
 	 * @return possible diseases for a given symptoms list
@@ -92,16 +120,6 @@ public class Hospital {
 			}
 		}
 		return result;
-	}
-	
-	public Disease compareSymptoms(List<Symptom> symptoms) throws NotFoundDiseaseException{
-		for(int x=0; x<this.getDiseases().size(); x++) {
-			Disease disease = this.getDiseases().get(x);
-			if(symptoms.containsAll(disease.getSymptoms())){
-				return disease;
-			}
-		}
-		throw new NotFoundDiseaseException("Not Found Disease");
 	}
 
 	

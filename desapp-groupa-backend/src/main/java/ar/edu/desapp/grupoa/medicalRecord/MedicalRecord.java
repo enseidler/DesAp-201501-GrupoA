@@ -17,7 +17,7 @@ public class MedicalRecord {
 	
 	public MedicalRecord(Patient patient){
 		
-		this.setPatient(patient); 
+		this.patient = patient; 
 		this.consultations = new ArrayList<MedicalConsultation>();
 		this.diseases = new ArrayList<Disease>();
 		this.allergies = new ArrayList<Drug>();

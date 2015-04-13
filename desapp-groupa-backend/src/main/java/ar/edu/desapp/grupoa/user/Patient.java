@@ -36,11 +36,13 @@ public class Patient extends User {
 
 	////////////////////////////////////////////////////
 	
+	
+	/*
 	public void visitHospital(Hospital hospital, List<Symptom> symptoms) throws NotFoundDiseaseException{
 		
 		hospital.createNewMedicalConsultation(symptoms);
 	}
-	
+	*/
 
 
 
