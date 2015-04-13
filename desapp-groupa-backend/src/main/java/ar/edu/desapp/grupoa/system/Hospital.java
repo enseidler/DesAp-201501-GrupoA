@@ -3,6 +3,7 @@ package ar.edu.desapp.grupoa.system;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ar.edu.desapp.grupoa.utils.ListUtils.*;
 import ar.edu.desapp.grupoa.disease.Disease;
 import ar.edu.desapp.grupoa.exeptions.NotFoundDiseaseException;
 import ar.edu.desapp.grupoa.medicalConsultation.MedicalConsultation;
@@ -77,7 +78,22 @@ public class Hospital {
 		this.addDoctor(doctor); // Termino su trabajo lo agrago denuevo a la lista
 	
 	}
-
+	
+	/**
+	 * @param symptoms
+	 * @return possible diseases for a given symptoms list
+	 * @criteria if a disease has one symptom from list, could be a correct diagnosis
+	 */
+	public List<Disease> possibleDiseases(List<Symptom> symptoms) {
+		List<Disease> result = new ArrayList<Disease>();
+		for(Disease disease : this.getDiseases()) {
+			if(disease.hasASymptom(symptoms)) {
+				addIfNotExist(result,disease);
+			}
+		}
+		return result;
+	}
+	
 	public Disease compareSymptoms(List<Symptom> symptoms) throws NotFoundDiseaseException{
 		for(int x=0; x<this.getDiseases().size(); x++) {
 			Disease disease = this.getDiseases().get(x);

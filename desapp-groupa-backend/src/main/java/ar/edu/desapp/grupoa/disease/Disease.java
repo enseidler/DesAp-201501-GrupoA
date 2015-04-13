@@ -29,4 +29,12 @@ public class Disease {
 	public void setSymptoms(List<Symptom> symptoms) {
 		this.symptoms = symptoms;
 	}
+
+	public boolean hasASymptom(List<Symptom> symptomss) {
+		Boolean has = false;
+		for(Symptom symptom : symptomss) {
+			has = has || this.getSymptoms().contains(symptom);
+		}
+		return has;
+	}
 }
