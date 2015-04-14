@@ -2,7 +2,7 @@ package ar.edu.desapp.grupoa.user;
 
 import java.util.List;
 
-import ar.edu.desapp.grupoa.exeptions.NotFoundDiseaseException;
+import ar.edu.desapp.grupoa.exceptions.NotFoundDiseaseException;
 import ar.edu.desapp.grupoa.symptom.Symptom;
 import ar.edu.desapp.grupoa.system.Hospital;
 
@@ -33,16 +33,7 @@ public class Patient extends User {
 	public void setHeight(double height) {
 		this.height = height;
 	}
-
-	////////////////////////////////////////////////////
 	
-	
-	/*
-	public void visitHospital(Hospital hospital, List<Symptom> symptoms) throws NotFoundDiseaseException{
-		
-		hospital.createNewMedicalConsultation(symptoms);
-	}
-	*/
 
 
 

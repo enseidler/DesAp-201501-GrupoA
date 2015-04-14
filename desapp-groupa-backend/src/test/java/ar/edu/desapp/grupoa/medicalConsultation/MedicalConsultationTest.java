@@ -39,13 +39,6 @@ public class MedicalConsultationTest {
 	}
 	
 	@Test
-	public void medicalConsultationaddSymptomTest(){
-		medicalConsultation.addSymptom(symptom);
-		boolean expected = medicalConsultation.getSymptoms().contains(symptom);
-		assertTrue(expected);
-	}
-	
-	@Test
 	public void medicalConsultationdataTreatmentTest(){
 		Treatment expected = null;
 		assertEquals(expected, medicalConsultation.getTreatment());

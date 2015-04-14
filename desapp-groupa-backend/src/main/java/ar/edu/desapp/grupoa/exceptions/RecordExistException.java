@@ -1,4 +1,4 @@
-package ar.edu.desapp.grupoa.exeptions;
+package ar.edu.desapp.grupoa.exceptions;
 
 public class RecordExistException extends RuntimeException {
 	

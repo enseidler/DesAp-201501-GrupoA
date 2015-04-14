@@ -27,9 +27,7 @@ public class Doctor extends User {
 
 	////////////////////////////////////////////////
 	
-	public void addSymptomsToMedicalConsultation(MedicalConsultation newMedicalConsultation, List<Symptom> symptoms) {
-		newMedicalConsultation.setSymptoms(symptoms);
-	}
+	
 
 	public void addDignoseDisease(MedicalConsultation newMedicalConsultation, Disease disease) {
 		newMedicalConsultation.addDignoseDisease(disease);
