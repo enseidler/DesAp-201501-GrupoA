@@ -84,6 +84,14 @@ public class Hospital {
 		this.getDiseases().add(disease);
 	}
 	
+	public void addMedicine(Medicine medicine) {
+		this.getMedicines().add(medicine);
+	}
+	
+	public void addMedicalPractice(MedicalPractice medicalPractice) {
+		this.getMedicalPractices().add(medicalPractice);
+	}
+	
 	public Boolean existRecordFor(Patient patient) {
 		Boolean exist = false;
 		for(MedicalRecord rec : this.getMedicalRecords()) {

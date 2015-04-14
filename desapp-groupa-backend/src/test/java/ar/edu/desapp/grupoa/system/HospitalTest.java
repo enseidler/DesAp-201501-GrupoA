@@ -10,13 +10,19 @@ import static org.mockito.Mockito.*;
 import static junit.framework.Assert.*;
 import ar.edu.desapp.grupoa.disease.Disease;
 import ar.edu.desapp.grupoa.exceptions.NotFoundDiseaseException;
+import ar.edu.desapp.grupoa.exceptions.NotFoundMedicineException;
 import ar.edu.desapp.grupoa.exceptions.RecordExistException;
+import ar.edu.desapp.grupoa.medicalPractice.MedicalPractice;
 import ar.edu.desapp.grupoa.medicalRecord.MedicalRecord;
+import ar.edu.desapp.grupoa.medicine.Drug;
+import ar.edu.desapp.grupoa.medicine.Medicine;
 import ar.edu.desapp.grupoa.symptom.Symptom;
 import ar.edu.desapp.grupoa.system.Hospital;
+import ar.edu.desapp.grupoa.treatment.Treatment;
 import ar.edu.desapp.grupoa.user.Doctor;
 import ar.edu.desapp.grupoa.user.Patient;
 import static ar.edu.desapp.grupoa.builders.DiseaseBuilder.*;
+import static ar.edu.desapp.grupoa.builders.TreatmentBuilder.*;
 
 public class HospitalTest {
 	
@@ -33,6 +39,9 @@ public class HospitalTest {
 	private Patient patient1;
 	private Patient patient2;
 	private Doctor doctor1;
+	private Drug aspirinaDrug;
+	private Medicine aspirina;
+	private MedicalPractice teEnLosOjos;
 	
 	
 	@Before
@@ -50,9 +59,6 @@ public class HospitalTest {
 					.with(dolorDeGarganta)
 					.build();
 		conjuntivitis = aDisease("Conjuntivitis").build();
-		
-		// -Medicine- //
-		
 		
 		// -People- //
 		patient1 = mock(Patient.class);
@@ -79,6 +85,15 @@ public class HospitalTest {
 		rec2Suffered.add(conjuntivitis);
 		when(medRecord2.getDiseases()).thenReturn(rec2Suffered);
 		
+		// -Treatment- //
+		aspirinaDrug = mock(Drug.class);
+		aspirina = mock(Medicine.class);
+		when(aspirina.cure(resfrio)).thenReturn(true);
+		when(aspirina.cure(conjuntivitis)).thenReturn(true);
+		when(aspirina.instAllergic(medRecord1)).thenReturn(true);
+		when(aspirina.instAllergic(medRecord2)).thenReturn(false);
+		teEnLosOjos = mock(MedicalPractice.class);
+		when(teEnLosOjos.cure(conjuntivitis)).thenReturn(true);
 		
 		// -System- //
 		hospital1 = new Hospital();
@@ -89,6 +104,8 @@ public class HospitalTest {
 		hospital2.addDisease(conjuntivitis);
 		hospital2.addMedicalRecord(medRecord1);
 		hospital2.addMedicalRecord(medRecord2);
+		hospital2.addMedicine(aspirina);
+		hospital2.addMedicalPractice(teEnLosOjos);
 	
 	}
 	
@@ -222,6 +239,39 @@ public class HospitalTest {
 		Integer expected = 2;
 		Integer actual = hospital2.matchs(resfrio, symptoms);
 		assertEquals(expected, actual);
+	}
+	
+	@Test /** @REQUIRED! */
+	public void makeATreatmentForPatientMedicineAssertTest() {
+		Treatment treatment = hospital2.makeATreatmentFor(medRecord1,resfrio);
+		Medicine expected = aspirina;
+		Medicine actual = treatment.getMedicines().get(0); 
+		assertEquals(expected, actual);
+	}
+	
+	@Test(expected = NotFoundMedicineException.class) /** @REQUIRED! */
+	public void cantMakeATreatmentForPatientMedicineAllergicAssertTest() {
+		hospital2.makeATreatmentFor(medRecord2,resfrio); 
+	}
+	
+	@Test(expected = NotFoundMedicineException.class) /** @REQUIRED! */
+	public void cantMakeATreatmentForPatientMedicineNotExistAssertTest() {
+		hospital2.makeATreatmentFor(medRecord1,migraña); 
+	}
+	
+	@Test /** @REQUIRED! */
+	public void makeATreatmentForPatientPracticeTest() {
+		Treatment treatment = hospital2.makeATreatmentFor(medRecord1, conjuntivitis);
+		MedicalPractice expected = teEnLosOjos;
+		MedicalPractice actual = treatment.getMedicalPractices().get(0);
+		assertEquals(expected, actual);
+	}
+	
+	@Test /** @REQUIRED! */
+	public void makeATreatmentForPatientPracticeNotExistTest() {
+		Treatment treatment = hospital2.makeATreatmentFor(medRecord1, resfrio);
+		Boolean condition = treatment.getMedicalPractices().isEmpty();
+		assertTrue(condition);
 	}
 	
 }

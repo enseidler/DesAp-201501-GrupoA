@@ -38,7 +38,7 @@ public class MedicalPractice{
 		this.theCureFor = theCureFor;
 	}
 
-	public boolean cure(Disease disease) {
+	public Boolean cure(Disease disease) {
 		return this.getTheCureFor().contains(disease);
 	}
 	

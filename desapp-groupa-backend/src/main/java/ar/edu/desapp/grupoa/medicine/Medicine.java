@@ -42,8 +42,12 @@ public class Medicine {
 		return this.getTheCureFor().contains(disease);
 	}
 
-	public boolean instAllergic(MedicalRecord medicalRecord) {
-		return medicalRecord.getAllergies().contains(this.getDrug());
+	public Boolean instAllergic(MedicalRecord medicalRecord) {
+		return !medicalRecord.getAllergies().contains(this.getDrug());
 	}
 
+	public void addCuredDisease(Disease disease) {
+		this.getTheCureFor().add(disease);
+	}
+	
 }
