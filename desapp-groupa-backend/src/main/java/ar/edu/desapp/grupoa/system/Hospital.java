@@ -2,7 +2,7 @@ package ar.edu.desapp.grupoa.system;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 import static ar.edu.desapp.grupoa.builders.DiseaseBuilder.*;
 import static ar.edu.desapp.grupoa.utils.ListUtils.*;
@@ -10,7 +10,6 @@ import ar.edu.desapp.grupoa.disease.Disease;
 import ar.edu.desapp.grupoa.exceptions.NotFoundDiseaseException;
 import ar.edu.desapp.grupoa.exceptions.NotFoundMedicineException;
 import ar.edu.desapp.grupoa.exceptions.RecordExistException;
-import ar.edu.desapp.grupoa.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.grupoa.medicalPractice.MedicalPractice;
 import ar.edu.desapp.grupoa.medicalRecord.MedicalRecord;
 import ar.edu.desapp.grupoa.medicine.Medicine;

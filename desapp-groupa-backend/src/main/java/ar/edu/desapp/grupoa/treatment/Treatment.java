@@ -5,7 +5,6 @@ import java.util.List;
 
 import ar.edu.desapp.grupoa.medicalPractice.MedicalPractice;
 import ar.edu.desapp.grupoa.medicine.Medicine;
-import ar.edu.desapp.grupoa.repose.Parcial;
 import ar.edu.desapp.grupoa.repose.Repose;
 
 public class Treatment {

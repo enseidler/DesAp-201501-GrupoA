@@ -1,11 +1,5 @@
 package ar.edu.desapp.grupoa.user;
 
-import java.util.List;
-
-import ar.edu.desapp.grupoa.exceptions.NotFoundDiseaseException;
-import ar.edu.desapp.grupoa.symptom.Symptom;
-import ar.edu.desapp.grupoa.system.Hospital;
-
 public class Patient extends User {
 
 	private double wight; 
