@@ -1,6 +1,7 @@
 package ar.edu.desapp.grupoa.user;
 
 import static junit.framework.Assert.assertEquals;
+import static ar.edu.desapp.grupoa.builders.DoctorBuilder.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +14,15 @@ public class DoctorTest {
 	@Before
 	public void setUp() {
 		
-		doctor = new Doctor("Guillermo", "Sanchez", 87654321, "pass", 26319);		
+		//doctor = new Doctor("Guillermo", "Sanchez", 87654321, "pass", 26319);
+		
+		doctor = aDoctor()
+				.withName("Guillermo")
+				.withSurname("Sanchez")
+				.withDNI(87654321)
+				.withPassword("pass")
+				.withEnrollment(26319)
+				.build();
 	}
 	
 	@Test

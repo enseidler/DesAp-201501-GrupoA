@@ -7,6 +7,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.Before;
 import org.junit.Test;
 
+import static ar.edu.desapp.grupoa.builders.MedicalConsultationBuilder.*;
 import ar.edu.desapp.grupoa.disease.Disease;
 import ar.edu.desapp.grupoa.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.grupoa.symptom.Symptom;
@@ -28,8 +29,9 @@ public class MedicalConsultationTest {
 		symptom = mock(Symptom.class);
 		disease = mock(Disease.class);
 		treatment = mock(Treatment.class);
-		medicalConsultation = new MedicalConsultation(doctor);
-			
+		//medicalConsultation = new MedicalConsultation(doctor);
+		medicalConsultation = aMedicalRecord(doctor).build();
+		
 	}
 	
 	@Test

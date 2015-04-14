@@ -5,7 +5,6 @@ import java.util.List;
 
 import ar.edu.desapp.grupoa.disease.Disease;
 import ar.edu.desapp.grupoa.symptom.Symptom;
-import ar.edu.desapp.grupoa.user.Patient;
 
 public class DiseaseBuilder {
 	

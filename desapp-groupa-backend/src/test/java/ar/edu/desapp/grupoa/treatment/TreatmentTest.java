@@ -9,6 +9,7 @@ import ar.edu.desapp.grupoa.medicalPractice.MedicalPractice;
 import ar.edu.desapp.grupoa.medicine.Medicine;
 import ar.edu.desapp.grupoa.repose.Parcial;
 import ar.edu.desapp.grupoa.repose.Total;
+import static ar.edu.desapp.grupoa.builders.TreatmentBuilder.*;
 
 public class TreatmentTest {
 	
@@ -24,10 +25,15 @@ public class TreatmentTest {
 		
 		parcialRepose = mock(Parcial.class);
 		totalRepose = new Total();
-		treatment1 = new Treatment(parcialRepose);
-		treatment2 = new Treatment(totalRepose);
+		//treatment1 = new Treatment(parcialRepose);
+		//treatment2 = new Treatment(totalRepose);
 		medicalPractice = mock(MedicalPractice.class);
 		medicine = mock(Medicine.class);
+		
+		
+		treatment1 = aTreatment(parcialRepose).build();
+		treatment2 = aTreatment(totalRepose).build();
+		
 		
 	}
 	

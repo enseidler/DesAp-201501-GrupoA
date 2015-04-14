@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static junit.framework.Assert.*;
 
+import static ar.edu.desapp.grupoa.builders.MedicalPracticeBuilder.*;
+
 public class MedicalPracticeTest {
 	
 	private MedicalPractice medicalPractice;
@@ -11,7 +13,11 @@ public class MedicalPracticeTest {
 	@Before
 	public void setUp(){
 		
-		medicalPractice = new MedicalPractice("Quineseologia","7 sesiones");
+		//medicalPractice = new MedicalPractice("Quineseologia","7 sesiones");
+		medicalPractice = aMedicalPractice()
+				.withName("Quineseologia")
+				.withDescription("7 sesiones")
+				.build();
 	}
 	
 	@Test

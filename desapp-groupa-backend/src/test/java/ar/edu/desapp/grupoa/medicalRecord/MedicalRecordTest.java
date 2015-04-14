@@ -8,6 +8,7 @@ import static junit.framework.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import static ar.edu.desapp.grupoa.builders.MedicalRecordBuilder.*;
 import ar.edu.desapp.grupoa.disease.Disease;
 import ar.edu.desapp.grupoa.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.grupoa.medicine.Drug;
@@ -29,7 +30,11 @@ public class MedicalRecordTest {
 		
 		patient1 = mock(Patient.class);
 		consultation1 = mock(MedicalConsultation.class);
-		medicalRecord = new MedicalRecord(patient1);
+		//medicalRecord = new MedicalRecord(patient1);
+		
+		medicalRecord = aMedicalRecord(patient1)
+								.build();
+		
 		drug1 = mock(Drug.class);
 		drug2 = mock(Drug.class);
 		disease1 = mock(Disease.class);

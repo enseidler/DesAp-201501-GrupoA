@@ -1,6 +1,7 @@
 package ar.edu.desapp.grupoa.symptom;
 
 import static junit.framework.Assert.assertEquals;
+import static ar.edu.desapp.grupoa.builders.SymptomBuilder.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +13,11 @@ public class SymptomTest {
 	@Before
 	public void setUp(){
 		
-		symptom = new Symptom("Dolor de cabeza");
+		//symptom = new Symptom("Dolor de cabeza");
+		
+		symptom = aSymptom()
+				.withDescription("Dolor de cabeza")
+				.build();
 	}
 	
 	@Test

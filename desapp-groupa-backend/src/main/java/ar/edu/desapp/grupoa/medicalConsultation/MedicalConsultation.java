@@ -13,8 +13,8 @@ public class MedicalConsultation {
 	
 	private Doctor doctor;
 	private List<Symptom> symptoms;
-	private Disease dignoseDisease = null;
-	private Treatment treatment = null;
+	private Disease dignoseDisease;
+	private Treatment treatment;
 	
 	public MedicalConsultation(Doctor doctor){
 		this.setDoctor(doctor);

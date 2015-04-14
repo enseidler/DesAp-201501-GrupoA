@@ -38,6 +38,5 @@ public class Doctor extends User {
 	public void addTreatment(MedicalConsultation newMedicalConsultation) {
 		
 	}
-	
 }
 
