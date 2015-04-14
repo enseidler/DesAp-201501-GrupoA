@@ -9,7 +9,8 @@ import org.junit.Test;
 import static org.mockito.Mockito.*;
 import static junit.framework.Assert.*;
 import ar.edu.desapp.grupoa.disease.Disease;
-import ar.edu.desapp.grupoa.exeptions.RecordExistException;
+import ar.edu.desapp.grupoa.exceptions.NotFoundDiseaseException;
+import ar.edu.desapp.grupoa.exceptions.RecordExistException;
 import ar.edu.desapp.grupoa.medicalRecord.MedicalRecord;
 import ar.edu.desapp.grupoa.symptom.Symptom;
 import ar.edu.desapp.grupoa.system.Hospital;
@@ -25,6 +26,7 @@ public class HospitalTest {
 	private MedicalRecord medRecord2;
 	private Symptom dolorDeCabeza;
 	private Symptom dolorDeGarganta;
+	private Symptom dolorDeEstomago;
 	private Disease migraña;
 	private Disease resfrio;
 	private Disease conjuntivitis;
@@ -39,6 +41,7 @@ public class HospitalTest {
 		// -Diseases- //
 		dolorDeCabeza = mock(Symptom.class);
 		dolorDeGarganta = mock(Symptom.class);
+		dolorDeEstomago = mock(Symptom.class);
 		migraña = aDisease("Migraña")
 					.with(dolorDeCabeza)
 					.build();
@@ -86,29 +89,6 @@ public class HospitalTest {
 		hospital2.addMedicalRecord(medRecord2);
 	
 	}
-
-	
-	/*
-	@Test
-	public void compareSymptomsResfrioTest() throws NotFoundDiseaseException {
-		ArrayList<Symptom> symptoms = new ArrayList<Symptom>();
-		symptoms.add(dolorDeCabeza);
-		symptoms.add(dolorDeGarganta);
-		Disease actual = hospital1.compareSymptoms(symptoms);
-		Disease expected = resfrio;
-		assertEquals(expected, actual);
-	}
-
-	@Test(expected = NotFoundDiseaseException.class)
-	public void compareSymptomsExeptionTest() throws NotFoundDiseaseException {
-		ArrayList<Symptom> symptoms = new ArrayList<Symptom>();
-		symptoms.add(dolorDeEstomago);
-		Disease expected = hospital1.compareSymptoms(symptoms);
-	}
-	*/
-	
-	///////
-	
 	
 	@Test 
 	public void existRecordForPatientTest() throws RecordExistException {
@@ -166,17 +146,6 @@ public class HospitalTest {
 		hospital1.addMedicalRecord(medRecord2);
 	}
 	
-	@Test
-	public void possibleDiseasesForSymptomsListTest() {		
-		List<Symptom> symptoms = new ArrayList<Symptom>();
-		symptoms.add(dolorDeCabeza);
-		symptoms.add(dolorDeGarganta);
-		List<Disease> expected = new ArrayList<Disease>();
-		expected.add(resfrio);
-		expected.add(migraña);
-		List<Disease> actual = hospital2.possibleDiseases(symptoms);
-		assertEquals(expected,actual);
-	}
 	
 	@Test
 	public void recordsFromPatientsWhoSufferedResfrioTest() throws RecordExistException {
@@ -195,7 +164,7 @@ public class HospitalTest {
 		assertEquals(expected, actual);
 	}
 	
-	@Test
+	@Test /** @REQUIRED! */
 	public void whoSufferedConjuntivitisAlsoSuffered() {
 		List<Disease> expected = new ArrayList<Disease>();
 		expected.add(migraña);
@@ -205,8 +174,52 @@ public class HospitalTest {
 	}
 
 	@Test
-	public void moreProbableDiagnosisTest() {
-		
+	public void possibleDiseasesForSymptomsListTest() {		
+		List<Symptom> symptoms = new ArrayList<Symptom>();
+		symptoms.add(dolorDeCabeza);
+		symptoms.add(dolorDeGarganta);
+		List<Disease> expected = new ArrayList<Disease>();
+		expected.add(resfrio);
+		expected.add(migraña);
+		List<Disease> actual = hospital2.possibleDiseases(symptoms);
+		assertEquals(expected,actual);
+	}
+
+	@Test
+	public void makeALazyDiagnosisTest() {
+		List<Symptom> symptoms = new ArrayList<Symptom>();
+		symptoms.add(dolorDeCabeza);
+		symptoms.add(dolorDeGarganta);
+		Disease expected = resfrio;
+		Disease actual = hospital2.lazyDiagnosis(symptoms);
+		assertEquals(expected, actual);
+	}
+
+	@Test(expected = NotFoundDiseaseException.class)
+	public void cantMakeALazyDiagnosisTest() {
+		List<Symptom> symptoms = new ArrayList<Symptom>();
+		symptoms.add(dolorDeEstomago);
+		hospital2.lazyDiagnosis(symptoms);
+	}
+	
+	@Test
+	public void matchsSymptomsMigrañaTest() {
+		List<Symptom> symptoms = new ArrayList<Symptom>();
+		symptoms.add(dolorDeCabeza);
+		symptoms.add(dolorDeGarganta);
+		Integer expected = 1;
+		Integer actual = hospital2.matchs(migraña, symptoms);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void matchsSymptomsResfrioTest() {
+		List<Symptom> symptoms = new ArrayList<Symptom>();
+		symptoms.add(dolorDeCabeza);
+		symptoms.add(dolorDeGarganta);
+		Integer expected = 2;
+		Integer actual = hospital2.matchs(resfrio, symptoms);
+		assertEquals(expected, actual);
 	}
 	
 }

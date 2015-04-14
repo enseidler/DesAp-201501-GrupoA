@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static ar.edu.desapp.grupoa.builders.DiseaseBuilder.*;
 import static ar.edu.desapp.grupoa.utils.ListUtils.*;
 import ar.edu.desapp.grupoa.disease.Disease;
-import ar.edu.desapp.grupoa.exeptions.NotFoundDiseaseException;
-import ar.edu.desapp.grupoa.exeptions.RecordExistException;
+import ar.edu.desapp.grupoa.exceptions.NotFoundDiseaseException;
+import ar.edu.desapp.grupoa.exceptions.RecordExistException;
 import ar.edu.desapp.grupoa.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.grupoa.medicalRecord.MedicalRecord;
 import ar.edu.desapp.grupoa.symptom.Symptom;
@@ -77,53 +78,6 @@ public class Hospital {
 		return exist;
 	}
 	
-	/*
-	public void createNewMedicalConsultation(List<Symptom> symptoms) throws NotFoundDiseaseException{
-		
-		Doctor doctor = this.doctors.get(0);
-		this.getDoctors().remove(0); //Lo asigno por lo tanto lo saco momentaneamente de la lista hasta q termine su trabajo
-		
-		MedicalConsultation newMedicalConsultation = new MedicalConsultation(doctor);
-		doctor.addSymptomsToMedicalConsultation(newMedicalConsultation, symptoms);
-		Disease disease = this.compareSymptoms(symptoms);
-		doctor.addDignoseDisease(newMedicalConsultation, disease);
-		
-		doctor.addTreatment(newMedicalConsultation);
-		
-		this.addDoctor(doctor); // Termino su trabajo lo agrago denuevo a la lista
-	
-	}
-	
-	public Disease compareSymptoms(List<Symptom> symptoms) throws NotFoundDiseaseException{
-		for(int x=0; x<this.getDiseases().size(); x++) {
-			Disease disease = this.getDiseases().get(x);
-			if(symptoms.containsAll(disease.getSymptoms())){
-				return disease;
-			}
-		}
-		throw new NotFoundDiseaseException("Not Found Disease");
-	}
-	*/
-	
-	
-	///////
-	
-	
-	/**
-	 * @param symptoms
-	 * @return possible diseases for a given symptoms list
-	 * @criteria if a disease has one symptom from list, could be a correct diagnosis
-	 */
-	public List<Disease> possibleDiseases(List<Symptom> symptoms) {
-		List<Disease> result = new ArrayList<Disease>();
-		for(Disease disease : this.getDiseases()) {
-			if(disease.hasASymptom(symptoms)) {
-				addIfNotExist(result,disease);
-			}
-		}
-		return result;
-	}
-	
 	public List<MedicalRecord> recordsFromPatientsWhoSuffered(Disease disease) {
 		List<MedicalRecord> recs = new ArrayList<MedicalRecord>();
 		for(MedicalRecord rec : this.getMedicalRecords()) {
@@ -141,30 +95,59 @@ public class Hospital {
 		}
 		return result;
 	}
-	
+
 	/**
-	 * @MISSING TESTS
+	 * @param symptoms
+	 * @return possible diseases for a given symptoms list
+	 * @criteria if a disease has one symptom from list, could be a correct diagnosis
 	 */
-	public Disease moreProbableDiagnosis(List<Symptom> symptoms) {
-		Disease probDiagnosis = this.getDiseases().get(0); 
+	public List<Disease> possibleDiseases(List<Symptom> symptoms) {
+		List<Disease> result = new ArrayList<Disease>();
 		for(Disease disease : this.getDiseases()) {
-			if(matchs(disease, symptoms) > matchs(probDiagnosis, symptoms)) {
-				probDiagnosis = disease;
+			if(disease.hasASymptom(symptoms)) {
+				addIfNotExist(result,disease);
 			}
 		}
-		if(matchs(probDiagnosis,symptoms) > 0) {
-			return probDiagnosis;			
+		return result;
+	}
+	
+	public Disease lazyDiagnosis(List<Symptom> symptoms) {
+		List<Disease> possibles = this.possibleDiseases(symptoms);
+		Disease probDiagnosis = aDisease("unknown").build();
+		if(!possibles.isEmpty()) {
+			for(Disease disease : possibles) {
+				if(matchs(disease, symptoms) > matchs(probDiagnosis, symptoms)) {
+					probDiagnosis = disease;
+				}
+			}
 		} else {
 			throw new NotFoundDiseaseException();
 		}
+		return probDiagnosis;			
 	}
 	
-	/**
-	 * @MISSING TESTS
-	 */
 	public Integer matchs(Disease disease, List<Symptom> symptoms) {
 		return (intersection(disease.getSymptoms(), symptoms)).size();
 	}
+	
+	/*
+	 * 
+	 * Caso de uso de doctor (Consulta completa)
+	 * Para un paciente X
+	 * Hay que conseguir los sintomas del paciente
+	 * Hay que conseguir la enfermedad diagnosticada
+	 * Hay que conseguir el tratamiento para el diagnostico
+	 * Resultado final: 
+	 * 		1- Retorna una MedicalConsultation con
+	 * 					-Doctor
+	 * 					-Paciente
+	 * 					-Enfermedad diagnosticada
+	 * 					-Tratamiento correcto
+	 * 
+	 * 		2- Agrega la MedicalConsultation a la historia clinica del paciente
+	 * 		3- Agrega la enfermedad diagnosticada a la historia clinica	
+	 * 
+	 */
 	
 }
 

@@ -23,11 +23,7 @@ public class PatientTest {
 					.withPassword("pass")
 					.withWight(75)
 					.withHeight(1.81)
-					.build();
-		
-		//patient1 = new Patient("Ezequiel","Seidler",12345678,"pass", 75, 1.81);
-		
-
+					.build();		
 	}
 	
 	@Test
