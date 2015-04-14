@@ -51,6 +51,9 @@ public class HospitalTest {
 					.build();
 		conjuntivitis = aDisease("Conjuntivitis").build();
 		
+		// -Medicine- //
+		
+		
 		// -People- //
 		patient1 = mock(Patient.class);
 		patient2 = mock(Patient.class);
@@ -76,7 +79,6 @@ public class HospitalTest {
 		rec2Suffered.add(conjuntivitis);
 		when(medRecord2.getDiseases()).thenReturn(rec2Suffered);
 		
-
 		
 		// -System- //
 		hospital1 = new Hospital();

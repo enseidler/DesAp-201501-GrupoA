@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.desapp.grupoa.disease.Disease;
+import ar.edu.desapp.grupoa.medicalRecord.MedicalRecord;
 
 public class Medicine {
 	
@@ -37,8 +38,12 @@ public class Medicine {
 		return theCureFor;
 	}
 
-	public void setTheCureFor(List<Disease> theCureFor) {
-		this.theCureFor = theCureFor;
+	public Boolean cure(Disease disease) {
+		return this.getTheCureFor().contains(disease);
+	}
+
+	public boolean instAllergic(MedicalRecord medicalRecord) {
+		return medicalRecord.getAllergies().contains(this.getDrug());
 	}
 
 }

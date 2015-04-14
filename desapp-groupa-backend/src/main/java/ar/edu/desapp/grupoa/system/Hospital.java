@@ -8,9 +8,12 @@ import static ar.edu.desapp.grupoa.builders.DiseaseBuilder.*;
 import static ar.edu.desapp.grupoa.utils.ListUtils.*;
 import ar.edu.desapp.grupoa.disease.Disease;
 import ar.edu.desapp.grupoa.exceptions.NotFoundDiseaseException;
+import ar.edu.desapp.grupoa.exceptions.NotFoundMedicineException;
 import ar.edu.desapp.grupoa.exceptions.RecordExistException;
 import ar.edu.desapp.grupoa.medicalConsultation.MedicalConsultation;
+import ar.edu.desapp.grupoa.medicalPractice.MedicalPractice;
 import ar.edu.desapp.grupoa.medicalRecord.MedicalRecord;
+import ar.edu.desapp.grupoa.medicine.Medicine;
 import ar.edu.desapp.grupoa.symptom.Symptom;
 import ar.edu.desapp.grupoa.treatment.Treatment;
 import ar.edu.desapp.grupoa.user.Doctor;
@@ -22,12 +25,16 @@ public class Hospital {
 	private List<Patient> patients;
 	private List<Doctor> doctors;
 	private List<Disease> diseases;
+	private List<Medicine> medicines;
+	private List<MedicalPractice> medicalPractices;
 	
 	public Hospital(){
 		this.medicalRecords = new ArrayList<MedicalRecord>();
 		this.patients = new ArrayList<Patient>();
 		this.doctors = new ArrayList<Doctor>();
 		this.diseases = new ArrayList<Disease>();
+		this.medicines = new ArrayList<Medicine>();
+		this.medicalPractices = new ArrayList<MedicalPractice>();
 	}
 	
 	
@@ -47,6 +54,13 @@ public class Hospital {
 		return diseases;
 	}
 	
+	public List<Medicine> getMedicines() {
+		return medicines;
+	}
+
+	public List<MedicalPractice> getMedicalPractices() {
+		return medicalPractices;
+	}
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
@@ -129,6 +143,36 @@ public class Hospital {
 	public Integer matchs(Disease disease, List<Symptom> symptoms) {
 		return (intersection(disease.getSymptoms(), symptoms)).size();
 	}
+	
+	public Treatment makeATreatmentFor(MedicalRecord medicalRecord, Disease disease) {
+		Treatment treatment = new Treatment();
+		treatment.addMedicine(this.chooseMedicine(medicalRecord, disease));
+		MedicalPractice medPractice = this.chooseMedicalPractice(medicalRecord, disease);
+		if(medPractice != null) {
+			treatment.addMedicalPractices(medPractice);
+		}
+		return treatment;
+	}
+
+
+	public Medicine chooseMedicine(MedicalRecord medicalRecord, Disease disease) throws NotFoundMedicineException {
+		for(Medicine med : this.getMedicines()) {
+			if(med.cure(disease) && med.instAllergic(medicalRecord)) {
+				return med;
+			}
+		}
+		throw new NotFoundMedicineException();
+	}
+
+	public MedicalPractice chooseMedicalPractice(MedicalRecord medicalRecord, Disease disease) {
+		for(MedicalPractice medPractice : this.getMedicalPractices()) {
+			if(medPractice.cure(disease)) {
+				return medPractice;
+			}
+		}
+		return null;
+	}
+	
 	
 	/*
 	 * 

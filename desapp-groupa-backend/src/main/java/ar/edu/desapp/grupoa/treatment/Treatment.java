@@ -5,6 +5,7 @@ import java.util.List;
 
 import ar.edu.desapp.grupoa.medicalPractice.MedicalPractice;
 import ar.edu.desapp.grupoa.medicine.Medicine;
+import ar.edu.desapp.grupoa.repose.Parcial;
 import ar.edu.desapp.grupoa.repose.Repose;
 
 public class Treatment {
@@ -18,13 +19,14 @@ public class Treatment {
 		this.medicines = new ArrayList<Medicine>();
 		this.repose = repose;	
 	}
+	
+	public Treatment() {
+		this.medicalPractices = new ArrayList<MedicalPractice>();
+		this.medicines = new ArrayList<Medicine>();
+	}
 
 	public Repose getRepose() {
 		return repose;
-	}
-
-	public void setRepose(Repose repose) {
-		this.repose = repose;
 	}
 
 	public List<Medicine> getMedicines() {
