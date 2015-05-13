@@ -14,7 +14,12 @@
 		<artifactId>aunq-parent</artifactId>
 		<version>0.1-SNAPSHOT</version>
 	</parent>
-
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jetty.version>6.1.24</jetty.version>
+		<spring.version>3.0.5.RELEASE</spring.version>
+	</properties>
 
 	<dependencies>
 		<!-- /////// -->
@@ -208,11 +213,6 @@
 
 
 	</dependencies>
-
-	<properties>
-		<jetty.version>6.1.24</jetty.version>
-		<spring.version>3.0.5.RELEASE</spring.version>
-	</properties>
 
 	<build>
 		<finalName>desapp-groupa-backend</finalName>
