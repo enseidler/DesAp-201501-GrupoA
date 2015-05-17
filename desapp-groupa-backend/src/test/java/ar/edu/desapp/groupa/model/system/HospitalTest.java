@@ -22,7 +22,6 @@ import ar.edu.desapp.groupa.model.exceptions.NotFoundDiseaseException;
 import ar.edu.desapp.groupa.model.exceptions.NotFoundMedicineException;
 import ar.edu.desapp.groupa.model.exceptions.RecordExistException;
 import static ar.edu.desapp.groupa.model.builders.DiseaseBuilder.*;
-import static ar.edu.desapp.groupa.model.builders.TreatmentBuilder.*;
 
 public class HospitalTest {
 	

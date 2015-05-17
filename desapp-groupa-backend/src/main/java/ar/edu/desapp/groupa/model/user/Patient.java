@@ -2,22 +2,24 @@ package ar.edu.desapp.groupa.model.user;
 
 public class Patient extends User {
 
-	private double wight; 
+	private static final long serialVersionUID = 2664034775371830171L;
+	
+	private double weight; 
 	private double height;
 
-	public Patient(String name, String surname, Integer dni, String password, double wight, double height) {
+	public Patient(String name, String surname, Integer dni, String password, double weight, double height) {
 		super(name, surname, dni, password);
-		this.setWight(wight);
+		this.setWeight(weight);
 		this.setHeight(height);
 
 	}
 
-	public double getWight() {
-		return this.wight;
+	public double getWeight() {
+		return this.weight;
 	}
 
-	public void setWight(double wight) {
-		this.wight = wight;
+	public void setWeight(double weight) {
+		this.weight = weight;
 	}
 
 	public double getHeight() {

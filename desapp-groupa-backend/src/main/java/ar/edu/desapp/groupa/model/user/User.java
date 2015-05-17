@@ -1,7 +1,11 @@
 package ar.edu.desapp.groupa.model.user;
 
-public abstract class User {
+import ar.edu.desapp.groupa.entity.Entity;
 
+public abstract class User extends Entity {
+
+	private static final long serialVersionUID = 8148729131092855671L;
+	
 	private String name;
 	private String surname;
 	private Integer dni;

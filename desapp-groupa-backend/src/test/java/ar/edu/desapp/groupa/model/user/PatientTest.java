@@ -53,7 +53,7 @@ public class PatientTest {
 	@Test
 	public void patientDataWightTest() {
 		double expected = 75;
-		assertEquals(expected, patient1.getWight());
+		assertEquals(expected, patient1.getWeight());
 	}
 	
 	@Test
