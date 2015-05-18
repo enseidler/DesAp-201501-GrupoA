@@ -97,5 +97,9 @@
 	<bean id="persistence.patientrepository" class="ar.edu.desapp.groupa.repositories.PatientRepository">
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
+	
+	<bean id="persistence.doctorrepository" class="ar.edu.desapp.groupa.repositories.DoctorRepository">
+		<property name="sessionFactory" ref="persistence.sessionFactory" />
+	</bean>
 
 </beans>

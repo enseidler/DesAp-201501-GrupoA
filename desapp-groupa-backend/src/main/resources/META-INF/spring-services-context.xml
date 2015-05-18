@@ -14,6 +14,10 @@
 	<bean id="services.patient" class="ar.edu.desapp.groupa.services.PatientService">
 		<property name="repository" ref="persistence.patientrepository" />
 	</bean>
+	
+	<bean id="services.doctor" class="ar.edu.desapp.groupa.services.DoctorService">
+		<property name="repository" ref="persistence.patientrepository" />
+	</bean>
 
 
 </beans>

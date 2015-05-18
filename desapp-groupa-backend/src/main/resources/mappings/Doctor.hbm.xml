@@ -3,7 +3,7 @@
                                    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-access="field"
 	default-cascade="save-update">
-	<class name="ar.edu.desapp.groupa.model.user.Patient">
+	<class name="ar.edu.desapp.groupa.model.user.Doctor">
 		<id column="ID" name="id">
 			<generator class="native" />
 		</id>
@@ -11,8 +11,7 @@
 		<property name="surname" />
 		<property name="dni" />
 		<property name="password" />
-		<property name="weight" />
-		<property name="height" />
+		<property name="enrollment" />
 
 	</class>
 </hibernate-mapping>
