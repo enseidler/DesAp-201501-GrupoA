@@ -16,7 +16,7 @@ public abstract class HibernateGenericDAO<T> extends HibernateDaoSupport impleme
 	protected Class<T> persistentClass = this.getDomainClass();
 	
 	protected abstract Class<T> getDomainClass();
-
+	
 	@Override
 	public void save(final T entity) {
 		this.getHibernateTemplate().save(entity);

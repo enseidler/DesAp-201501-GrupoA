@@ -7,6 +7,10 @@ public class Patient extends User {
 	private double weight; 
 	private double height;
 
+	public Patient() {
+		super();
+	}
+	
 	public Patient(String name, String surname, Integer dni, String password, double weight, double height) {
 		super(name, surname, dni, password);
 		this.setWeight(weight);

@@ -20,6 +20,7 @@
 		<jetty.version>6.1.24</jetty.version>
 		<spring.version>3.0.5.RELEASE</spring.version>
 		<cxf.version>2.3.5</cxf.version>
+		<jackson.version>1.8.2</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -251,7 +252,27 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- Jackson -->
 
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-xc</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<!-- /Jackson -->
 	</dependencies>
 
 	<build>

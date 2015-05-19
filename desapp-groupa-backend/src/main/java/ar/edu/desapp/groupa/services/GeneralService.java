@@ -1,11 +1,10 @@
 package ar.edu.desapp.groupa.services;
 
+
 public class GeneralService {
 
 	private PatientService patientService;
 	
-	private DoctorService doctorService;
-
 
 	public PatientService getPatientService() {
 		return patientService;
@@ -13,14 +12,7 @@ public class GeneralService {
 
 	public void setPatientService(final PatientService patientService) {
 		this.patientService = patientService;
-	}
-
-	public DoctorService getDoctorService() {
-		return doctorService;
-	}
-
-	public void setDoctorService(final DoctorService doctorService) {
-		this.doctorService = doctorService;
+//		this.getPatientService().save(new Patient("Cachito", "Castaña", 1111, "cafelahumedad", 80, 1.7));
 	}
 
 }

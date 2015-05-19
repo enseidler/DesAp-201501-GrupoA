@@ -10,7 +10,9 @@ public abstract class User extends Entity {
 	private String surname;
 	private Integer dni;
 	private String password;
-		
+	
+	public User() {}
+	
 	public User(String name, String surname, Integer dni, String password) {
 		this.setName(name);
 		this.setSurname(surname);
