@@ -1,0 +1,12 @@
+@import url("darkly_bootstrap.min.css");
+body { 
+	padding-top: 100px;
+	background-image: url("http://wallpoper.com/images/00/39/11/88/abstract-gaussian_00391188.png");
+	background-size: cover;
+	background-repeat: no-repeat; 
+}
+.divider-50 { padding-top: 50px; }
+.glyphicon { margin-right:10px; }
+.fa { margin-right:10px; }
+.panel-body table tr td { padding-left: 15px }
+.panel-body .table { margin-bottom: 0px; }
