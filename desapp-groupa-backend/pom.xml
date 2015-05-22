@@ -252,6 +252,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlets</artifactId>
+			<version>9.3.0.M2</version>
+		</dependency>
+
 		<!-- Jackson -->
 
 		<dependency>
@@ -273,6 +280,7 @@
 		</dependency>
 
 		<!-- /Jackson -->
+
 	</dependencies>
 
 	<build>

@@ -21,7 +21,6 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 
 	<bean id='jacksonProvider' class='org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider' />
 
-
 <!-- =========================== -->
 <!-- =========Servicios  ========= -->
 <!-- =========================== -->
