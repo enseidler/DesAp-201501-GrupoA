@@ -1,40 +1,28 @@
 'use strict';
 
-var app = angular.module('desappGrupoaFrontendApp', []);
+var app = angular.module('desappGrupoaFrontendApp', ['ngRoute', 'ngResource']);
 
-app.config(['$httpProvider', function ($httpProvider) {
+app.config(['$httpProvider', '$routeProvider', function ($httpProvider, $routeProvider) {
 
     $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
     
+    $routeProvider.
+      	when('/CreatePatient', {
+        	templateUrl: 'views/create-patient.html',
+        	controller: 'CreatePatientController'
+      	}).
+      	otherwise({
+        	redirectTo: '/'
+    	});
+
 }]);
 
-app.controller('PatientsController', ['$scope', '$http', function($scope, $http) {
 
-	$scope.patient = {
-        "height": 1.81,
-        "weight": 74.5,
-        "name": "Ezequiel",
-        "password": "e36396386",
-        "surname": "Seidler",
-        "dni": 36396386
-    };
+app.controller('CreatePatientController', ['$scope', '$http', '$resource', function($scope, $http, $resource) {
 
 	$scope.create = function() {
-		
-        //$http(req).success(function(){}).error(function(){});
-        //$http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/list').
-        $http.post('http://localhost:8080/desapp-groupa-backend/rest/patients/create', $scope.patient).
-		  success(function(data, status, headers, config) {
-		    // this callback will be called asynchronously
-		    // when the response is available
-		  }).
-		  error(function(data, status, headers, config) {
-		    // called asynchronously if an error occurs
-		    // or server returns response with an error status.
-		  });
-
+		var req = $resource('http://localhost:8080/desapp-groupa-backend/rest/patients/create');
+		req.save($scope.newPatient);
 	};
-	
-	
 	
 }]);
