@@ -7,6 +7,9 @@ app.config(['$httpProvider', '$routeProvider', function ($httpProvider, $routePr
     $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
     
     $routeProvider.
+      	when('/Home', {
+        	templateUrl: 'views/home.html'
+      	}).
       	when('/CreatePatient', {
         	templateUrl: 'views/create-patient.html',
         	controller: 'CreatePatientController'
@@ -16,7 +19,7 @@ app.config(['$httpProvider', '$routeProvider', function ($httpProvider, $routePr
         	controller: 'ModifyPatientController'
       	}).
       	otherwise({
-        	redirectTo: '/'
+        	redirectTo: '/Home'
     	});
 
 }]);
