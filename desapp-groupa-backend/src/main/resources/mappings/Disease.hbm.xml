@@ -8,11 +8,11 @@
 			<generator class="native" />
 		</id>
 		<property name="name" />
-		<list name="symptoms" lazy="false">
-			<key column="symptomsID" />
-			<list-index column="id" />
-			<one-to-many class="ar.edu.desapp.groupa.model.symptom.Symptom" />
-		</list>
+<!-- 		<list name="symptoms" lazy="false"> -->
+<!-- 			<key column="symptomsID" /> -->
+<!-- 			<list-index column="id" /> -->
+<!-- 			<one-to-many class="ar.edu.desapp.groupa.model.symptom.Symptom" /> -->
+<!-- 		</list> -->
 
 	</class>
 </hibernate-mapping>

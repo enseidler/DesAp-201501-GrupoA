@@ -5,7 +5,7 @@ import ar.edu.desapp.groupa.model.disease.Disease;
 import ar.edu.desapp.groupa.model.treatment.Treatment;
 import ar.edu.desapp.groupa.model.user.Doctor;
 
-public class MedicalConsultation extends Entity{
+public class MedicalConsultation extends Entity {
 	
 	private static final long serialVersionUID = 745361633878607081L;
 	
@@ -13,6 +13,9 @@ public class MedicalConsultation extends Entity{
 	private Disease dignoseDisease = null;
 	private Treatment treatment = null;
 
+	public MedicalConsultation() {
+		super();
+	}
 	
 	public MedicalConsultation(Doctor doctor){
 		this.setDoctor(doctor);		

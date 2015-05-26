@@ -66,6 +66,7 @@
 		</property>
 		<property name="mappingLocations">
 			<list>
+<!-- 				<value>classpath*:mappings/Patient.hbm.xml</value> -->
 				<value>classpath*:mappings/*.hbm.xml</value>
 			</list>
 		</property>
