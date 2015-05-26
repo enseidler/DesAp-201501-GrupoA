@@ -2,10 +2,13 @@ package ar.edu.desapp.groupa.model.disease;
 
 import java.util.List;
 
+import ar.edu.desapp.groupa.entity.Entity;
 import ar.edu.desapp.groupa.model.symptom.Symptom;
 
-public class Disease {
+public class Disease extends Entity{
 
+	private static final long serialVersionUID = 20440081772455115L;
+	
 	private String name;
 	private List<Symptom> symptoms;
 
