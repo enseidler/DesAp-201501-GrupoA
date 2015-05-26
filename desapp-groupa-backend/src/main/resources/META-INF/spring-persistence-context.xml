@@ -36,7 +36,7 @@
 		<property name="initialSize" value="20" />
 		<property name="maxActive" value="30" />
 		<property name="maxIdle" value="25" />
-
+		
 	</bean>
 
 	<!-- Defines a global session factory that will be used by all modules. -->

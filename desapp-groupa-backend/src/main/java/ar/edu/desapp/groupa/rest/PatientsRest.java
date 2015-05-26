@@ -1,12 +1,15 @@
 package ar.edu.desapp.groupa.rest;
 
 import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+
 import ar.edu.desapp.groupa.model.user.Patient;
 import ar.edu.desapp.groupa.services.PatientService;
 
@@ -33,6 +36,15 @@ public class PatientsRest {
 	@Produces("application/json")
 	public Response createPatient(Patient patient) {
 		patientService.save(patient);
+		return Response.ok(patient).build();
+	}
+	
+	@PUT
+	@Path("/modify")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Response modifyPatient(Patient patient) {
+		patientService.update(patient);
 		return Response.ok(patient).build();
 	}
 	
