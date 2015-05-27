@@ -25,7 +25,6 @@ app.config(['$httpProvider', '$routeProvider', function ($httpProvider, $routePr
 }]);
 
 
-
 app.controller('CreatePatientController', ['$scope', '$http', '$resource', function($scope, $http, $resource) {
 
 	$scope.create = function() {
@@ -36,13 +35,16 @@ app.controller('CreatePatientController', ['$scope', '$http', '$resource', funct
 }]);
 
 
-app.controller('SearchPatientController', ['$scope', '$http', '$resource', function($scope, $http, $resource) {	
+app.controller('SearchPatientController', ['$scope', '$http', function($scope, $http) {	
 	
   $scope.list = function() {
-    var req = $resource('http://localhost:8080/desapp-groupa-backend/rest/patients/list');
-    req.get();
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/list').
+      success(function(data) {
+        $scope.patients = data;
+      });
   };
 
   $scope.list();
 
 }]);
+
