@@ -26,8 +26,16 @@
 	    <div class="navbar navbar-inverse navbar-fixed-top padding-bottom shadow-bottom">
 		  	<div class="container">
 		    	<div class="navbar-header">
-		      		<a class="navbar-brand" href="#"><h1>FaceMed <i class="fa fa-heartbeat"></i></h1></a>
+		      		<a class="navbar-brand" href="#Home"><h1>FaceMed <i class="fa fa-heartbeat"></i></h1></a>
 		    	</div>
+		    	<form class="navbar-form navbar-right margin-25" role="search">
+				  	<div class="input-group percent-70">
+                        <span class="input-group-btn">
+                        	<a class="btn btn-default" type="button" href="#SearchPatient" ><i class="fa fa-search"></i></a>
+                        </span>
+					   	<input type="text" ng-model="search_text" class="form-control" placeholder="Search patients...">
+					</div>
+				</form>
 		  	</div>
 		</div>
 		<div class="container">
@@ -39,7 +47,7 @@
 			    				<h3>Welcome</h3>
 			  				</div>
 				            <div class="panel-group divider-50 unselectable facemed-accordion" >
-				               	<div class="panel panel-default">
+				               	<div class="panel panel-success">
 				               		<div class="panel-heading clickable facemed-accordion-option">
 				                       	<h4 class="panel-title">
 				                           	<a >
@@ -56,25 +64,10 @@
 					                                <span class="text-primary"></span><a href="#CreatePatient"><i class="fa fa-user-plus"></i>Create Patient</a>
 					                            </td>
 					                        </tr>
-					                        <tr>
-					                            <td>
-					                                <span class="text-primary"></span><a href="#ModifyPatient"><i class="fa fa-wrench"></i>Modify Patient</a>
-					                            </td>
-					                        </tr>
-					                        <tr>
-					                            <td>
-					                               	<div class="input-group percent-70">
-					                                   	<span class="input-group-btn">
-					                                   		<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-					                                   	</span>
-					                                   	<input type="text" class="form-control" placeholder="Search patients...">
-					                               	</div>
-					                            </td>
-					                        </tr>
 					                    </table>
 					                </div>
 				               	</div>
-				               	<div class="panel panel-default">
+				               	<div class="panel panel-success">
 				                   	<div class="panel-heading clickable facemed-accordion-option">
 				                       	<h4 class="panel-title">
 				                           	<a >

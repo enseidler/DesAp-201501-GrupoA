@@ -14,10 +14,10 @@ app.config(['$httpProvider', '$routeProvider', function ($httpProvider, $routePr
         	templateUrl: 'views/create-patient.html',
         	controller: 'CreatePatientController'
       	}).
-      	when('/ModifyPatient', {
-        	templateUrl: 'views/modify-patient.html',
-        	controller: 'ModifyPatientController'
-      	}).
+        when('/SearchPatient', {
+          templateUrl: 'views/search-patient.html',
+          controller: 'SearchPatientController',
+        }).
       	otherwise({
         	redirectTo: '/Home'
     	});
@@ -36,6 +36,13 @@ app.controller('CreatePatientController', ['$scope', '$http', '$resource', funct
 }]);
 
 
-app.controller('ModifyPatientController', ['$scope', '$http', function($scope, $http) {	
+app.controller('SearchPatientController', ['$scope', '$http', '$resource', function($scope, $http, $resource) {	
 	
+  $scope.list = function() {
+    var req = $resource('http://localhost:8080/desapp-groupa-backend/rest/patients/list');
+    req.get();
+  };
+
+  $scope.list();
+
 }]);
