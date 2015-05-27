@@ -1,3 +1,4 @@
-<div ng-repeat="patient in patients | filter: {name: search_text}">
-	{{patient.name}}
+<div ng-repeat="patient in patients | filter: search_text">
+	<td>{{patient.name}}</td>
+	<td>{{patient.surname}}</td>
 </div>
