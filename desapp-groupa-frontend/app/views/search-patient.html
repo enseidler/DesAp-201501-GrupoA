@@ -4,7 +4,7 @@
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
     <div class="col-md-12 search-list">
 		<div class="list-group">
-			<div class="list-group-item" ng-repeat="patient in (searchResult = (patients | filter: final_search))">
+			<div class="list-group-item" ng-repeat="patient in (searchResult = (patients | filter: final_search | orderBy: name))">
 				<table style="width:100%;">
 					<tr>
 						<td>
@@ -14,7 +14,7 @@
 						    <p class="list-group-item-text"><b>Weight:</b> {{patient.weight}} kg.</p>
 						</td>
 						<td>
-							<a type="button" title="Modify" class="btn btn-warning btn-md pull-right"><b><i class="fa fa-pencil-square-o"></i></b></a>
+							<a type="button" title="Modify" class="btn btn-warning btn-md pull-right" ng-href="#ModifyPatient/{{patient.id}}"><b><i class="fa fa-pencil-square-o"></i></b></a>
 						</td>
 					</tr>
 				</table>

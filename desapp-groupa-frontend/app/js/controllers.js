@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('desappGrupoaFrontendApp', ['ngRoute', 'ngResource']);
+var app = angular.module('desappGrupoaFrontendApp', ['ngRoute']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     
@@ -15,6 +15,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         when('/SearchPatient', {
           templateUrl: 'views/search-patient.html',
           controller: 'SearchPatientController'
+        }).
+        when('/ModifyPatient/:id', {
+          templateUrl: 'views/modify-patient.html',
+          controller: 'ModifyPatientController'
         }).
       	otherwise({
         	redirectTo: '/Home'
@@ -58,3 +62,24 @@ app.controller('SearchPatientController', ['$scope', '$http', function($scope, $
 }]);
 
 
+app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) { 
+  
+  $scope.modify = function() {
+    $http.put('http://localhost:8080/desapp-groupa-backend/rest/patients/modify', $scope.modPatient).
+      success(function(data) {
+        
+      });
+  };
+
+  $scope.patient = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/' + $routeParams.id).
+      success(function(data) {
+        $scope.modPatient = data;
+      });
+  };
+
+  $scope.patient()
+
+
+  
+}]);

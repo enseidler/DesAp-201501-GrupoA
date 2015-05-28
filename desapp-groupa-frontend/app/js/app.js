@@ -8,4 +8,4 @@
  *
  * Main module of the application.
  */
-angular.module('desappGrupoaFrontendApp', ['ngRoute', 'ngResource'])
+angular.module('desappGrupoaFrontendApp', ['ngRoute'])
