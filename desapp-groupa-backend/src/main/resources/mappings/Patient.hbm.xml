@@ -4,7 +4,7 @@
 <hibernate-mapping default-access="field"
 	default-cascade="save-update">
 	<class name="ar.edu.desapp.groupa.model.user.Patient">
-		<id column="ID" name="id">
+		<id column="id" name="id">
 			<generator class="native" />
 		</id>
 		<property name="name" />

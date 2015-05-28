@@ -7,6 +7,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
@@ -29,6 +30,15 @@ public class PatientsRest {
         List<Patient> patients = patientService.retriveAll();
         return patients;
     }
+	
+	@GET
+	@Path("/{id}")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Patient getPatient(@PathParam("id") Integer id) {
+		Patient patient = patientService.findById(id);
+		return patient;
+	}
 	
 	@POST
 	@Path("/create")
