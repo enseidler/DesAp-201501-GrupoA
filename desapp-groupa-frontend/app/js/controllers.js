@@ -2,9 +2,7 @@
 
 var app = angular.module('desappGrupoaFrontendApp', ['ngRoute', 'ngResource']);
 
-app.config(['$httpProvider', '$routeProvider', function ($httpProvider, $routeProvider) {
-
-    $httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
+app.config(['$routeProvider', function ($routeProvider) {
     
     $routeProvider.
       	when('/Home', {
@@ -16,7 +14,7 @@ app.config(['$httpProvider', '$routeProvider', function ($httpProvider, $routePr
       	}).
         when('/SearchPatient', {
           templateUrl: 'views/search-patient.html',
-          controller: 'SearchPatientController',
+          controller: 'SearchPatientController'
         }).
       	otherwise({
         	redirectTo: '/Home'
@@ -25,18 +23,29 @@ app.config(['$httpProvider', '$routeProvider', function ($httpProvider, $routePr
 }]);
 
 
-app.controller('CreatePatientController', ['$scope', '$http', '$resource', function($scope, $http, $resource) {
+app.controller('MainController', ['$scope', function($scope) {
 
-	$scope.create = function() {
-		var req = $resource('http://localhost:8080/desapp-groupa-backend/rest/patients/create');
-		req.save($scope.newPatient);
-	};
-	
+  $scope.mkSearch = function() {
+    $scope.final_search = $scope.search_text;
+  };
+  
 }]);
 
 
-app.controller('SearchPatientController', ['$scope', '$http', function($scope, $http) {	
-	
+app.controller('CreatePatientController', ['$scope', '$http', function($scope, $http) {
+
+  $scope.create = function() {
+    $http.post('http://localhost:8080/desapp-groupa-backend/rest/patients/create', $scope.newPatient).
+      success(function() {
+        $scope.newPatient = null;
+      });
+  };
+  
+}]);
+
+
+app.controller('SearchPatientController', ['$scope', '$http', function($scope, $http) { 
+  
   $scope.list = function() {
     $http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/list').
       success(function(data) {
@@ -44,7 +53,8 @@ app.controller('SearchPatientController', ['$scope', '$http', function($scope, $
       });
   };
 
-  $scope.list();
+  $scope.list(); 
 
 }]);
+
 

@@ -1,3 +1,4 @@
-<div ng-repeat="patient in patients | filter: {name: search_text}">
+<h1>Found <span class="label label-success">{{searchResult.length}}</span> patients searching <span class="label label-success">{{final_search}}</span></h1>
+<div ng-repeat="patient in (searchResult = (patients | filter: final_search))">
 	{{patient.name}}
 </div>
