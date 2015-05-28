@@ -1,5 +1,28 @@
+
 <h1>Found <span class="label label-success">{{searchResult.length}}</span> patients searching <span class="label label-success">{{final_search}}</span></h1>
-<div ng-repeat="patient in (searchResult = (patients | filter: final_search))">
-	<td>{{patient.name}}</td>
-	<td>{{patient.surname}}</td>
+
+<div class="col-md-12 vertical-padding-30 low-opacity-black">
+    <div class="col-md-12 search-list">
+		<div class="list-group">
+			<div class="list-group-item" ng-repeat="patient in (searchResult = (patients | filter: final_search))">
+				<table style="width:100%;">
+					<tr>
+						<td>
+							<h3 class="list-group-item-heading">{{patient.name}} {{patient.surname}}</h3>
+						    <p class="list-group-item-text"><b>DNI:</b> {{patient.dni}}</p>
+						    <p class="list-group-item-text"><b>Height:</b> {{patient.height}} m.</p>
+						    <p class="list-group-item-text"><b>Weight:</b> {{patient.weight}} kg.</p>
+						</td>
+						<td>
+							<a type="button" title="Modify" class="btn btn-warning btn-md pull-right"><b><i class="fa fa-pencil-square-o"></i></b></a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
+
+  
+    
+  
