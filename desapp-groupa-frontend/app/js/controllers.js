@@ -12,7 +12,7 @@ app.config(['$routeProvider', function ($routeProvider) {
         	templateUrl: 'views/create-patient.html',
         	controller: 'CreatePatientController'
       	}).
-        when('/SearchPatient', {
+        when('/SearchPatient/:search?', {
           templateUrl: 'views/search-patient.html',
           controller: 'SearchPatientController'
         }).
@@ -29,9 +29,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.controller('MainController', ['$scope', function($scope) {
 
-  $scope.mkSearch = function() {
-    $scope.final_search = $scope.search_text;
-  };
+  
   
 }]);
 
@@ -48,8 +46,8 @@ app.controller('CreatePatientController', ['$scope', '$http', function($scope, $
 }]);
 
 
-app.controller('SearchPatientController', ['$scope', '$http', function($scope, $http) { 
-  
+app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) { 
+
   $scope.list = function() {
     $http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/list').
       success(function(data) {
@@ -57,7 +55,12 @@ app.controller('SearchPatientController', ['$scope', '$http', function($scope, $
       });
   };
 
-  $scope.list(); 
+  $scope.initSearch = function() {
+    $scope.final_search = $routeParams.search;
+  };
+  
+  $scope.list();
+  $scope.initSearch();
 
 }]);
 
@@ -67,7 +70,7 @@ app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', fu
   $scope.modify = function() {
     $http.put('http://localhost:8080/desapp-groupa-backend/rest/patients/modify', $scope.modPatient).
       success(function(data) {
-        
+
       });
   };
 
