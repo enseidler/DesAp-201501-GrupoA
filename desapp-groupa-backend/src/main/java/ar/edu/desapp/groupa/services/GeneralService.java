@@ -1,11 +1,16 @@
 package ar.edu.desapp.groupa.services;
 
+import ar.edu.desapp.groupa.model.symptom.Symptom;
 import ar.edu.desapp.groupa.model.user.Patient;
 
 
 public class GeneralService {
 
 	private PatientService patientService;
+	private SymptomService symptomService;
+	private DiseaseService diseaseService;
+	private MedicalConsultationService medicalConsultationService;
+	
 	
 
 	public PatientService getPatientService() {
@@ -21,6 +26,37 @@ public class GeneralService {
 		this.getPatientService().save(new Patient("Hernan", "Garcia", 555, "987321654", 79, 1.8));
 		this.getPatientService().save(new Patient("Paula", "Torrez", 666, "987654321", 60, 1.6));
 		this.getPatientService().save(new Patient("Pablo", "Garcia", 777, "123456789", 98, 1.9));
+	}
+
+	public SymptomService getSymptomService() {
+		return symptomService;
+	}
+
+	public void setSymptomService(final SymptomService symptomService) {
+		this.symptomService = symptomService;
+		this.getSymptomService().save(new Symptom("Dolor de Cabeza"));
+		this.getSymptomService().save(new Symptom("Dolor de Estomago"));
+		this.getSymptomService().save(new Symptom("Dolor de Garganta"));
+		this.getSymptomService().save(new Symptom("Fiebre"));
+		this.getSymptomService().save(new Symptom("Erupciones en la piel"));
+		this.getSymptomService().save(new Symptom("Diarrea"));
+		this.getSymptomService().save(new Symptom("Vomitos"));
+	}
+
+	public DiseaseService getDiseaseService() {
+		return diseaseService;
+	}
+
+	public void setDiseaseService(final DiseaseService diseaseService) {
+		this.diseaseService = diseaseService;
+	}
+
+	public MedicalConsultationService getMedicalConsultationService() {
+		return medicalConsultationService;
+	}
+
+	public void setMedicalConsultationService(final MedicalConsultationService medicalConsultationService) {
+		this.medicalConsultationService = medicalConsultationService;
 	}
 
 }
