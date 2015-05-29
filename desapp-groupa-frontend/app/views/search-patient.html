@@ -1,10 +1,10 @@
 
-<h1>Found <span class="label label-success">{{searchResult.length}}</span> patients searching <span class="label label-success">{{final_search}}</span></h1>
+<h1>Found <span class="label label-success">{{searchResult.length}}</span> patients searching <span class="label label-success">{{last_search}}</span></h1>
 
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
     <div class="col-md-12 search-list">
 		<div class="list-group">
-			<div class="list-group-item" ng-repeat="patient in (searchResult = (patients | filter: final_search))">
+			<div class="list-group-item" ng-repeat="patient in (searchResult = (patients | filter: last_search))">
 				<table style="width:100%;">
 					<tr>
 						<td>

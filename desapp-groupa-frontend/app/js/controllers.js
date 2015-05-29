@@ -2,6 +2,11 @@
 
 var app = angular.module('desappGrupoaFrontendApp', ['ngRoute']);
 
+
+//////////////////////////////////////////
+///////// ROUTES
+//////////////////////////////////////////
+
 app.config(['$routeProvider', function ($routeProvider) {
     
     $routeProvider.
@@ -27,12 +32,10 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 
-app.controller('MainController', ['$scope', function($scope) {
 
-  
-  
-}]);
-
+//////////////////////////////////////////
+///////// CONTROLLERS
+//////////////////////////////////////////
 
 app.controller('CreatePatientController', ['$scope', '$http', function($scope, $http) {
 
@@ -46,7 +49,10 @@ app.controller('CreatePatientController', ['$scope', '$http', function($scope, $
 }]);
 
 
-app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) { 
+app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) { 
+
+  LastSearchService.save($routeParams.search);
+  $scope.last_search = LastSearchService.get();
 
   $scope.list = function() {
     $http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/list').
@@ -55,18 +61,15 @@ app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', fu
       });
   };
 
-  $scope.initSearch = function() {
-    $scope.final_search = $routeParams.search;
-  };
-  
   $scope.list();
-  $scope.initSearch();
-
+  
 }]);
 
 
-app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) { 
-  
+app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) { 
+
+  $scope.last_search = LastSearchService.get();
+
   $scope.modify = function() {
     $http.put('http://localhost:8080/desapp-groupa-backend/rest/patients/modify', $scope.modPatient).
       success(function(data) {
@@ -83,6 +86,24 @@ app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', fu
 
   $scope.patient()
 
-
-  
 }]);
+
+
+
+//////////////////////////////////////////
+///////// SERVICES
+//////////////////////////////////////////
+
+app.service('LastSearchService', function() {
+  
+  var lastSearch;
+
+  this.get = function() {
+    return lastSearch;
+  }
+
+  this.save = function (search) {
+    lastSearch = search;
+  }
+
+});
