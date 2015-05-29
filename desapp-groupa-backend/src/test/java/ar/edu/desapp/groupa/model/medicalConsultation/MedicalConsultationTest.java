@@ -49,7 +49,7 @@ public class MedicalConsultationTest {
 	@Test
 	public void medicalConsultationdataDiseaseTest(){
 		Disease expected = null;
-		assertEquals(expected, medicalConsultation.getDignoseDisease());
+		assertEquals(expected, medicalConsultation.getDiagnoseDisease());
 	}
 	
 	
@@ -62,9 +62,9 @@ public class MedicalConsultationTest {
 	
 	@Test
 	public void medicalConsultationaddiseaseTest(){
-		medicalConsultation.addDignoseDisease(disease);
+		medicalConsultation.addDiagnoseDisease(disease);
 		Disease expected = disease;
-		assertEquals(expected, medicalConsultation.getDignoseDisease());
+		assertEquals(expected, medicalConsultation.getDiagnoseDisease());
 	}
 	
 	

@@ -10,41 +10,50 @@ public class MedicalConsultation extends Entity {
 	private static final long serialVersionUID = 745361633878607081L;
 	
 	private Doctor doctor;
-	private Disease dignoseDisease = null;
+	private Disease diagnoseDisease = null;
 	private Treatment treatment = null;
-
+	
 	public MedicalConsultation() {
 		super();
 	}
 	
-	public MedicalConsultation(Doctor doctor){
-		this.setDoctor(doctor);		
+	public MedicalConsultation(Doctor doctor) {
+		super();
+		this.doctor = doctor;
 	}
 	
 	public Doctor getDoctor() {
 		return doctor;
 	}
-	
+
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	
-	public Disease getDignoseDisease() {
-		return dignoseDisease;
+
+	public Disease getDiagnoseDisease() {
+		return diagnoseDisease;
 	}
-	
+
+	public void setDiagnoseDisease(Disease diagnoseDisease) {
+		this.diagnoseDisease = diagnoseDisease;
+	}
+
 	public Treatment getTreatment() {
 		return treatment;
 	}
+
+	public void setTreatment(Treatment treatment) {
+		this.treatment = treatment;
+	}
 	
 	///////////////////////////////////////////////////////
-	
+
 	public void addTreatment(Treatment treatament) {
 		this.treatment = treatament;
 	}
 	
-	public void addDignoseDisease(Disease dignoseDiase) {
-		this.dignoseDisease = dignoseDiase;
+	public void addDiagnoseDisease(Disease diagnoseDiase) {
+		this.diagnoseDisease = diagnoseDiase;
 	}
 	
 }

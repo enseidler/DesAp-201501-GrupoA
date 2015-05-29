@@ -7,9 +7,9 @@
 		<id column="ID" name="id">
 			<generator class="native" />
 		</id>
-<!-- 		<property name="doctor" /> -->
-<!-- 		<property name="diagnoseDisease" /> -->
-<!-- 		<property name="treatment" /> -->
+		
+ 		<one-to-one name="diagnoseDisease" class="ar.edu.desapp.groupa.model.disease.Disease" cascade="save-update"> </one-to-one>
+<!--  		<one-to-one name="treatment" /> -->
 
 	</class>
 </hibernate-mapping>
