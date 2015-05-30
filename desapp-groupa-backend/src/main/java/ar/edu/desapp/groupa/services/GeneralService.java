@@ -64,7 +64,7 @@ public class GeneralService {
 		return recordService;
 	}
 
-	public void setRecordService(MedicalRecordService recordService) {
+	public void setRecordService(final MedicalRecordService recordService) {
 		this.recordService = recordService;
 	}
 
