@@ -95,16 +95,23 @@
 	<!-- ________________________________________ -->
 	<!-- ________________________________________ -->
 
-	<bean id="persistence.patientrepository" class="ar.edu.desapp.groupa.repositories.PatientRepository">
+	<bean id="persistence.patientRepository" class="ar.edu.desapp.groupa.repositories.PatientRepository">
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
+
 	<bean id="persistence.medicalConsultationRepository" class="ar.edu.desapp.groupa.repositories.MedicalConsultationRepository">
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
+
 	<bean id="persistence.diseaseRepository" class="ar.edu.desapp.groupa.repositories.DiseaseRepository">
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
+
 	<bean id="persistence.symptomRepository" class="ar.edu.desapp.groupa.repositories.SymptomRepository">
+		<property name="sessionFactory" ref="persistence.sessionFactory" />
+	</bean>
+
+	<bean id="persistence.medicalRecordRepository" class="ar.edu.desapp.groupa.repositories.MedicalRecordRepository">
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
 	

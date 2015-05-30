@@ -45,5 +45,28 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 	<bean id="patientsRest" class="ar.edu.desapp.groupa.rest.PatientsRest">
 		<property name="patientService" ref="services.patient" />
 	</bean>
+	
+	
+	<jaxrs:server id="medicalRecord"  > 
+		<jaxrs:serviceBeans>
+			<ref bean="medicalRecordRest" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+			<entry key="xml" value="application/xml" />
+		</jaxrs:extensionMappings>
+		<jaxrs:providers>
+			<ref bean="jaxbProvider" />
+			<ref bean="jacksonProvider" />
+		</jaxrs:providers>
+		<jaxrs:features>
+			<cxf:logging />
+		</jaxrs:features>
+	</jaxrs:server>
+
+	<bean id="medicalRecordRest" class="ar.edu.desapp.groupa.rest.MedicalRecordRest">
+		<property name="recordService" ref="services.record" />
+	</bean>
+	
 
 </beans>
