@@ -3,25 +3,27 @@ package ar.edu.desapp.groupa.model.medicalRecord;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.desapp.groupa.entity.Entity;
 import ar.edu.desapp.groupa.model.disease.Disease;
 import ar.edu.desapp.groupa.model.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.groupa.model.medicine.Drug;
 import ar.edu.desapp.groupa.model.user.Patient;
 
-public class MedicalRecord {
+public class MedicalRecord extends Entity {
+	
+	private static final long serialVersionUID = 355081580542374081L;
 	
 	private Patient patient;
-	private List<MedicalConsultation> consultations;
-	private List<Disease> diseases;
-	private List<Drug> allergies;
+	private List<MedicalConsultation> consultations = new ArrayList<MedicalConsultation>();
+	private List<Disease> diseases = new ArrayList<Disease>();
+	private List<Drug> allergies = new ArrayList<Drug>();
+	
+	public MedicalRecord() {
+		super();
+	}
 	
 	public MedicalRecord(Patient patient){
-		
-		this.patient = patient; 
-		this.consultations = new ArrayList<MedicalConsultation>();
-		this.diseases = new ArrayList<Disease>();
-		this.allergies = new ArrayList<Drug>();
-
+		this.patient = patient;
 	}
 
 	public Patient getPatient() {

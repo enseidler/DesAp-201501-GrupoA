@@ -29,12 +29,27 @@ public class Treatment extends Entity {
 	}
 	
 
+
+
+
+	public void setRepose(Repose repose) {
+		this.repose = repose;
+	}
+
 	public Repose getRepose() {
 		return repose;
 	}
 
 	public List<Medicine> getMedicines() {
 		return medicines;
+	}
+	
+	public void setMedicines(List<Medicine> medicines) {
+		this.medicines = medicines;
+	}
+
+	public void setMedicalPractices(List<MedicalPractice> medicalPractices) {
+		this.medicalPractices = medicalPractices;
 	}
 	
 	public List<MedicalPractice> getMedicalPractices() {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field"
+	default-cascade="save-update">
+	<class name="ar.edu.desapp.groupa.model.medicine.Medicine">
+		<id column="id" name="id">
+			<generator class="native" />
+		</id>
+		<one-to-one name="drug" class="ar.edu.desapp.groupa.model.medicine.Drug" cascade="save-update" />
+		<property name="concentration" />
+		<list name="theCureFor" lazy="false">
+			<key column="diseaseID" />
+			<list-index column="id" />
+			<one-to-many class="ar.edu.desapp.groupa.model.disease.Disease" />
+		</list>		
+
+	</class>
+</hibernate-mapping>

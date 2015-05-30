@@ -3,18 +3,25 @@ package ar.edu.desapp.groupa.model.medicalPractice;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.desapp.groupa.entity.Entity;
 import ar.edu.desapp.groupa.model.disease.Disease;
 
-public class MedicalPractice{
+public class MedicalPractice extends Entity {
 
+
+	private static final long serialVersionUID = -5020581813122419076L;
+	
 	private String name;
 	private String description;
-	private List<Disease> theCureFor;
+	private List<Disease> theCureFor = new ArrayList<Disease>();
+	
+	public MedicalPractice() {
+		super();
+	}
 	
 	public MedicalPractice(String name, String description){
 		this.setName(name);
 		this.setDescription(description);
-		this.setTheCureFor(new ArrayList<Disease>());
 	}
 	
 	public String getName() {

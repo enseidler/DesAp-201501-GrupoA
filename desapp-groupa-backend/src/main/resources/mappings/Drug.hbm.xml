@@ -3,13 +3,12 @@
                                    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-access="field"
 	default-cascade="save-update">
-	<class name="ar.edu.desapp.groupa.model.medicalConsultation.MedicalConsultation">
-		<id column="ID" name="id">
+	<class name="ar.edu.desapp.groupa.model.medicine.Drug">
+		<id column="id" name="id">
 			<generator class="native" />
 		</id>
 		
- 		<one-to-one name="diagnoseDisease" class="ar.edu.desapp.groupa.model.disease.Disease" cascade="save-update" />
-  		<one-to-one name="treatment" class="ar.edu.desapp.groupa.model.treatment.Treatment" cascade="save-update" /> 
+		<property name="name" />
 
 	</class>
 </hibernate-mapping>

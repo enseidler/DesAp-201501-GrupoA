@@ -9,10 +9,15 @@
 	<!-- beans de spring -->
 	<bean id="services.general" class="ar.edu.desapp.groupa.services.GeneralService">
 		<property name="patientService" ref="services.patient" />
+		<property name="recordService" ref="services.record" />
 	</bean>
 
 	<bean id="services.patient" class="ar.edu.desapp.groupa.services.PatientService">
-		<property name="repository" ref="persistence.patientrepository" />
+		<property name="repository" ref="persistence.patientRepository" />
+	</bean>
+	
+	<bean id="services.record" class="ar.edu.desapp.groupa.services.MedicalRecordService">
+		<property name="repository" ref="persistence.medicalRecordRepository" />
 	</bean>
 
 </beans>
