@@ -9,3 +9,4 @@
  * Main module of the application.
  */
 angular.module('desappGrupoaFrontendApp', ['ngRoute'])
+

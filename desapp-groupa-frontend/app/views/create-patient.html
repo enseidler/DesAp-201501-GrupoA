@@ -3,48 +3,61 @@
 
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
     <div class="col-md-offset-3 col-md-6 ">
-	    <form class="form-horizontal" role="form">
+	    <form class="form-horizontal" role="form" name="cretionPatientForm" novalidate>
 		    <div class="form-group">
 			    <label for="inputName" class="col-md-3 control-label">Name</label>
 		        <div class="col-md-9 input-group">
-		    	    <input type="name" ng-model="newPatient.name" class="form-control" id="inputName" placeholder="Name">
+		    	    <input class="form-control" id="inputName" placeholder="Name" name="name" data-ng-model='newPatient.name' required >
+		    	    <span class="error" data-ng-show="!cretionPatientForm.name.$pristine && cretionPatientForm.name.$error.required">Required Name!</span>
 		        </div>
 		    </div>
 		    <div class="form-group">
 		        <label for="inputSurname" class="col-md-3 control-label">Surname</label>
 		        <div class="col-md-9 input-group">
-		    	    <input type="surname" ng-model="newPatient.surname" class="form-control" id="inputSurname" placeholder="Surname">
+		    	    <input class="form-control" id="inputSurname" placeholder="Surname" name="surname" ng-model="newPatient.surname" required>
+		    	    <span class="error" data-ng-show="!cretionPatientForm.surname.$pristine && cretionPatientForm.surname.$error.required">Required Surname!</span>
 		        </div>
 		    </div>
 		    <div class="form-group">
 		        <label for="inputHeight" class="col-md-3 control-label">Height</label>
 		        <div class="col-md-9 input-group">
-		    	    <input type="height" ng-model="newPatient.height" class="form-control" id="inputHeight" placeholder="Height">
+		    	    <input type="number"  class="form-control" id="inputHeight" placeholder="Height" name="height" ng-model="newPatient.height" required>
+		    	    <span class="error" data-ng-show="!cretionPatientForm.height.$pristine && cretionPatientForm.height.$error.required">Required Height!</span>
+		    	    <span class="error" ng-show="cretionPatientForm.height.$error.number">Please input a number!</span>
 		        	<span class="input-group-addon">M.</span>
 		        </div>
 		    </div>
 		    <div class="form-group">
 		        <label for="inputWeight" class="col-md-3 control-label">Weight</label>
 		        <div class="col-md-9 input-group">
-		    	    <input type="weight" ng-model="newPatient.weight" class="form-control" id="inputWeight" placeholder="Weight">
+		    	    <input type="number"  class="form-control" id="inputWeight" placeholder="Weight" name="weight" ng-model="newPatient.weight" required>
+		    	    <span class="error" data-ng-show="!cretionPatientForm.weight.$pristine && cretionPatientForm.weight.$error.required">Required Weight!</span>
+		    	    <span class="error" ng-show="cretionPatientForm.weight.$error.number">Please input a number!</span>
 		        	<span class="input-group-addon">Kg.</span>
 		        </div>
 		    </div>
 		    <div class="form-group">
 		        <label for="inputDNI" class="col-md-3 control-label">DNI</label>
 		        <div class="col-md-9 input-group">
-		        	<input type="DNI" ng-model="newPatient.dni" class="form-control" id="inputDNI" placeholder="DNI">
+		        	<input type="number" class="form-control" id="inputDNI" placeholder="DNI" name="dni" ng-model="newPatient.dni" required ng-minlength='6' ng-maxlength='7' >
+		        	<span class="error" data-ng-show="!cretionPatientForm.dni.$pristine && cretionPatientForm.dni.$error.required">Required DNI!</span>
+		        	<span class="error" ng-show="cretionPatientForm.dni.$error.minlength">Too short!</span>
+		        	<span class="error" ng-show="cretionPatientForm.dni.$error.maxlength">Too long!</span>
+		        	<span class="error" ng-show="cretionPatientForm.dni.$error.number">Please input a number!</span>
 		        </div>
 		    </div>
 		    <div class="form-group ">
 		        <label for="inputPassword" class="col-md-3 control-label">Password</label>
 		        <div class="col-md-9 input-group">
-		    	    <input type="password" ng-model="newPatient.password" class="form-control" id="inputPassword" placeholder="Password">
+		    	    <input class="form-control" id="inputPassword" placeholder="Password" name="password" ng-model="newPatient.password" required ng-minlength='6' ng-maxlength='12'>
+		    	    <span class="error" data-ng-show="!cretionPatientForm.password.$pristine && cretionPatientForm.password.$error.required">Required Password!</span>
+		    	    <span class="error" ng-show="cretionPatientForm.password.$error.minlength">Too short!</span>
+		    	    <span class="error" ng-show="cretionPatientForm.password.$error.maxlength">Too long!</span>
 		        </div>
 		    </div>
 		    <div class="form-group">
 		        <div class="col-md-offset-3 col-md-9">
-		    	    <button type="submit" ng-click="create()" class="btn btn-default btn-block">Create</button>
+		    	    <a type="submit" ng-click="create()" ng-href="#SearchPatient" ng-disabled='!cretionPatientForm.$valid' class="btn btn-default btn-block">Create</a>
 		        </div>
 		    </div>
 		</form>

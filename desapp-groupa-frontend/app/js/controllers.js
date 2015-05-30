@@ -62,7 +62,7 @@ app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', 'L
   };
 
   $scope.list();
-  
+
 }]);
 
 
@@ -73,7 +73,6 @@ app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', 'L
   $scope.modify = function() {
     $http.put('http://localhost:8080/desapp-groupa-backend/rest/patients/modify', $scope.modPatient).
       success(function(data) {
-
       });
   };
 
