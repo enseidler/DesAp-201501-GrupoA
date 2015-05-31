@@ -25,6 +25,10 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/modify-patient.html',
           controller: 'ModifyPatientController'
         }).
+        when('/CreateMedicalRecord', {
+          templateUrl: 'views/create-medical-record.html',
+          controller: 'CreateMedicalRecordController'
+        }).
       	otherwise({
         	redirectTo: '/Home'
     	});
@@ -87,7 +91,16 @@ app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', 'L
 
 }]);
 
+app.controller('CreateMedicalRecordController', ['$scope', '$http', function($scope, $http) {
 
+  $scope.createmd = function() {
+    $http.post('http://localhost:8080/desapp-groupa-backend/rest/records/create', $scope.newMedicalRecord).
+      success(function() {
+        $scope.newMedicalRecord = null;
+      });
+  };
+  
+}]);
 
 //////////////////////////////////////////
 ///////// SERVICES
