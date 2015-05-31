@@ -10,7 +10,7 @@ public class GeneralService {
 	private SymptomService symptomService;
 	private DiseaseService diseaseService;
 	private MedicalConsultationService medicalConsultationService;
-	private MedicalRecordService medicalRecordServices;
+	private MedicalRecordService medicalRecordService;
 
 	public PatientService getPatientService() {
 		return patientService;
@@ -58,11 +58,11 @@ public class GeneralService {
 		this.medicalConsultationService = medicalConsultationService;
 	}
 
-	public MedicalRecordService getMedicalRecordServices() {
-		return medicalRecordServices;
+	public MedicalRecordService getMedicalRecordService() {
+		return medicalRecordService;
 	}
 
-	public void setMedicalRecordServices(MedicalRecordService medicalRecordServices) {
-		this.medicalRecordServices = medicalRecordServices;
+	public void setMedicalRecordService(MedicalRecordService medicalRecordService) {
+		this.medicalRecordService = medicalRecordService;
 	}
 }

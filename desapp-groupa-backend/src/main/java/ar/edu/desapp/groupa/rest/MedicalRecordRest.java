@@ -14,10 +14,10 @@ import ar.edu.desapp.groupa.services.MedicalRecordService;
 @Path("/records")
 public class MedicalRecordRest {
 	
-	private MedicalRecordService recordService; 
+	private MedicalRecordService medicalRecordService; 
 	
-	public void setRecordService(final MedicalRecordService recordService) {
-		this.recordService = recordService;
+	public void setMedicalRecordService(final MedicalRecordService recordService) {
+		this.medicalRecordService = recordService;
 	}
 
 	@GET
@@ -25,7 +25,7 @@ public class MedicalRecordRest {
 	@Consumes("application/json")
 	@Produces("application/json")
 	public MedicalRecord getMedicalRecord(@PathParam("id") Integer id) {
-		MedicalRecord record = recordService.findById(id);
+		MedicalRecord record = medicalRecordService.findById(id);
 		return record;
 	}
 	
