@@ -1,0 +1,67 @@
+<div class="col-md-12">
+	<div class="col-md-10">
+		<h1>{{patient.name}} {{patient.surname}} <span class="label label-success">DNI: {{patient.dni}}</span></h1> 
+	</div>
+	<div class="col-md-2">
+		<a type="button" title="Go back" class="btn btn-link pull-right" ng-href="#SearchPatient/{{last_search}}"><h3><i class="fa fa-arrow-left"></i></h3></a>
+	</div>
+</div>
+
+<div class="col-md-12 vertical-padding-30 low-opacity-black">
+    <div class="col-md-6">
+    	<div class="panel panel-default">
+		  	<div class="panel-heading">Allergies</div>
+		  	<div class="panel-body">
+		    	<div class="list-group">
+					<div class="list-group-item" ng-repeat="allergy in medicalRecord.allergies">
+						{{allergy.name}}
+					</div>
+				</div>
+		    </div>
+		</div>
+    </div>
+    <div class="col-md-6">
+    	<div class="panel panel-default">
+		  	<div class="panel-heading">Diseases</div>
+		  	<div class="panel-body">
+		    	<div class="list-group">
+					<div class="list-group-item" ng-repeat="disease in medicalRecord.diseases">
+						{{disease.name}}
+					</div>
+				</div>
+		    </div>
+		</div>
+    </div>
+    <div class="col-md-12">
+    <div class="panel panel-default">
+		  	<div class="panel-heading">Last consultations</div>
+		  	<div class="panel-body">
+		    	<div class="list-group">
+					<div class="list-group-item" ng-repeat="consultation in medicalRecord.consultations">
+						<div class="col-md-2">
+							Diagnose: {{consultation.disease.name}}
+						</div> 
+						<div class="col-md-10 text-center">
+							<div class="col-md-6">
+								Medicines
+								<div class="list-group">
+									<div class="list-group-item" ng-repeat="medicine in consulation.treatment.medicines">
+										{{medicine.drug.name}}, {{medicine.concentration}}
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 text-center">
+								Practices
+								<div class="list-group">
+									<div class="list-group-item" ng-repeat="medicine in consulation.treatment.medicines">
+										{{medicine.medicalPractices}}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		    </div>
+		</div>
+    </div>
+</div>
