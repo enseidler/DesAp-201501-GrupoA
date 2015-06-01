@@ -30,7 +30,7 @@ public class MedicalConsultationTest {
 		disease = mock(Disease.class);
 		treatment = mock(Treatment.class);
 		//medicalConsultation = new MedicalConsultation(doctor);
-		medicalConsultation = aMedicalRecord(doctor).build();
+		medicalConsultation = aMedicalConsultation(doctor).build();
 		
 	}
 	

@@ -17,10 +17,18 @@ public class MedicalConsultationBuilder {
 	private Disease dignoseDisease = null;
 	private Treatment treatment = null;
 	
-	public static MedicalConsultationBuilder aMedicalRecord(Doctor doctor) {
+	public static MedicalConsultationBuilder aMedicalConsultation(Doctor doctor) {
 		return new MedicalConsultationBuilder(doctor);
 	}
 	
+	public static MedicalConsultationBuilder aMedicalConsultation() {
+		return new MedicalConsultationBuilder();
+	}
+	
+	public MedicalConsultationBuilder() {
+		
+	}
+
 	public MedicalConsultationBuilder(Doctor doctor) {
 		this.doctor = doctor;
 	}

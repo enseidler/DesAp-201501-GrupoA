@@ -2,7 +2,7 @@ package ar.edu.desapp.groupa.services;
 
 import ar.edu.desapp.groupa.model.symptom.Symptom;
 import ar.edu.desapp.groupa.model.user.Patient;
-
+import static ar.edu.desapp.groupa.application.FaceMedApplication.*;
 
 public class GeneralService {
 
@@ -18,6 +18,7 @@ public class GeneralService {
 
 	public void setPatientService(final PatientService patientService) {
 		this.patientService = patientService;
+		this.getPatientService().save(patient());
 		this.getPatientService().save(new Patient("Cacho", "Castaña", 1111111, "cafelahumeda", 80, 1.7));
 		this.getPatientService().save(new Patient("Ramona", "Gutierrez", 2222222, "753214896", 56.7, 1.67));
 		this.getPatientService().save(new Patient("Santiago", "Ramirez", 3333333, "951478632", 84.5, 1.82));
