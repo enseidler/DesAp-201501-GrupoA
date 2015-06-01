@@ -1,0 +1,28 @@
+<h1>Medical record creation</h1>
+
+<div class="col-md-12 vertical-padding-30 low-opacity-black">
+    <div class="col-md-offset-3 col-md-6 ">
+	    <form class="form-horizontal" role="form" name="createMedicalRecordForm" novalidate>
+		    <div class="form-group">
+			    <label for="inputPatient" class="col-md-3 control-label">Patient</label>
+		        <div class="col-md-9 input-group">
+		    	    <select name="ad" onchange="crearlink(this.form)">
+						<option selected> ---</option>
+					</select>
+		        </div>
+		    </div>
+		    
+		    <div class="form-group">
+			    <label for="inputAllergie" class="col-md-3 control-label">Allergies</label>
+		        <div class="col-md-9 input-group">
+		    	    <input class="form-control" id="inputAllergie" placeholder="Allergies" name="allergies" data-ng-model='newMedicalRecord.allergies' required >
+		        </div>
+		    </div>
+		    <div class="form-group">
+		        <div class="col-md-offset-3 col-md-9">
+		    	    <a type="submit" ng-click="createmd()" ng-href="#SearchPatient" ng-disabled='!createMedicalRecordForm.$valid' class="btn btn-default btn-block">Create</a>
+		        </div>
+		    </div>
+		</form>
+    </div>
+</div>

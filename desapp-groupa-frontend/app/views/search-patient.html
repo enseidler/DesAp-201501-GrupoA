@@ -14,7 +14,11 @@
 						    <p class="list-group-item-text"><b>Weight:</b> {{patient.weight}} kg.</p>
 						</td>
 						<td>
-							<a type="button" title="Modify" class="btn btn-warning btn-md pull-right" ng-href="#ModifyPatient/{{patient.id}}"><b><i class="fa fa-pencil-square-o"></i></b></a>
+							<a type="button" title="Modify Patient" class="btn btn-warning btn-lg pull-right" ng-href="#ModifyPatient/{{patient.id}}"><b><i class="fa fa-pencil-square-o"></i></b>
+							</a>
+							<a type="button" title="Medical Record" class="btn btn-info btn-lg pull-right" ng-href="#" ng-disabled=true>
+							<span class="glyphicon glyphicon-header"></span>
+							</a>
 						</td>
 					</tr>
 				</table>

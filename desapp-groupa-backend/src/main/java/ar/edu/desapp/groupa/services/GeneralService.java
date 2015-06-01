@@ -10,9 +10,7 @@ public class GeneralService {
 	private SymptomService symptomService;
 	private DiseaseService diseaseService;
 	private MedicalConsultationService medicalConsultationService;
-	private MedicalRecordService recordService;
-	
-	
+	private MedicalRecordService medicalRecordService;
 
 	public PatientService getPatientService() {
 		return patientService;
@@ -20,13 +18,13 @@ public class GeneralService {
 
 	public void setPatientService(final PatientService patientService) {
 		this.patientService = patientService;
-		this.getPatientService().save(new Patient("Cacho", "Castaña", 1111, "cafelahumedad", 80, 1.7));
-		this.getPatientService().save(new Patient("Ramona", "Gutierrez", 222, "753214896", 56.7, 1.67));
-		this.getPatientService().save(new Patient("Santiago", "Ramirez", 333, "951478632", 84.5, 1.82));
-		this.getPatientService().save(new Patient("Brenda", "Gomez", 444, "321987654", 48, 1.62));
-		this.getPatientService().save(new Patient("Hernan", "Garcia", 555, "987321654", 79, 1.8));
-		this.getPatientService().save(new Patient("Paula", "Torrez", 666, "987654321", 60, 1.6));
-		this.getPatientService().save(new Patient("Pablo", "Garcia", 777, "123456789", 98, 1.9));
+		this.getPatientService().save(new Patient("Cacho", "Castaña", 1111111, "cafelahumeda", 80, 1.7));
+		this.getPatientService().save(new Patient("Ramona", "Gutierrez", 2222222, "753214896", 56.7, 1.67));
+		this.getPatientService().save(new Patient("Santiago", "Ramirez", 3333333, "951478632", 84.5, 1.82));
+		this.getPatientService().save(new Patient("Brenda", "Gomez", 444444, "321987654", 48, 1.62));
+		this.getPatientService().save(new Patient("Hernan", "Garcia", 5555555, "987321654", 79, 1.8));
+		this.getPatientService().save(new Patient("Paula", "Torrez", 6666666, "987654321", 60, 1.6));
+		this.getPatientService().save(new Patient("Pablo", "Garcia", 7777777, "123456789", 98, 1.9));
 	}
 
 	public SymptomService getSymptomService() {
@@ -60,12 +58,11 @@ public class GeneralService {
 		this.medicalConsultationService = medicalConsultationService;
 	}
 
-	public MedicalRecordService getRecordService() {
-		return recordService;
+	public MedicalRecordService getMedicalRecordService() {
+		return medicalRecordService;
 	}
 
-	public void setRecordService(final MedicalRecordService recordService) {
-		this.recordService = recordService;
+	public void setMedicalRecordService(MedicalRecordService medicalRecordService) {
+		this.medicalRecordService = medicalRecordService;
 	}
-
 }
