@@ -54,8 +54,15 @@ public class PatientsRest {
 	@Consumes("application/json")
 	@Produces("application/json")
 	public Response modifyPatient(Patient patient) {
-		patientService.update(patient);
-		return Response.ok(patient).build();
+		Patient finalPatient = patientService.findById(patient.getId());
+		finalPatient.setName(patient.getName());
+		finalPatient.setSurname(patient.getSurname());
+		finalPatient.setDni(patient.getDni());
+		finalPatient.setHeight(patient.getHeight());
+		finalPatient.setWeight(patient.getWeight());
+		finalPatient.setPassword(patient.getPassword());
+		patientService.update(finalPatient);
+		return Response.ok(finalPatient).build();
 	}
 	
 }

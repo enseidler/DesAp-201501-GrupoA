@@ -13,7 +13,7 @@
 		<property name="password" />
 		<property name="weight" />
 		<property name="height" />
-		<one-to-one name="medicalRecord" class="ar.edu.desapp.groupa.model.medicalRecord.MedicalRecord" cascade="save-update" />
+		<one-to-one name="medicalRecord" class="ar.edu.desapp.groupa.model.medicalRecord.MedicalRecord" cascade="all" />
 
 	</class>
 </hibernate-mapping>

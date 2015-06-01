@@ -56,11 +56,13 @@ public class FaceMedApplication {
 	}
 	
 	public static void main(String[] args) {
+		/**
 		ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/spring-context.xml");
 		GeneralService gs = (GeneralService) context.getBean("services.general");
 		MedicalRecordService ps = gs.getMedicalRecordService();
 		MedicalRecord p = ps.findById(1);
 		System.out.println(p.getConsultations().get(0).getTreatment());
+		*/
 	}
 
 }
