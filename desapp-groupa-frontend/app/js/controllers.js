@@ -10,13 +10,13 @@ var app = angular.module('desappGrupoaFrontendApp', ['ngRoute']);
 app.config(['$routeProvider', function ($routeProvider) {
     
     $routeProvider.
-      	when('/Home', {
-        	templateUrl: 'views/home.html'
-      	}).
-      	when('/CreatePatient', {
-        	templateUrl: 'views/create-patient.html',
-        	controller: 'CreatePatientController'
-      	}).
+        when('/Home', {
+          templateUrl: 'views/home.html'
+        }).
+        when('/CreatePatient', {
+          templateUrl: 'views/create-patient.html',
+          controller: 'CreatePatientController'
+        }).
         when('/SearchPatient/:search?', {
           templateUrl: 'views/search-patient.html',
           controller: 'SearchPatientController'
@@ -25,13 +25,13 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/modify-patient.html',
           controller: 'ModifyPatientController'
         }).
-        when('/CreateMedicalRecord', {
-          templateUrl: 'views/create-medical-record.html',
-          controller: 'CreateMedicalRecordController'
+        when('/MedicalRecord/:patientId', {
+          templateUrl: 'views/medical-record.html',
+          controller: 'MedicalRecordController'
         }).
-      	otherwise({
-        	redirectTo: '/Home'
-    	});
+        otherwise({
+          redirectTo: '/Home'
+      });
 
 }]);
 
@@ -66,7 +66,7 @@ app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', 'L
   };
 
   $scope.list();
-
+  
 }]);
 
 
@@ -77,6 +77,7 @@ app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', 'L
   $scope.modify = function() {
     $http.put('http://localhost:8080/desapp-groupa-backend/rest/patients/modify', $scope.modPatient).
       success(function(data) {
+
       });
   };
 
@@ -87,20 +88,34 @@ app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', 'L
       });
   };
 
-  $scope.patient()
+  $scope.patient();
 
 }]);
 
-app.controller('CreateMedicalRecordController', ['$scope', '$http', function($scope, $http) {
 
-  $scope.createmd = function() {
-    $http.post('http://localhost:8080/desapp-groupa-backend/rest/records/create', $scope.newMedicalRecord).
-      success(function() {
-        $scope.newMedicalRecord = null;
+app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) { 
+
+  $scope.last_search = LastSearchService.get();
+
+  $scope.medicalRecord = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.patientId).
+      success(function(data) {
+        $scope.medicalRecord = data;
       });
   };
-  
+
+  $scope.patient = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/' + $routeParams.patientId).
+      success(function(data) {
+        $scope.patient = data;
+      });
+  };
+
+  $scope.patient();
+  $scope.medicalRecord();
+
 }]);
+
 
 //////////////////////////////////////////
 ///////// SERVICES
@@ -119,3 +134,4 @@ app.service('LastSearchService', function() {
   }
 
 });
+
