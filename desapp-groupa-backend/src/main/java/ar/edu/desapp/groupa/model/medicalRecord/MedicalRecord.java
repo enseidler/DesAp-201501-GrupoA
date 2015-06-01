@@ -22,6 +22,18 @@ public class MedicalRecord extends Entity {
 		super();
 	}
 	
+	public void setConsultations(List<MedicalConsultation> consultations) {
+		this.consultations = consultations;
+	}
+
+	public void setDiseases(List<Disease> diseases) {
+		this.diseases = diseases;
+	}
+
+	public void setAllergies(List<Drug> allergies) {
+		this.allergies = allergies;
+	}
+
 	public MedicalRecord(Patient patient){
 		this.patient = patient;
 	}

@@ -26,6 +26,9 @@ public class MedicalRecordBuilder {
 	
 	public MedicalRecord build() {
 		MedicalRecord medicalRecord = new MedicalRecord(this.patient);
+		medicalRecord.setAllergies(this.allergies);
+		medicalRecord.setConsultations(this.consultations);
+		medicalRecord.setDiseases(this.diseases);
 		return medicalRecord;
 	}
 	

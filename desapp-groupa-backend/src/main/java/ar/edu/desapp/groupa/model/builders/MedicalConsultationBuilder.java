@@ -27,6 +27,8 @@ public class MedicalConsultationBuilder {
 	
 	public MedicalConsultation build() {
 		MedicalConsultation medicalConsultation = new MedicalConsultation(this.doctor);
+		medicalConsultation.setDiagnoseDisease(this.dignoseDisease);
+		medicalConsultation.setTreatment(this.treatment);
 		return medicalConsultation;
 	}
 	

@@ -24,8 +24,10 @@ public class TreatmentBuilder {
 	}
 	
 	public Treatment build() {
-		Treatment treatmnet = new Treatment(this.repose);
-		return treatmnet;
+		Treatment treatment = new Treatment(this.repose);
+		treatment.setMedicalPractices(this.medicalPractices);
+		treatment.setMedicines(this.medicines);
+		return treatment;
 	}
 	
 	public TreatmentBuilder with(final Medicine medicine) {
