@@ -19,7 +19,7 @@ public class Patient extends User {
 		super(name, surname, dni, password);
 		this.setWeight(weight);
 		this.setHeight(height);
-
+		this.setMedicalRecord(new MedicalRecord(this));
 	}
 
 	public double getWeight() {
