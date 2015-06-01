@@ -11,10 +11,10 @@
 </div>
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
     <div class="col-md-6">
-    	<div class="panel panel-default">
+    	<div class="panel panel-warning">
 		  	<div class="panel-heading">Allergies</div>
 		  	<div class="panel-body">
-		    	<div class="list-group">
+		    	<div class="list-group record-list">
 					<div class="list-group-item" ng-repeat="allergy in medicalRecord.allergies">
 						{{allergy.name}}
 					</div>
@@ -23,10 +23,10 @@
 		</div>
     </div>
     <div class="col-md-6">
-    	<div class="panel panel-default">
+    	<div class="panel panel-primary">
 		  	<div class="panel-heading">Diseases</div>
 		  	<div class="panel-body">
-		    	<div class="list-group">
+		    	<div class="list-group record-list">
 					<div class="list-group-item" ng-repeat="disease in medicalRecord.diseases">
 						{{disease.name}}
 					</div>
@@ -35,50 +35,35 @@
 		</div>
     </div>
     <div class="col-md-12">
-    <div class="panel panel-default">
-		  	<div class="panel-heading">Last consultations</div>
+    <div class="panel panel-success">
+		  	<div class="panel-heading">Consultations</div>
 		  	<div class="panel-body">
-		    	<div class="list-group">
+		    	<div class="list-group record-list">
 					<div class="list-group-item" ng-repeat="consultation in medicalRecord.consultations">							
-						<table>
-							<tr>
-								<td>
-									Diagnose: {{consultation.diagnoseDisease.name}}
-								</td>
-								<td>
-									Medicines
-									<div class="list-group">
-										<div class="list-group-item" ng-repeat="medicine in consultation.treatment.medicines">
-											{{medicine.drug.name}}, {{medicine.concentration}}
-										</div>
+						<div class="row">
+							<div class="col-md-2">
+								Diagnose: <h4>{{consultation.diagnoseDisease.name}}</h4>
+							</div>
+							<div class="col-md-5">
+								Medicines
+								<div class="list-group details-consultation-list">
+									<div class="list-group-item" ng-repeat="medicine in consultation.treatment.medicines">
+										{{medicine.drug.name}}, {{medicine.concentration}} mg.
 									</div>
-								</td>
-								<td>
-									Practices
-									<div class="list-group">
-										<div class="list-group-item" ng-repeat="medicalPractice in consultation.treatment.medicalPractices">
-											{{medicalPractice.name}}
-										</div>
+								</div>
+							</div>
+							<div class="col-md-5">
+								Practices
+								<div class="list-group details-consultation-list">
+									<div class="list-group-item" ng-repeat="medicalPractice in consultation.treatment.medicalPractices">
+										{{medicalPractice.name}}
 									</div>
-								</td>
-							</tr>
-						</table>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 		    </div>
 		</div>
     </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-<div class="col-md-6 text-center">
-	
 </div>

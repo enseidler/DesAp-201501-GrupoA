@@ -35,9 +35,9 @@ public class FaceMedApplication {
 		Medicine m1 = new Medicine(d3, 400);
 		Medicine m2 = new Medicine(d2, 600);
 		
-		MedicalPractice p1 = aMedicalPractice().withName("Practica 1").build();
-		MedicalPractice p2 = aMedicalPractice().withName("Practica 2").build();
-		MedicalPractice p3 = aMedicalPractice().withName("Practica 3").build();
+		MedicalPractice p1 = aMedicalPractice().withName("Practice 1").build();
+		MedicalPractice p2 = aMedicalPractice().withName("Practice 2").build();
+		MedicalPractice p3 = aMedicalPractice().withName("Practice 3").build();
 		
 		Treatment t1 = aTreatment(new Parcial(24)).with(p1).with(p2).with(m1).build();
 		Treatment t2 = aTreatment(new Total()).with(p1).with(p3).with(m2).build();

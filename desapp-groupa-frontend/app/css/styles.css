@@ -47,9 +47,16 @@ body {
 .margin-25 { margin-top: 25px;}
 .search-list {
 	height: 500px;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
-
+.record-list {
+	height: 150px;
+	overflow-y: auto;
+}
+.details-consultation-list {
+	height: 100px;
+	overflow-y: auto;
+}
 .error { border-color: red; 
 		color: red;
 }
