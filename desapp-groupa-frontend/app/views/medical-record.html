@@ -6,7 +6,9 @@
 		<a type="button" title="Go back" class="btn btn-link pull-right" ng-href="#SearchPatient/{{last_search}}"><h3><i class="fa fa-arrow-left"></i></h3></a>
 	</div>
 </div>
-{{medicalRecord}}
+<div ng-repeat="consultation." >
+	
+</div>
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
     <div class="col-md-6">
     	<div class="panel panel-default">
@@ -37,31 +39,46 @@
 		  	<div class="panel-heading">Last consultations</div>
 		  	<div class="panel-body">
 		    	<div class="list-group">
-					<div class="list-group-item" ng-repeat="consultation in medicalRecord.consultations">
-						<div class="col-md-2">
-							Diagnose: {{consultation.disease.name}}
-						</div> 
-						<div class="col-md-10 text-center">
-							<div class="col-md-6">
-								Medicines
-								<div class="list-group">
-									<div class="list-group-item" ng-repeat="medicine in consulation.treatment.medicines">
-										{{medicine.drug.name}}, {{medicine.concentration}}
+					<div class="list-group-item" ng-repeat="consultation in medicalRecord.consultations">							
+						<table>
+							<tr>
+								<td>
+									Diagnose: {{consultation.diagnoseDisease.name}}
+								</td>
+								<td>
+									Medicines
+									<div class="list-group">
+										<div class="list-group-item" ng-repeat="medicine in consultation.treatment.medicines">
+											{{medicine.drug.name}}, {{medicine.concentration}}
+										</div>
 									</div>
-								</div>
-							</div>
-							<div class="col-md-6 text-center">
-								Practices
-								<div class="list-group">
-									<div class="list-group-item" ng-repeat="medicine in consulation.treatment.medicines">
-										{{medicine.medicalPractices}}
+								</td>
+								<td>
+									Practices
+									<div class="list-group">
+										<div class="list-group-item" ng-repeat="medicalPractice in consultation.treatment.medicalPractices">
+											{{medicalPractice.name}}
+										</div>
 									</div>
-								</div>
-							</div>
-						</div>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 		    </div>
 		</div>
     </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-6 text-center">
+	
 </div>

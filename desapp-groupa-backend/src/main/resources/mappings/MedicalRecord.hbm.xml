@@ -11,17 +11,17 @@
 		<list name="consultations" lazy="false">
 			<key column="consultationID" />
 			<list-index column="id" />
-			<one-to-many class="ar.edu.desapp.groupa.model.medicalConsultation.MedicalConsultation" />
+			<many-to-many class="ar.edu.desapp.groupa.model.medicalConsultation.MedicalConsultation" />
 		</list>
 		<list name="diseases" lazy="false">
 			<key column="diseaseID" />
 			<list-index column="id" />
-			<one-to-many class="ar.edu.desapp.groupa.model.disease.Disease" />
+			<many-to-many class="ar.edu.desapp.groupa.model.disease.Disease" />
 		</list>
 		<list name="allergies" lazy="false">
 			<key column="drugID" />
 			<list-index column="id" />
-			<one-to-many class="ar.edu.desapp.groupa.model.medicine.Drug" />
+			<many-to-many class="ar.edu.desapp.groupa.model.medicine.Drug" />
 		</list>
 
 	</class>

@@ -6,13 +6,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ar.edu.desapp.groupa.model.disease.Disease;
 import ar.edu.desapp.groupa.model.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.groupa.model.medicalPractice.MedicalPractice;
+import ar.edu.desapp.groupa.model.medicalRecord.MedicalRecord;
 import ar.edu.desapp.groupa.model.medicine.Drug;
 import ar.edu.desapp.groupa.model.medicine.Medicine;
 import ar.edu.desapp.groupa.model.repose.Parcial;
+import ar.edu.desapp.groupa.model.repose.Total;
 import ar.edu.desapp.groupa.model.treatment.Treatment;
 import ar.edu.desapp.groupa.model.user.Patient;
 import ar.edu.desapp.groupa.services.GeneralService;
-import ar.edu.desapp.groupa.services.PatientService;
+import ar.edu.desapp.groupa.services.MedicalRecordService;
 import static ar.edu.desapp.groupa.model.builders.DiseaseBuilder.*;
 import static ar.edu.desapp.groupa.model.builders.MedicalPracticeBuilder.*;
 import static ar.edu.desapp.groupa.model.builders.TreatmentBuilder.*;
@@ -38,7 +40,7 @@ public class FaceMedApplication {
 		MedicalPractice p3 = aMedicalPractice().withName("Practica 3").build();
 		
 		Treatment t1 = aTreatment(new Parcial(24)).with(p1).with(p2).with(m1).build();
-		Treatment t2 = aTreatment(new Parcial(24)).with(p1).with(p3).with(m2).build();
+		Treatment t2 = aTreatment(new Total()).with(p1).with(p3).with(m2).build();
 		
 		MedicalConsultation mc1 = aMedicalConsultation().with(varicela).with(t1).build();
 		MedicalConsultation mc2 = aMedicalConsultation().with(faringitis).with(t2).build();
@@ -56,9 +58,9 @@ public class FaceMedApplication {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/spring-context.xml");
 		GeneralService gs = (GeneralService) context.getBean("services.general");
-		PatientService ps = gs.getPatientService();
-		Patient p = ps.findById(1);
-		System.out.println(p.getId());
+		MedicalRecordService ps = gs.getMedicalRecordService();
+		MedicalRecord p = ps.findById(1);
+		System.out.println(p.getConsultations().get(0).getTreatment());
 	}
 
 }
