@@ -116,6 +116,9 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
 }]);
 
 
+
+
+
 //////////////////////////////////////////
 ///////// SERVICES
 //////////////////////////////////////////
@@ -128,9 +131,8 @@ app.service('LastSearchService', function() {
     return lastSearch;
   }
 
-  this.save = function (search) {
+  this.save = function(search) {
     lastSearch = search;
   }
 
 });
-
