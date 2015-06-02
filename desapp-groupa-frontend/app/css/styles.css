@@ -15,7 +15,6 @@ body {
 }
 .divider-50 { padding-top: 50px; }
 .divider-100 { padding-top: 100px; }
-.glyphicon { margin-right:10px; }
 .panel-body table tr td { padding-left: 15px }
 .panel-body .table { margin-bottom: 0px; }
 .padding-bottom { padding-bottom: 30px; }
@@ -61,3 +60,7 @@ body {
 		color: red;
 }
 
+.scroll-list-250 {
+	height: 250px;
+	overflow-y: auto;
+}

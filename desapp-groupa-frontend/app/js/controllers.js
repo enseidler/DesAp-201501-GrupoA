@@ -29,6 +29,10 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/medical-record.html',
           controller: 'MedicalRecordController'
         }).
+        when('/Diagnose/:patientId/ChooseSymptoms', {
+          templateUrl: 'views/choose-symptoms.html',
+          controller: 'ChooseSymptomsController'
+        }).
         otherwise({
           redirectTo: '/Home'
       });
@@ -116,7 +120,21 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
 }]);
 
 
+app.controller('ChooseSymptomsController', ['$scope', '$http', '$routeParams', 'LastSearchService', 'PatientDiagnoseID', function($scope, $http, $routeParams, LastSearchService, PatientDiagnoseID) { 
 
+  $scope.patient_id = PatientDiagnoseID.save($routeParams.patientId);
+  $scope.last_search = LastSearchService.get();
+
+  $scope.getSymptoms = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/symptoms/list').
+      success(function(data) {
+        $scope.symptoms = data;
+      });
+  };
+
+  $scope.getSymptoms();
+
+}]);
 
 
 //////////////////////////////////////////
@@ -133,6 +151,21 @@ app.service('LastSearchService', function() {
 
   this.save = function(search) {
     lastSearch = search;
+  }
+
+});
+
+
+app.service('PatientDiagnoseID', function() {
+  
+  var patientID;
+
+  this.get = function() {
+    return patientID;
+  }
+
+  this.save = function(id) {
+    patientID = id;
   }
 
 });

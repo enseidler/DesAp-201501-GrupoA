@@ -1,0 +1,43 @@
+<div class="col-md-12">
+	<div class="col-md-10">
+		<h1>Choose your symptoms</h1> 
+	</div>
+	<div class="col-md-2">
+		<a type="button" title="Go back" class="btn btn-link pull-right" ng-href="#SearchPatient/{{last_search}}"><h3><i class="fa fa-arrow-left"></i></h3></a>
+	</div>
+</div>
+
+<div class="col-md-12 vertical-padding-30 low-opacity-black">
+	
+	
+	<div class="row">
+  		<div class="col-sm-4 col-sm-offset-1">	
+          	<div class="list-group scroll-list-250" id="list1">
+          		<a href="#" class="list-group-item active">
+          			Choose all
+          			<input title="toggle all" class="all pull-right" type="checkbox">
+          		</a>
+          		<div href="#"class="list-group-item dual-list-item unselectable" ng-repeat="symptom in symptoms">
+          			{{symptom.description}} 
+          			<input class="pull-right dual-list-check" type="checkbox">
+          		</div>
+          	</div>
+        </div>
+        <div class="col-md-2 v-center">
+     		<button title="Send to list 2" class="btn btn-default center-block add"><i class="glyphicon glyphicon-chevron-right"></i></button>
+            <button title="Send to list 1" class="btn btn-default center-block remove"><i class="glyphicon glyphicon-chevron-left"></i></button>
+        </div>
+        <div class="col-sm-4">
+    	  	<div class="list-group scroll-list-250" id="list2">
+          		<a href="#" class="list-group-item active">
+          			Choose all
+          			<input title="toggle all" class="all pull-right" type="checkbox">
+          		</a>
+          	</div>
+        </div>
+  	</div>
+
+
+</div>
+
+<script type="text/javascript" src="js/dual-list.js"></script>
