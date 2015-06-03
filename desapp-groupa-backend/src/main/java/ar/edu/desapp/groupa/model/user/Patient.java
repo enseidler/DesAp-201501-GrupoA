@@ -12,14 +12,14 @@ public class Patient extends User {
 
 	public Patient() {
 		super();
-		this.setMedicalRecord(new MedicalRecord(this));
+		this.setMedicalRecord(new MedicalRecord());
 	}
 	
 	public Patient(String name, String surname, Integer dni, String password, double weight, double height) {
 		super(name, surname, dni, password);
 		this.setWeight(weight);
 		this.setHeight(height);
-		this.setMedicalRecord(new MedicalRecord(this));
+		this.setMedicalRecord(new MedicalRecord());
 	}
 
 	public double getWeight() {
