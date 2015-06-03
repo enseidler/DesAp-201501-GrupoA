@@ -50,7 +50,6 @@ app.controller('CreatePatientController', ['$scope', '$http', function($scope, $
   $scope.create = function() {
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/patients/create', $scope.newPatient).
       success(function() {
-        $scope.newPatient = null;
       });
   };
   
