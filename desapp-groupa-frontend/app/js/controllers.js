@@ -33,6 +33,10 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/choose-symptoms.html',
           controller: 'ChooseSymptomsController'
         }).
+        when('/AddAllergy', {
+          templateUrl: 'views/add-allergy.html',
+          controller: 'AddAllergyController'
+        }).
         otherwise({
           redirectTo: '/Home'
       });
@@ -52,7 +56,6 @@ app.controller('CreatePatientController', ['$scope', '$http', function($scope, $
       success(function() {
       });
   };
-  
 }]);
 
 
@@ -80,7 +83,7 @@ app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', 'L
   $scope.modify = function() {
     $http.put('http://localhost:8080/desapp-groupa-backend/rest/patients/modify', $scope.modPatient).
       success(function(data) {
-      });
+      });      
   };
 
   $scope.patient = function() {
@@ -132,6 +135,27 @@ app.controller('ChooseSymptomsController', ['$scope', '$http', '$routeParams', '
   };
 
   $scope.getSymptoms();
+
+}]);
+
+app.controller('AddAllergyController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) { 
+
+  $scope.last_search = LastSearchService.get();
+
+  $scope.addAllergy = function() {
+    $http.put('http://localhost:8080/desapp-groupa-backend/rest/records/modifyAllergy', $scope.addAllergy).
+      success(function(data) {
+      });      
+  };
+
+  $scope.allergy = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.id).
+      success(function(data) {
+        $scope.modifyAllergy = data;
+      });
+  };
+
+  $scope.allergy();
 
 }]);
 
