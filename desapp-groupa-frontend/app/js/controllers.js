@@ -34,8 +34,8 @@ app.config(['$routeProvider', function ($routeProvider) {
           controller: 'ChooseSymptomsController'
         }).
         when('/AddAllergy', {
-          templateUrl: 'views/add-allergy.html',
-          controller: 'AddAllergyController'
+          templateUrl: 'views/create-allergy.html',
+          controller: 'CreateAllergyController'
         }).
         otherwise({
           redirectTo: '/Home'
@@ -138,25 +138,13 @@ app.controller('ChooseSymptomsController', ['$scope', '$http', '$routeParams', '
 
 }]);
 
-app.controller('AddAllergyController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) { 
+app.controller('CreateAllergyController', ['$scope', '$http', function($scope, $http) {
 
-  $scope.last_search = LastSearchService.get();
-
-  $scope.addAllergy = function() {
-    $http.put('http://localhost:8080/desapp-groupa-backend/rest/records/modifyAllergy', $scope.addAllergy).
-      success(function(data) {
-      });      
-  };
-
-  $scope.allergy = function() {
-    $http.get('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.id).
-      success(function(data) {
-        $scope.modifyAllergy = data;
+  $scope.create = function() {
+    $http.post('http://localhost:8080/desapp-groupa-backend/rest/drugs/create', $scope.newAllergy).
+      success(function() {
       });
   };
-
-  $scope.allergy();
-
 }]);
 
 

@@ -11,6 +11,7 @@ public class GeneralService {
 	private DiseaseService diseaseService;
 	private MedicalConsultationService medicalConsultationService;
 	private MedicalRecordService medicalRecordService;
+	private DrugService drugService;
 
 	public PatientService getPatientService() {
 		return patientService;
@@ -65,5 +66,13 @@ public class GeneralService {
 
 	public void setMedicalRecordService(MedicalRecordService medicalRecordService) {
 		this.medicalRecordService = medicalRecordService;
+	}
+
+	public DrugService getDrugService() {
+		return drugService;
+	}
+
+	public void setDrugService(DrugService drugService) {
+		this.drugService = drugService;
 	}
 }

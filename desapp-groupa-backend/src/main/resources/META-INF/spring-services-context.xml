@@ -11,6 +11,7 @@
 		<property name="patientService" ref="services.patient" />
 		<property name="medicalRecordService" ref="services.medicalRecord" />
 		<property name="symptomService" ref="services.symptom" />
+		<property name="drugService" ref="services.drug"/>
 	</bean>
 
 	<bean id="services.patient" class="ar.edu.desapp.groupa.services.PatientService">
@@ -23,6 +24,10 @@
 	
 	<bean id="services.symptom" class="ar.edu.desapp.groupa.services.SymptomService">
 		<property name="repository" ref="persistence.symptomRepository" />
+	</bean>
+	
+	<bean id="services.drug" class="ar.edu.desapp.groupa.services.DrugService">
+		<property name="repository" ref="persistence.drugRepository" />
 	</bean>
 
 </beans>

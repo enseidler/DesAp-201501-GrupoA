@@ -11,13 +11,12 @@ import ar.edu.desapp.groupa.model.medicine.Drug;
 import ar.edu.desapp.groupa.services.DrugService;
 
 
-
 @Path("/drugs")
 public class DrugRest {
 	
-	private DrugService drugService; 
+	private DrugService drugService;
 	
-	public void setMedicalRecordService(final DrugService drugService) {
+	public void setDrugService(final DrugService drugService) {
 		this.drugService = drugService;
 	}
 	
