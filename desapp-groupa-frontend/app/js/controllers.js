@@ -33,7 +33,7 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/choose-symptoms.html',
           controller: 'ChooseSymptomsController'
         }).
-        when('/AddAllergy', {
+        when('/MedicalRecord/:patientId/AddAllergy', {
           templateUrl: 'views/create-allergy.html',
           controller: 'CreateAllergyController'
         }).
@@ -102,22 +102,39 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
 
   $scope.last_search = LastSearchService.get();
 
-  $scope.medicalRecord = function() {
+  $scope.loadMedicalRecord = function() {
     $http.get('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.patientId).
       success(function(data) {
         $scope.medicalRecord = data;
       });
   };
 
-  $scope.patient = function() {
+  $scope.loadPatient = function() {
     $http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/' + $routeParams.patientId).
       success(function(data) {
         $scope.patient = data;
       });
   };
 
-  $scope.patient();
-  $scope.medicalRecord();
+  $scope.allergiesList = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/drugs/list').
+      success(function(data) {
+        $scope.allergies = data;
+      });
+  };
+
+  $scope.addAllergy = function(allergy) {
+    $http.put('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.patientId + '/addAllergy', allergy).
+      success(function(data) {
+        $scope.loadMedicalRecord();
+        $scope.allergiesList();
+      });      
+  };
+
+
+  $scope.loadPatient();
+  $scope.loadMedicalRecord();
+  $scope.allergiesList();
 
 }]);
 
@@ -138,13 +155,16 @@ app.controller('ChooseSymptomsController', ['$scope', '$http', '$routeParams', '
 
 }]);
 
-app.controller('CreateAllergyController', ['$scope', '$http', function($scope, $http) {
+app.controller('CreateAllergyController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) {
 
+  $scope.last_search = LastSearchService.get();
+  $scope.patientId = $routeParams.patientId;
   $scope.create = function() {
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/drugs/create', $scope.newAllergy).
       success(function() {
       });
   };
+
 }]);
 
 

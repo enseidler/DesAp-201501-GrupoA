@@ -19,38 +19,36 @@
 		<!-- container -->
 		<!-- container -->
 		
-		<div class="container">
-			<div class="vertical-shape low-opacity-black">
-			</div>
-		</div>
 	    <div class="navbar navbar-inverse navbar-fixed-top padding-bottom shadow-bottom">
 		  	<div class="container">
 		    	<div class="navbar-header">
+		    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		    			<span class="icon-bar"></span>
+		    			<span class="icon-bar"></span>
+		    			<span class="icon-bar"></span>
+		    		</button>
 		      		<a class="navbar-brand" href="#Home"><h1>FaceMed <i class="fa fa-heartbeat"></i></h1></a>
 		    	</div>
+		    	<div class="collapse navbar-collapse ">
 		    	<form class="navbar-form navbar-right margin-25" role="search">
-				  	<div class="input-group percent-70">
+				  	<div class="input-group">
                         <span class="input-group-btn">
                         	<a class="btn btn-default" type="button" ng-href="#SearchPatient/{{search_text}}" ><i class="fa fa-search"></i></a>
                         </span>
 					   	<input type="text" ng-model="search_text" class="form-control" placeholder="Search patients..." >
 					</div>
 				</form>
+		    		<ul class="nav navbar-nav navbar-right">
+		    			<li><a type="button" ng-href="#CreatePatient" class="btn btn-success btn-block"><i class="fa fa-user-plus pull-left"></i>Create Patient</a></li>		
+		    		</ul>
+		    	</div>
 		  	</div>
 		</div>
 		<div class="container">
 		  	<div class="col-md-12 divider-100">
 		       	<div class="container">
 			        <div class="row">
-			           	<div class="col-md-3" style="position:relative;">
-			           		<div class="text-center">
-			    				<h3>Welcome</h3>
-			  				</div>
-			            	<div class="col-md-12 divider-50 btn-group-vertical btn-group-md" role="group" aria-label="...">
-			            		<a type="button" ng-href="#CreatePatient" class="btn btn-success btn-block"><i class="fa fa-user-plus pull-left"></i>Create Patient</a>
-			            	</div>
-			            </div>
-						<div class="col-md-8 col-md-offset-1 low-opacity-black view-foot">
+						<div class="col-md-8 col-md-offset-2 low-opacity-black view-foot">
 						  	<div ng-view></div>
 						</div>		
 		        	</div>

@@ -15,11 +15,26 @@
 					<div class="list-group-item" ng-repeat="allergy in medicalRecord.allergies">
 						{{allergy.name}}	
 					</div>
-					<div>
-						<a type="button" class="btn btn-warning btn-block" href="#AddAllergy">Add Allergy</a>	
-					</div>
 				</div>
-		    </div>
+				<div class="dropdown">
+		          	<a class="dropdown-toggle btn btn-primary btn-block" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Allergy <span class="caret"></span></a>
+		          	<ul class="dropdown-menu">
+			            <li ng-repeat="allergy in allergies">
+			            	<table>
+			            		<tr>
+			            			<td class="col-md-10">
+			            				{{allergy.name}}
+			            			</td>
+			            			<td >
+			            				<a type="button" class="btn btn-link btn-md" tooltip="Add allergy" ng-click="addAllergy(allergy)"><i class="fa fa-plus"></i></a>
+			            			</td>
+			            		</tr>
+			            	</table>
+			            </li>
+		          	</ul>
+		        </div>
+				<a type="button" class="btn btn-warning btn-block" href="#MedicalRecord/{{patient.id}}/AddAllergy">Create Allergy</a>	
+			</div>
 		</div>
     </div>
     <div class="col-md-6">
