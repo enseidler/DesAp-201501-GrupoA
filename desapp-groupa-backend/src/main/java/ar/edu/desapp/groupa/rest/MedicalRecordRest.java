@@ -2,6 +2,7 @@ package ar.edu.desapp.groupa.rest;
 
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -53,5 +54,17 @@ public class MedicalRecordRest {
 		medicalRecordService.update(finalRecord);
 		return Response.ok(finalRecord).build();
 	}
+	
+	@DELETE
+	@Path("/{id}/deleteAllergy/{idAllergy}")
+	@Produces("application/json")
+	public Response deleteAllergy(@PathParam("id") Integer id, @PathParam("idAllergy") Integer idAllergy){
+		MedicalRecord finalRecord = medicalRecordService.findById(id);
+		finalRecord.deleteAllergyById(idAllergy);
+		medicalRecordService.update(finalRecord);
+		return Response.ok(finalRecord).build();
+	}
+	
+	
 	
 }

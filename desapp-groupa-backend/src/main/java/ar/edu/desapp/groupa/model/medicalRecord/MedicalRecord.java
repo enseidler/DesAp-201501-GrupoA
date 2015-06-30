@@ -64,5 +64,13 @@ public class MedicalRecord extends Entity {
 	public boolean sufferedDisease(Disease disease) {
 		return this.getDiseases().contains(disease);
 	}
+
+	public void deleteAllergyById(Integer idAllergy) {
+		for(Drug drug : this.getAllergies()) {
+			if(drug.getId() == idAllergy) {
+				this.getAllergies().remove(drug);
+			}
+		}
+	}
 	
 }

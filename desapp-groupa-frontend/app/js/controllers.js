@@ -131,6 +131,14 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
       });      
   };
 
+  $scope.deleteAllergy = function(allergy) {
+    $http.delete('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.patientId + '/deleteAllergy/'+ allergy.id).
+      success(function(data) {
+        $scope.loadMedicalRecord();
+        $scope.allergiesList();
+      });      
+  };
+
 
   $scope.loadPatient();
   $scope.loadMedicalRecord();
