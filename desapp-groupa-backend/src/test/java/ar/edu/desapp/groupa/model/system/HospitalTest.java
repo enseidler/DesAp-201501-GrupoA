@@ -58,24 +58,18 @@ public class HospitalTest {
 					.with(dolorDeGarganta)
 					.build();
 		conjuntivitis = aDisease("Conjuntivitis").build();
-		
-		// -People- //
-		patient1 = mock(Patient.class);
-		patient2 = mock(Patient.class);
-		doctor1 = mock(Doctor.class);
 
 		// -Records- //
 		medRecord1 = mock(MedicalRecord.class);
-		when(medRecord1.getPatient()).thenReturn(patient1);
 		when(medRecord1.sufferedDisease(resfrio)).thenReturn(true);
 		when(medRecord1.sufferedDisease(migraña)).thenReturn(true);
 		when(medRecord1.sufferedDisease(conjuntivitis)).thenReturn(false);
+		
 		List<Disease> rec1Suffered = new ArrayList<Disease>();
 		rec1Suffered.add(resfrio);
 		rec1Suffered.add(migraña);
 		when(medRecord1.getDiseases()).thenReturn(rec1Suffered);
 		medRecord2 = mock(MedicalRecord.class);
-		when(medRecord2.getPatient()).thenReturn(patient2);
 		when(medRecord2.sufferedDisease(resfrio)).thenReturn(false);
 		when(medRecord2.sufferedDisease(migraña)).thenReturn(true);
 		when(medRecord2.sufferedDisease(conjuntivitis)).thenReturn(true);
@@ -83,6 +77,13 @@ public class HospitalTest {
 		rec2Suffered.add(migraña);
 		rec2Suffered.add(conjuntivitis);
 		when(medRecord2.getDiseases()).thenReturn(rec2Suffered);
+		
+		// -People- //
+		patient1 = mock(Patient.class);
+		when(patient1.getMedicalRecord()).thenReturn(medRecord1);
+		patient2 = mock(Patient.class);
+		when(patient2.getMedicalRecord()).thenReturn(medRecord2);
+		doctor1 = mock(Doctor.class);
 		
 		// -Treatment- //
 		aspirinaDrug = mock(Drug.class);
@@ -101,32 +102,24 @@ public class HospitalTest {
 		hospital2.addDisease(resfrio);
 		hospital2.addDisease(migraña);
 		hospital2.addDisease(conjuntivitis);
-		hospital2.addMedicalRecord(medRecord1);
-		hospital2.addMedicalRecord(medRecord2);
 		hospital2.addMedicine(aspirina);
 		hospital2.addMedicalPractice(teEnLosOjos);
+		hospital2.addPatient(patient1);
+		hospital2.addPatient(patient2);
 	
 	}
 	
-	@Test 
-	public void existRecordForPatientTest() throws RecordExistException {
-		hospital1.addMedicalRecord(medRecord1);
-		hospital1.addMedicalRecord(medRecord2);
-		Boolean condition = hospital1.existRecordFor(patient1);
-		assertTrue(condition);
-	}
-
 	@Test
-	public void notExistRecordForPatientTest() throws RecordExistException {
-		hospital1.addMedicalRecord(medRecord2);
-		Boolean condition = hospital1.existRecordFor(patient1);
-		assertFalse(condition);
-	}
-
-	@Test
-	public void addPatientTest() {
+	public void addPatient_checkPatientTest() {
 		hospital1.addPatient(patient1);
 		Boolean condition = hospital1.getPatients().contains(patient1);
+		assertTrue(condition);
+	}
+	
+	@Test
+	public void addPatient_checkMedicalRecordTest() {
+		hospital1.addPatient(patient1);
+		Boolean condition = hospital1.getMedicalRecords().contains(medRecord1);
 		assertTrue(condition);
 	}
 
@@ -149,21 +142,6 @@ public class HospitalTest {
 		Boolean condition = hospital1.getDoctors().contains(doctor1);
 		assertFalse(condition);
 	}
-
-	@Test
-	public void addMedicalRecordUnexistentTest() throws RecordExistException {
-		hospital1.addMedicalRecord(medRecord2);
-		Boolean condition = hospital1.getMedicalRecords().contains(medRecord2);
-		assertTrue(condition);
-	}
-
-	@Test(expected = RecordExistException.class)
-	public void addMedicalRecordExistentTest() throws RecordExistException {
-		hospital1.addMedicalRecord(medRecord2);
-		hospital1.addMedicalRecord(medRecord1);
-		hospital1.addMedicalRecord(medRecord2);
-	}
-	
 	
 	@Test
 	public void recordsFromPatientsWhoSufferedResfrioTest() throws RecordExistException {

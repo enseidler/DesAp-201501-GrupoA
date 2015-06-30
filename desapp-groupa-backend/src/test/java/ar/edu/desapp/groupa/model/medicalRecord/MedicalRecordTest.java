@@ -41,12 +41,6 @@ public class MedicalRecordTest {
 		disease2 = mock(Disease.class);
 	}
 	
-	@Test
-	public void medicalRecordDataPatientTest() {
-		Patient expected = patient1;
-		assertEquals(expected, medicalRecord.getPatient());
-	}
-	
 	@Test 
 	public void medicalRecordAddConsultationTest(){
 		medicalRecord.addConsultation(consultation1);

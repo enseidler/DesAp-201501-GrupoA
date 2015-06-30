@@ -25,7 +25,7 @@ public class MedicalRecordBuilder {
 	}
 	
 	public MedicalRecord build() {
-		MedicalRecord medicalRecord = new MedicalRecord(this.patient);
+		MedicalRecord medicalRecord = new MedicalRecord();
 		medicalRecord.setAllergies(this.allergies);
 		medicalRecord.setConsultations(this.consultations);
 		medicalRecord.setDiseases(this.diseases);

@@ -13,7 +13,6 @@ public class MedicalRecord extends Entity {
 	
 	private static final long serialVersionUID = 355081580542374081L;
 	
-	private Patient patient;
 	private List<MedicalConsultation> consultations = new ArrayList<MedicalConsultation>();
 	private List<Disease> diseases = new ArrayList<Disease>();
 	private List<Drug> allergies = new ArrayList<Drug>();
@@ -32,19 +31,6 @@ public class MedicalRecord extends Entity {
 
 	public void setAllergies(List<Drug> allergies) {
 		this.allergies = allergies;
-	}
-
-	public MedicalRecord(Patient patient){
-		this.patient = patient;
-	}
-
-	public Patient getPatient() {
-		
-		return this.patient;
-	}
-	
-	public void setPatient(Patient patient) {
-		this.patient = patient;
 	}
 	
 	public List<MedicalConsultation> getConsultations() {

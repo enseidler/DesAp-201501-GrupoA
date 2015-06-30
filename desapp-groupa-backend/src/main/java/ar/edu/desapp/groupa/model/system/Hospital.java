@@ -62,16 +62,14 @@ public class Hospital {
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
-	public void addMedicalRecord(MedicalRecord medicalRecord) throws RecordExistException {
-		if(!existRecordFor(medicalRecord.getPatient())) {
-			this.getMedicalRecords().add(medicalRecord);
-		} else {
-			throw new RecordExistException();
-		}
+	public void addMedicalRecord(Patient patient) {
+
+		this.getMedicalRecords().add(patient.getMedicalRecord());	
 	}
 	
 	public void addPatient(Patient patient) {
 		this.getPatients().add(patient);
+		this.addMedicalRecord(patient);
 	}
 
 	public void addDoctor(Doctor doctor) {
@@ -88,14 +86,6 @@ public class Hospital {
 	
 	public void addMedicalPractice(MedicalPractice medicalPractice) {
 		this.getMedicalPractices().add(medicalPractice);
-	}
-	
-	public Boolean existRecordFor(Patient patient) {
-		Boolean exist = false;
-		for(MedicalRecord rec : this.getMedicalRecords()) {
-			exist = exist || (rec.getPatient() == patient);
-		}
-		return exist;
 	}
 	
 	public List<MedicalRecord> recordsFromPatientsWhoSuffered(Disease disease) {
