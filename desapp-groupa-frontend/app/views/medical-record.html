@@ -42,7 +42,7 @@
 			            </li>
 		          	</ul>
 		        </div>
-				<a type="button" class="btn btn-warning btn-block" href="#MedicalRecord/{{patient.id}}/AddAllergy">Create Allergy</a>	
+				<a type="button" class="btn btn-warning btn-block" href="#MedicalRecord/{{patient.id}}/CreateAllergy">Create Allergy</a>	
 			</div>
 		</div>
     </div>
@@ -52,9 +52,37 @@
 		  	<div class="panel-body">
 		    	<div class="list-group record-list">
 					<div class="list-group-item" ng-repeat="disease in medicalRecord.diseases">
-						{{disease.name}}
+						<table>
+		            		<tr>
+		            			<td class="col-md-10">
+		            				{{disease.name}}
+		            			</td>
+		            			<td >
+		            				<a type="button" class="btn btn-danger btn-sm" tooltip="Delete Disease" ng-click="deleteDisease(disease)"><i class="fa fa-trash"></i></a>
+		            			</td>
+		            		</tr>
+		            	</table>
 					</div>
 				</div>
+				<div class="dropdown">
+		          	<a class="dropdown-toggle btn btn-primary btn-block" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Disease <span class="caret"></span></a>
+		          	<ul class="dropdown-menu">
+			            <li ng-repeat="disease in diseases">
+			            	<table>
+			            		<tr>
+			            			<td class="col-md-10">
+			            				{{disease.name}}
+			            			</td>
+			            			<td >
+			            				<a type="button" class="btn btn-link btn-md" tooltip="Add Disease" ng-click="addDisease(disease)"><i class="fa fa-plus"></i></a>
+			            			</td>
+			            		</tr>
+			            	</table>
+			            </li>
+		          	</ul>
+		        </div>
+				<a type="button" class="btn btn-warning btn-block" href="#MedicalRecord/{{patient.id}}/CreateDisease">Create Disease</a>	
+			</div>
 		    </div>
 		</div>
     </div>

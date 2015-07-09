@@ -1,0 +1,25 @@
+<div class="col-md-12">
+	<div class="col-md-10">
+		<h1>Create Disease</h1>
+	</div>
+	<div class="col-md-2">
+		<a type="button" title="Go back" class="btn btn-link pull-right" ng-href="#SearchPatient/{{last_search}}"><h3><i class="fa fa-arrow-left"></i></h3></a>
+	</div>
+</div>
+<div class="col-md-12 vertical-padding-30 low-opacity-black">
+    <div class="col-md-offset-3 col-md-6 ">
+	    <form class="form-horizontal" role="form" name="modifyDiseaseForm" novalidate>
+		    <div class="form-group">
+			    <label for="inputDisease" class="col-md-3 control-label">Disease</label>
+		        <div class="col-md-9 input-group">
+		    	    <input class="form-control" id="inputDisease" placeholder="Disease" name="Disease" data-ng-model='newDisease.name'>		   
+		        </div>
+		    </div>
+		    <div class="form-group">
+		        <div class="col-md-offset-3 col-md-9">
+		    	    <a type="submit" ng-href="#MedicalRecord/{{patientId}}" ng-click="create()" class="btn btn-success btn-block">Save Changes</a>
+		        </div>
+		    </div>
+		</form>
+	</div>
+</div>

@@ -11,6 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import ar.edu.desapp.groupa.model.disease.Disease;
 import ar.edu.desapp.groupa.model.medicalRecord.MedicalRecord;
 import ar.edu.desapp.groupa.model.medicine.Drug;
 import ar.edu.desapp.groupa.services.MedicalRecordService;
@@ -60,6 +61,27 @@ public class MedicalRecordRest {
 	public Response deleteAllergy(@PathParam("id") Integer id, @PathParam("idAllergy") Integer idAllergy){
 		MedicalRecord finalRecord = medicalRecordService.findById(id);
 		finalRecord.deleteAllergyById(idAllergy);
+		medicalRecordService.update(finalRecord);
+		return Response.ok(finalRecord).build();
+	}
+	
+	@PUT
+	@Path("/{id}/addDisease")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Response addDisease(@PathParam("id") Integer id, Disease disease) {
+		MedicalRecord finalRecord = medicalRecordService.findById(id);
+		finalRecord.addDisease(disease);
+		medicalRecordService.update(finalRecord);
+		return Response.ok(finalRecord).build();
+	}
+	
+	@DELETE
+	@Path("/{id}/deleteDisease/{idDisease}")
+	@Produces("application/json")
+	public Response deleteDisease(@PathParam("id") Integer id, @PathParam("idDisease") Integer idDisease){
+		MedicalRecord finalRecord = medicalRecordService.findById(id);
+		finalRecord.deleteAllergyById(idDisease);
 		medicalRecordService.update(finalRecord);
 		return Response.ok(finalRecord).build();
 	}

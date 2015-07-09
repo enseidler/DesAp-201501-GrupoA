@@ -33,9 +33,13 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/choose-symptoms.html',
           controller: 'ChooseSymptomsController'
         }).
-        when('/MedicalRecord/:patientId/AddAllergy', {
+        when('/MedicalRecord/:patientId/CreateAllergy', {
           templateUrl: 'views/create-allergy.html',
           controller: 'CreateAllergyController'
+        }).
+        when('/MedicalRecord/:patientId/CreateDisease', {
+          templateUrl: 'views/create-disease.html',
+          controller: 'CreateDiseaseController'
         }).
         otherwise({
           redirectTo: '/Home'
@@ -139,10 +143,35 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
       });      
   };
 
+  $scope.diseasesList = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/diseases/list').
+      success(function(data) {
+        $scope.diseases = data;
+      });
+  };
+
+  $scope.addDisease = function(disease) {
+    $http.put('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.patientId + '/addDisease', disease).
+      success(function(data) {
+        $scope.loadMedicalRecord();
+        $scope.diseasesList();
+      });      
+  };
+
+  $scope.deleteDisease = function(disease) {
+    $http.delete('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.patientId + '/deleteDisease/'+ disease.id).
+      success(function(data) {
+        $scope.loadMedicalRecord();
+        $scope.diseasesList();
+      });      
+  };
+
+
 
   $scope.loadPatient();
   $scope.loadMedicalRecord();
   $scope.allergiesList();
+  $scope.diseasesList();
 
 }]);
 
@@ -169,6 +198,19 @@ app.controller('CreateAllergyController', ['$scope', '$http', '$routeParams', 'L
   $scope.patientId = $routeParams.patientId;
   $scope.create = function() {
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/drugs/create', $scope.newAllergy).
+      success(function() {
+      });
+  };
+
+}]);
+
+
+app.controller('CreateDiseaseController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) {
+
+  $scope.last_search = LastSearchService.get();
+  $scope.patientId = $routeParams.patientId;
+  $scope.create = function() {
+    $http.post('http://localhost:8080/desapp-groupa-backend/rest/diseases/create', $scope.newDisease).
       success(function() {
       });
   };
