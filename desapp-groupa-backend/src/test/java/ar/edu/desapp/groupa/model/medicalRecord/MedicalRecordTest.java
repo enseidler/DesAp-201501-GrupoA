@@ -1,7 +1,6 @@
 package ar.edu.desapp.groupa.model.medicalRecord;
 
 import static org.mockito.Mockito.*;
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
@@ -12,12 +11,11 @@ import static ar.edu.desapp.groupa.model.builders.MedicalRecordBuilder.*;
 import ar.edu.desapp.groupa.model.disease.Disease;
 import ar.edu.desapp.groupa.model.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.groupa.model.medicine.Drug;
-import ar.edu.desapp.groupa.model.user.Patient;
+
 
 public class MedicalRecordTest {
 	
 	private MedicalRecord medicalRecord;
-	private Patient patient1;
 	private MedicalConsultation consultation1;
 	private Drug drug1;
 	private Drug drug2;
@@ -28,11 +26,10 @@ public class MedicalRecordTest {
 	@Before
 	public void setUp(){
 		
-		patient1 = mock(Patient.class);
 		consultation1 = mock(MedicalConsultation.class);
-		//medicalRecord = new MedicalRecord(patient1);
+		//medicalRecord = new MedicalRecord();
 		
-		medicalRecord = aMedicalRecord(patient1)
+		medicalRecord = aMedicalRecord()
 								.build();
 		
 		drug1 = mock(Drug.class);
@@ -41,6 +38,7 @@ public class MedicalRecordTest {
 		disease2 = mock(Disease.class);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test 
 	public void medicalRecordAddConsultationTest(){
 		medicalRecord.addConsultation(consultation1);
@@ -48,6 +46,7 @@ public class MedicalRecordTest {
 		assertTrue(expected);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void addAllergie01Test() {
 		medicalRecord.addAllergy(drug1);
@@ -55,6 +54,7 @@ public class MedicalRecordTest {
 		assertTrue(expected);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void addAllergie02Test() {
 		medicalRecord.addAllergy(drug1);
@@ -62,6 +62,7 @@ public class MedicalRecordTest {
 		assertFalse(expected);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void addDisease01Test() {
 		medicalRecord.addDisease(disease1);
@@ -69,6 +70,7 @@ public class MedicalRecordTest {
 		assertTrue(expected);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void addDisease02Test() {
 		medicalRecord.addDisease(disease1);

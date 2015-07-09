@@ -1,20 +1,16 @@
 package ar.edu.desapp.groupa.application;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 
 import ar.edu.desapp.groupa.model.disease.Disease;
 import ar.edu.desapp.groupa.model.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.groupa.model.medicalPractice.MedicalPractice;
-import ar.edu.desapp.groupa.model.medicalRecord.MedicalRecord;
 import ar.edu.desapp.groupa.model.medicine.Drug;
 import ar.edu.desapp.groupa.model.medicine.Medicine;
 import ar.edu.desapp.groupa.model.repose.Parcial;
 import ar.edu.desapp.groupa.model.repose.Total;
 import ar.edu.desapp.groupa.model.treatment.Treatment;
 import ar.edu.desapp.groupa.model.user.Patient;
-import ar.edu.desapp.groupa.services.GeneralService;
-import ar.edu.desapp.groupa.services.MedicalRecordService;
 import static ar.edu.desapp.groupa.model.builders.DiseaseBuilder.*;
 import static ar.edu.desapp.groupa.model.builders.MedicalPracticeBuilder.*;
 import static ar.edu.desapp.groupa.model.builders.TreatmentBuilder.*;

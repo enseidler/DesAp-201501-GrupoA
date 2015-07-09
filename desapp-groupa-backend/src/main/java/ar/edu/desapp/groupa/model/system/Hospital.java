@@ -8,7 +8,6 @@ import static ar.edu.desapp.groupa.model.utils.ListUtils.*;
 import ar.edu.desapp.groupa.model.disease.Disease;
 import ar.edu.desapp.groupa.model.exceptions.NotFoundDiseaseException;
 import ar.edu.desapp.groupa.model.exceptions.NotFoundMedicineException;
-import ar.edu.desapp.groupa.model.exceptions.RecordExistException;
 import ar.edu.desapp.groupa.model.medicalPractice.MedicalPractice;
 import ar.edu.desapp.groupa.model.medicalRecord.MedicalRecord;
 import ar.edu.desapp.groupa.model.medicine.Medicine;

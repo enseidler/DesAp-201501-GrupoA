@@ -31,6 +31,7 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 			<ref bean="medicalRecordRest" />
 			<ref bean="symptomRest" />
 			<ref bean="drugRest"/>
+			<ref bean="diseaseRest"/>
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
 			<entry key="json" value="application/json" />
@@ -59,6 +60,10 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 	
 	<bean id="drugRest" class="ar.edu.desapp.groupa.rest.DrugRest">
 		<property name="drugService" ref="services.drug" />
+	</bean>
+	
+	<bean id="diseaseRest" class="ar.edu.desapp.groupa.rest.DiseaseRest">
+		<property name="diseaseService" ref="services.disease" />
 	</bean>
 
 </beans>

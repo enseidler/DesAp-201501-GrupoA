@@ -11,7 +11,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import ar.edu.desapp.groupa.model.medicine.Drug;
 import ar.edu.desapp.groupa.model.user.Patient;
 import ar.edu.desapp.groupa.services.PatientService;
 
