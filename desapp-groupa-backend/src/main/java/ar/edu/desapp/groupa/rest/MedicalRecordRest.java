@@ -81,7 +81,7 @@ public class MedicalRecordRest {
 	@Produces("application/json")
 	public Response deleteDisease(@PathParam("id") Integer id, @PathParam("idDisease") Integer idDisease){
 		MedicalRecord finalRecord = medicalRecordService.findById(id);
-		finalRecord.deleteAllergyById(idDisease);
+		finalRecord.deleteDiseaseById(idDisease);
 		medicalRecordService.update(finalRecord);
 		return Response.ok(finalRecord).build();
 	}

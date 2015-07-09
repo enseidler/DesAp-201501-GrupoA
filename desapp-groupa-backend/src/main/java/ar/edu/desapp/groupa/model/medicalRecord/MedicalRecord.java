@@ -68,8 +68,19 @@ public class MedicalRecord extends Entity {
 		for(Drug drug : this.getAllergies()) {
 			if(drug.getId() == idAllergy) {
 				this.getAllergies().remove(drug);
+				break;
 			}
 		}
+	}
+
+	public void deleteDiseaseById(Integer idDisease) {
+		for(Disease disease : this.getDiseases()) {
+			if(disease.getId() == idDisease) {
+				this.getDiseases().remove(disease);
+				break;
+			}
+		}
+		
 	}
 	
 }
