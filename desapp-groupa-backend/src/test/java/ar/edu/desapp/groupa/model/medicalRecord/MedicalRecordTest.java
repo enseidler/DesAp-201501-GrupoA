@@ -27,7 +27,6 @@ public class MedicalRecordTest {
 	public void setUp(){
 		
 		consultation1 = mock(MedicalConsultation.class);
-		//medicalRecord = new MedicalRecord();
 		
 		medicalRecord = aMedicalRecord()
 								.build();
