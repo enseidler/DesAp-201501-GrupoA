@@ -85,37 +85,37 @@
 			</div>
 		    </div>
 		</div>
-    </div>
-    <div class="col-md-12">
-    <div class="panel panel-success">
-		  	<div class="panel-heading">Consultations</div>
-		  	<div class="panel-body">
-		    	<div class="list-group record-list">
-					<div class="list-group-item" ng-repeat="consultation in medicalRecord.consultations">							
-						<div class="row">
-							<div class="col-md-2">
-								Diagnose: <h4>{{consultation.diagnoseDisease.name}}</h4>
-							</div>
-							<div class="col-md-5">
-								Medicines
-								<div class="list-group details-consultation-list">
-									<div class="list-group-item" ng-repeat="medicine in consultation.treatment.medicines">
-										{{medicine.drug.name}}, {{medicine.concentration}} mg.
+	    <div class="col-md-12">
+	    	<div class="panel panel-success">
+			  	<div class="panel-heading">Consultations</div>
+			  	<div class="panel-body">
+			    	<div class="list-group record-list">
+						<div class="list-group-item" ng-repeat="consultation in medicalRecord.consultations">							
+							<div class="row">
+								<div class="col-md-2">
+									Diagnose: <h4>{{consultation.diagnoseDisease.name}}</h4>
+								</div>
+								<div class="col-md-5">
+									Medicines
+									<div class="list-group details-consultation-list">
+										<div class="list-group-item" ng-repeat="medicine in consultation.treatment.medicines">
+											{{medicine.drug.name}}, {{medicine.concentration}} mg.
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-5">
-								Practices
-								<div class="list-group details-consultation-list">
-									<div class="list-group-item" ng-repeat="medicalPractice in consultation.treatment.medicalPractices">
-										{{medicalPractice.name}}
+								<div class="col-md-5">
+									Practices
+									<div class="list-group details-consultation-list">
+										<div class="list-group-item" ng-repeat="medicalPractice in consultation.treatment.medicalPractices">
+											{{medicalPractice.name}}
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-		    </div>
-		</div>
+			    </div>
+			</div>
+	    </div>
     </div>
 </div>

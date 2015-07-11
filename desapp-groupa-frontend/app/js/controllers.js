@@ -41,6 +41,10 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/create-disease.html',
           controller: 'CreateDiseaseController'
         }).
+        when('/Diagnose/CreateSymptom', {
+          templateUrl: 'views/create-symptom.html',
+          controller: 'CreateSymptomController'
+        }).
         otherwise({
           redirectTo: '/Home'
       });
@@ -63,10 +67,11 @@ app.controller('CreatePatientController', ['$scope', '$http', function($scope, $
 }]);
 
 
-app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) { 
+app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', 'LastSearchService', 'CurrentSymptoms', function($scope, $http, $routeParams, LastSearchService, CurrentSymptoms) { 
 
   LastSearchService.save($routeParams.search);
   $scope.last_search = LastSearchService.get();
+  CurrentSymptoms.resetSymptoms();
 
   $scope.list = function() {
     $http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/list').
@@ -176,10 +181,13 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
 }]);
 
 
-app.controller('ChooseSymptomsController', ['$scope', '$http', '$routeParams', 'LastSearchService', 'PatientDiagnoseID', function($scope, $http, $routeParams, LastSearchService, PatientDiagnoseID) { 
+app.controller('ChooseSymptomsController', ['$scope', '$http', '$routeParams', 'LastSearchService', 'PatientDiagnoseID', 'CurrentSymptoms', function($scope, $http, $routeParams, LastSearchService, PatientDiagnoseID, CurrentSymptoms) { 
 
-  $scope.patient_id = PatientDiagnoseID.save($routeParams.patientId);
   $scope.last_search = LastSearchService.get();
+  PatientDiagnoseID.save($routeParams.patientId);
+  $scope.patient_id = PatientDiagnoseID.get();
+
+  $scope.currentSymptoms = CurrentSymptoms.get();
 
   $scope.getSymptoms = function() {
     $http.get('http://localhost:8080/desapp-groupa-backend/rest/symptoms/list').
@@ -188,14 +196,29 @@ app.controller('ChooseSymptomsController', ['$scope', '$http', '$routeParams', '
       });
   };
 
+  $scope.chooseSymptom = function(symptom) {
+    $scope.currentSymptoms.addIfNotExist(symptom);
+    CurrentSymptoms.save($scope.currentSymptoms);
+  }
+
+  $scope.removeSymptom = function(symptom) {
+    $scope.currentSymptoms.removeIfExist(symptom);
+    CurrentSymptoms.save($scope.currentSymptoms);
+  }
+
+  $scope.removeCurrentSymptoms = function() {
+    $scope.currentSymptoms = [];
+    CurrentSymptoms.save($scope.currentSymptoms);
+  }
+
   $scope.getSymptoms();
 
 }]);
 
-app.controller('CreateAllergyController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) {
+app.controller('CreateAllergyController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 
-  $scope.last_search = LastSearchService.get();
   $scope.patientId = $routeParams.patientId;
+  
   $scope.create = function() {
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/drugs/create', $scope.newAllergy).
       success(function() {
@@ -205,12 +228,25 @@ app.controller('CreateAllergyController', ['$scope', '$http', '$routeParams', 'L
 }]);
 
 
-app.controller('CreateDiseaseController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) {
+app.controller('CreateDiseaseController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 
   $scope.last_search = LastSearchService.get();
   $scope.patientId = $routeParams.patientId;
+  
   $scope.create = function() {
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/diseases/create', $scope.newDisease).
+      success(function() {
+      });
+  };
+
+}]);
+
+app.controller('CreateSymptomController', ['$scope', '$http', '$routeParams', 'PatientDiagnoseID', function($scope, $http, $routeParams, PatientDiagnoseID) {
+
+  $scope.patient_id = PatientDiagnoseID.get();
+
+  $scope.create = function() {
+    $http.post('http://localhost:8080/desapp-groupa-backend/rest/symptoms/create', $scope.newSymptom).
       success(function() {
       });
   };
@@ -247,6 +283,24 @@ app.service('PatientDiagnoseID', function() {
 
   this.save = function(id) {
     patientID = id;
+  }
+
+});
+
+app.service('CurrentSymptoms', function() {
+  
+  var _symptoms = [];
+
+  this.get = function() {
+    return _symptoms;
+  }
+
+  this.save = function(symptoms) {
+    _symptoms = symptoms;
+  }
+
+  this.resetSymptoms = function() {
+    _symptoms = [];
   }
 
 });

@@ -9,35 +9,56 @@
 
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
 	
-	
-	<div class="row">
-  		<div class="col-sm-4 col-sm-offset-1">	
-          	<div class="list-group scroll-list-250" id="list1">
-          		<a href="#" class="list-group-item active">
-          			Choose all
-          			<input title="toggle all" class="all pull-right" type="checkbox">
-          		</a>
-          		<div href="#"class="list-group-item dual-list-item unselectable" ng-repeat="symptom in symptoms">
-          			{{symptom.description}} 
-          			<input class="pull-right dual-list-check" type="checkbox">
-          		</div>
-          	</div>
+	<div class="text-center">
+      <h3><u>Choose your symptoms</u></h3>
+  </div>
+	<div class="row divider-50">
+  	<div class="col-sm-5 col-sm-offset-1">
+      <div class="panel panel-success">
+        <div class="panel-heading">Existent symptoms</div>
+        <div class="panel-body">
+          <div class="list-group scroll-list-250"> 
+            <div class="list-group-item unselectable" ng-repeat="symptom in symptoms">
+              <table>
+                <tr>
+                  <td class="col-md-12">
+                    {{symptom.description}} 
+                  </td>
+                  <td>
+                    <a type="button" class="btn btn-link btn-md pull-right" tooltip="Choose symptom" ng-click="chooseSymptom(symptom)"><i class="fa fa-arrow-right"></i></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <a type="button" class="btn btn-success btn-block" ng-href="#Diagnose/CreateSymptom">Create Symptom</a>
         </div>
-        <div class="col-md-2 v-center">
-     		<button title="Send to list 2" class="btn btn-default center-block add"><i class="glyphicon glyphicon-chevron-right"></i></button>
-            <button title="Send to list 1" class="btn btn-default center-block remove"><i class="glyphicon glyphicon-chevron-left"></i></button>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="panel panel-danger">
+        <div class="panel-heading">Your symptoms</div>
+        <div class="panel-body">
+          <div class="list-group scroll-list-250"> 
+            <div class="list-group-item unselectable" ng-repeat="symptom in currentSymptoms">
+              <table>
+                <tr>
+                  <td class="col-md-12">
+                    {{symptom.description}}
+                  </td>
+                  <td>
+                    <a type="button" class="btn btn-link btn-md pull-right" style="color: #c72d2d;" tooltip="Remove symptom" ng-click="removeSymptom(symptom)"><i class="fa fa-remove"></i></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <a type="button" class="btn btn-danger btn-block" ng-click="removeCurrentSymptoms()">Remove all</a>
         </div>
-        <div class="col-sm-4">
-    	  	<div class="list-group scroll-list-250" id="list2">
-          		<a href="#" class="list-group-item active">
-          			Choose all
-          			<input title="toggle all" class="all pull-right" type="checkbox">
-          		</a>
-          	</div>
-        </div>
-  	</div>
-
-
+      </div>
+    </div>
+	</div>
+  <div class="col-md-3 col-md-offset-9 divider-50">
+    <a type="submit" class="btn btn-success btn-block">Next</a>
+  </div>
 </div>
-
-<script type="text/javascript" src="js/dual-list.js"></script>
