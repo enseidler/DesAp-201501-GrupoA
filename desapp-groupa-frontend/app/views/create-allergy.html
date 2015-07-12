@@ -3,21 +3,22 @@
 		<h1>Create Allergy</h1>
 	</div>
 	<div class="col-md-2">
-		<a type="button" title="Go back" class="btn btn-link pull-right" ng-href="#SearchPatient/{{last_search}}"><h3><i class="fa fa-arrow-left"></i></h3></a>
+		<a type="button" title="Go back" class="btn btn-link pull-right" ng-href="#MedicalRecord/{{patient_id}}"><h3><i class="fa fa-arrow-left"></i></h3></a>
 	</div>
 </div>
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
     <div class="col-md-offset-3 col-md-6 ">
-	    <form class="form-horizontal" role="form" name="modifyAllergyForm" novalidate>
+	    <form class="form-horizontal" role="form" name="creationAllergyForm" novalidate>
 		    <div class="form-group">
 			    <label for="inputAllergy" class="col-md-3 control-label">Allergy</label>
 		        <div class="col-md-9 input-group">
-		    	    <input class="form-control" id="inputAllergy" placeholder="Allergy" name="Allergy" data-ng-model='newAllergy.name'>		   
+		    	    <input class="form-control" id="inputAllergy" placeholder="Allergy" name="name" data-ng-model='newAllergy.name' required>
+		    	    <span class="error" data-ng-show="!creationAllergyForm.name.$pristine && creationAllergyForm.name.$error.required">Required Name!</span>		   
 		        </div>
 		    </div>
 		    <div class="form-group">
 		        <div class="col-md-offset-3 col-md-9">
-		    	    <a type="submit" ng-href="#MedicalRecord/{{patientId}}" ng-click="create()" class="btn btn-success btn-block">Save Changes</a>
+		    	    <a type="submit" ng-click="create()" ng-disabled='!creationAllergyForm.$valid' class="btn btn-success btn-block">Save Changes</a>
 		        </div>
 		    </div>
 		</form>
