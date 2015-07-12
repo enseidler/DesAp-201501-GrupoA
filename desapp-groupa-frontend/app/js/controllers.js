@@ -57,11 +57,12 @@ app.config(['$routeProvider', function ($routeProvider) {
 ///////// CONTROLLERS
 //////////////////////////////////////////
 
-app.controller('CreatePatientController', ['$scope', '$http', function($scope, $http) {
+app.controller('CreatePatientController', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
   $scope.create = function() {
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/patients/create', $scope.newPatient).
       success(function() {
+        $location.path('/Home');
       });
   };
 }]);
@@ -85,14 +86,19 @@ app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', 'L
 }]);
 
 
-app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', 'LastSearchService', function($scope, $http, $routeParams, LastSearchService) { 
+app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', '$location', 'LastSearchService', function($scope, $http, $routeParams, $location, LastSearchService) { 
 
   $scope.last_search = LastSearchService.get();
 
   $scope.modify = function() {
     $http.put('http://localhost:8080/desapp-groupa-backend/rest/patients/modify', $scope.modPatient).
       success(function(data) {
-      });      
+        if(!angular.isUndefined($scope.last_search)) {
+          $location.path('/SearchPatient/' + $scope.last_search);
+        } else {
+          $location.path('/SearchPatient/');
+        }
+      });
   };
 
   $scope.patient = function() {
@@ -215,39 +221,41 @@ app.controller('ChooseSymptomsController', ['$scope', '$http', '$routeParams', '
 
 }]);
 
-app.controller('CreateAllergyController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+app.controller('CreateAllergyController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
 
-  $scope.patientId = $routeParams.patientId;
+  $scope.patient_id = $routeParams.patientId;
   
   $scope.create = function() {
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/drugs/create', $scope.newAllergy).
       success(function() {
+        $location.path('/MedicalRecord/' + $scope.patient_id);
       });
   };
 
 }]);
 
 
-app.controller('CreateDiseaseController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+app.controller('CreateDiseaseController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
 
-  $scope.last_search = LastSearchService.get();
-  $scope.patientId = $routeParams.patientId;
+  $scope.patient_id = $routeParams.patientId;
   
   $scope.create = function() {
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/diseases/create', $scope.newDisease).
       success(function() {
+        $location.path('/MedicalRecord/' + $scope.patient_id);
       });
   };
 
 }]);
 
-app.controller('CreateSymptomController', ['$scope', '$http', '$routeParams', 'PatientDiagnoseID', function($scope, $http, $routeParams, PatientDiagnoseID) {
+app.controller('CreateSymptomController', ['$scope', '$http', '$location', 'PatientDiagnoseID', function($scope, $http, $location, PatientDiagnoseID) {
 
   $scope.patient_id = PatientDiagnoseID.get();
 
   $scope.create = function() {
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/symptoms/create', $scope.newSymptom).
       success(function() {
+        $location.path('/Diagnose/' + $scope.patient_id + '/ChooseSymptoms');
       });
   };
 
@@ -260,14 +268,14 @@ app.controller('CreateSymptomController', ['$scope', '$http', '$routeParams', 'P
 
 app.service('LastSearchService', function() {
   
-  var lastSearch;
+  var _lastSearch = '';
 
   this.get = function() {
-    return lastSearch;
+    return _lastSearch;
   }
 
   this.save = function(search) {
-    lastSearch = search;
+    _lastSearch = search;
   }
 
 });
@@ -275,14 +283,14 @@ app.service('LastSearchService', function() {
 
 app.service('PatientDiagnoseID', function() {
   
-  var patientID;
+  var _patientID;
 
   this.get = function() {
-    return patientID;
+    return _patientID;
   }
 
   this.save = function(id) {
-    patientID = id;
+    _patientID = id;
   }
 
 });
