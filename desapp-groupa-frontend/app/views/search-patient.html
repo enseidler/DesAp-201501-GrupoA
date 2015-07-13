@@ -1,10 +1,20 @@
 
 <h1>Found <span class="label label-success">{{searchResult.length}}</span> patients searching <span class="label label-success">{{last_search}}</span></h1>
-
+<ul class="pagination pull-left">
+	<li ng-class="prevPageDisabled()">
+		<a href ng-click="prevPage()">« Prev</a>
+	</li>
+	<li ng-repeat="n in numberPages(true)">
+		<a href ng-click="page(n)">{{n+1}}</a>
+	</li>
+	<li ng-class="nextPageDisabled()">
+		<a href ng-click="nextPage(true)">Next »</a>
+	</li>
+</ul>
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
     <div class="col-md-12 search-list">
 		<div class="list-group">
-			<div class="list-group-item" ng-repeat="patient in (searchResult = (patients | filter: last_search))">
+			<div class="list-group-item" ng-repeat="patient in (searchResult = (patients | filter: last_search)) | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
 				<table style="width:100%;">
 					<tr>
 						<td>
