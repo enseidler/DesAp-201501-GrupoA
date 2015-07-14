@@ -1,8 +1,11 @@
 package ar.edu.desapp.groupa.services;
 
+import ar.edu.desapp.groupa.model.medicine.Drug;
 import ar.edu.desapp.groupa.model.symptom.Symptom;
 import ar.edu.desapp.groupa.model.user.Patient;
 import static ar.edu.desapp.groupa.model.builders.DiseaseBuilder.*;
+import static ar.edu.desapp.groupa.model.builders.MedicineBuilder.*;
+import static ar.edu.desapp.groupa.model.builders.MedicalPracticeBuilder.*;
 import static ar.edu.desapp.groupa.application.FaceMedApplication.*;
 
 public class GeneralService {
@@ -13,6 +16,8 @@ public class GeneralService {
 	private MedicalConsultationService medicalConsultationService;
 	private MedicalRecordService medicalRecordService;
 	private DrugService drugService;
+	private MedicineService medicineService;
+	private MedicalPracticeService medicalPracticeService;
 
 	public PatientService getPatientService() {
 		return patientService;
@@ -78,5 +83,33 @@ public class GeneralService {
 
 	public void setDrugService(DrugService drugService) {
 		this.drugService = drugService;
+	}
+
+	public MedicineService getMedicineService() {
+		return medicineService;
+	}
+
+	public void setMedicineService(MedicineService medicineService) {
+		this.medicineService = medicineService;
+		this.getMedicineService().save(aMedicine()
+								.with(new Drug("Ibuprofeno"))
+								.with(600)
+								.build());
+		this.getMedicineService().save(aMedicine()
+								.with(new Drug("Antidiarreico"))
+								.with(300)
+								.build());
+	}
+
+	public MedicalPracticeService getMedicalPracticeService() {
+		return medicalPracticeService;
+	}
+
+	public void setMedicalPracticeService(
+			MedicalPracticeService medicalPracticeService) {
+		this.medicalPracticeService = medicalPracticeService;
+		this.getMedicalPracticeService().save(aMedicalPractice()
+										.withName("Aplicar paños frios sobre las ampollas")
+										.build());
 	}
 }

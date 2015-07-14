@@ -7,7 +7,7 @@ var idx = this.indexOf(element);
 }
 
 Array.prototype.addIfNotExist = function(element) {
-var idx = this.indexOf(element);
+	var idx = this.indexOf(element);
 	if (idx == -1) {
     	return this.push(element);
 	}

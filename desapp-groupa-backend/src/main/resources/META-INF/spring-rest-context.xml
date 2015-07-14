@@ -33,6 +33,9 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 			<ref bean="drugRest"/>
 			<ref bean="diseaseRest"/>
 			<ref bean="diagnoseRest"/>
+			<ref bean="medicineRest"/>
+			<ref bean="medicalPracticeRest"/>
+			<ref bean="medicalConsultationRest"/>
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
 			<entry key="json" value="application/json" />
@@ -70,6 +73,22 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 	<bean id="diagnoseRest" class="ar.edu.desapp.groupa.rest.DiagnoseRest">
 		<property name="diseaseService" ref="services.disease" />
 		<property name="symptomService" ref="services.symptom" />
+		<property name="medicalRecordService" ref="services.medicalRecord" />
+		<property name="medicineService" ref="services.medicine" />
+		<property name="medicalPracticeService" ref="services.medicalPractice" />
+	</bean>
+
+	<bean id="medicineRest" class="ar.edu.desapp.groupa.rest.MedicineRest">
+		<property name="medicineService" ref="services.medicine" />
+	</bean>
+
+	<bean id="medicalPracticeRest" class="ar.edu.desapp.groupa.rest.MedicalPracticeRest">
+		<property name="medicalPracticeService" ref="services.medicalPractice" />
+	</bean>
+	
+	<bean id="medicalConsultationRest" class="ar.edu.desapp.groupa.rest.MedicalConsultationRest">
+		<property name="medicalConsultationService" ref="services.medicalConsultation" />
+		<property name="medicalRecordService" ref="services.medicalRecord" />
 	</bean>
 	
 </beans>

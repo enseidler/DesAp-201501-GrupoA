@@ -7,6 +7,7 @@ import ar.edu.desapp.groupa.entity.Entity;
 import ar.edu.desapp.groupa.model.disease.Disease;
 import ar.edu.desapp.groupa.model.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.groupa.model.medicine.Drug;
+import ar.edu.desapp.groupa.model.medicine.Medicine;
 
 public class MedicalRecord extends Entity {
 	
@@ -81,6 +82,10 @@ public class MedicalRecord extends Entity {
 			}
 		}
 		
+	}
+
+	public boolean canConsume(Medicine medicine) {
+		return !this.getAllergies().contains(medicine);
 	}
 	
 }

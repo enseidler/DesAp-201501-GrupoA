@@ -13,6 +13,9 @@
 		<property name="symptomService" ref="services.symptom" />
 		<property name="drugService" ref="services.drug"/>
 		<property name="diseaseService" ref="services.disease"/>
+		<property name="medicineService" ref="services.medicine"/>
+		<property name="medicalPracticeService" ref="services.medicalPractice"/>
+		<property name="medicalConsultationService" ref="services.medicalConsultation"/>
 	</bean>
 
 	<bean id="services.patient" class="ar.edu.desapp.groupa.services.PatientService">
@@ -33,6 +36,18 @@
 	
 	<bean id="services.disease" class="ar.edu.desapp.groupa.services.DiseaseService">
 		<property name="repository" ref="persistence.diseaseRepository" />
+	</bean>
+
+	<bean id="services.medicine" class="ar.edu.desapp.groupa.services.MedicineService">
+		<property name="repository" ref="persistence.medicineRepository" />
+	</bean>
+
+	<bean id="services.medicalPractice" class="ar.edu.desapp.groupa.services.MedicalPracticeService">
+		<property name="repository" ref="persistence.medicalPracticeRepository" />
+	</bean>
+
+	<bean id="services.medicalConsultation" class="ar.edu.desapp.groupa.services.MedicalConsultationService">
+		<property name="repository" ref="persistence.medicalConsultationRepository" />
 	</bean>
 
 </beans>

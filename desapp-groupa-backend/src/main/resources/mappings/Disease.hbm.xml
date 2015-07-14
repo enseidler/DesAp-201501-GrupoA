@@ -15,6 +15,11 @@
 			<list-index column="id" />
 			<many-to-many class="ar.edu.desapp.groupa.model.symptom.Symptom" />
 		</list>
+		<list name="treatments" lazy="false">
+			<key column="treatmentID" />
+			<list-index column="id" />
+			<many-to-many class="ar.edu.desapp.groupa.model.treatment.Treatment" />
+		</list>
 
 	</class>
 </hibernate-mapping>

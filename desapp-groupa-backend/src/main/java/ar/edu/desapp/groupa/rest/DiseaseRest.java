@@ -7,10 +7,12 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import ar.edu.desapp.groupa.model.disease.Disease;
+import ar.edu.desapp.groupa.model.user.Patient;
 import ar.edu.desapp.groupa.services.DiseaseService;
 
 
@@ -30,6 +32,15 @@ public class DiseaseRest {
         List<Disease> diseases = diseaseService.retriveAll();
         return diseases;
     }
+	
+	@GET
+	@Path("/{id}")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Disease getDisease(@PathParam("id") Integer id) {
+		Disease disease = diseaseService.findById(id);
+		return disease;
+	}
 	
 	@POST
 	@Path("/create")
