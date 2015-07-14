@@ -66,7 +66,7 @@ app.controller('CreatePatientController', ['$scope', '$http', '$location', funct
   $scope.create = function() {
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/patients/create', $scope.newPatient).
       success(function() {
-        $location.path('/Home');
+        $location.path('/SearchPatient');
       });
   };
 }]);
@@ -76,7 +76,8 @@ app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', 'L
 
   LastSearchService.save($routeParams.search);
   $scope.last_search = LastSearchService.get();
-  CurrentSymptoms.resetSymptoms();
+  CurrentSymptoms.resetSymptoms(); 
+  $scope.patients = [];
 
   $scope.list = function() {
     $http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/list').
@@ -85,9 +86,60 @@ app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', 'L
       });
   };
 
+  $scope.itemsPerPage = 4;
+  $scope.currentPage = 0;
+  
+  $scope.prevPage = function() {
+    if ($scope.currentPage > 0) {
+      $scope.currentPage--;
+    }
+  };
+  
+  $scope.prevPageDisabled = function() {
+    return $scope.currentPage === 0 ? "disabled" : "";
+  };
+  
+  $scope.pageCount = function() {
+    return Math.ceil($scope.patients.length/$scope.itemsPerPage)-1;
+  };
+  
+  $scope.nextPage = function() {
+  if ($scope.currentPage < $scope.pageCount()) {
+    $scope.currentPage++;
+    }
+  };
+  
+  $scope.nextPageDisabled = function() {
+    return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+  };
+  
+  $scope.page = function(nPage) {
+    $scope.currentPage = nPage;
+  };
+  
+  $scope.numberPages = function(){
+    var countData = $scope.patients.length;
+    var countPages = 0;
+  
+    $scope.listPages = [];
+    for (var i=0; i<countData; i = i+4) {
+      $scope.listPages.push(countPages);
+      countPages++;
+    }
+    return $scope.listPages;
+  };
+
+
   $scope.list();
   
 }]);
+
+app.filter('offset', function() {
+  return function(input, start) {
+    start = parseInt(start, 10);
+    return input.slice(start);
+  };
+});
 
 
 app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', '$location', 'LastSearchService', function($scope, $http, $routeParams, $location, LastSearchService) { 
