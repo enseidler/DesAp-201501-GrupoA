@@ -45,6 +45,10 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/create-symptom.html',
           controller: 'CreateSymptomController'
         }).
+        when('/Diagnose', {
+          templateUrl: 'views/diagnose.html',
+          controller: 'DiagnoseController'
+        }).
         otherwise({
           redirectTo: '/Home'
       });
@@ -248,6 +252,7 @@ app.controller('CreateDiseaseController', ['$scope', '$http', '$routeParams', '$
 
 }]);
 
+
 app.controller('CreateSymptomController', ['$scope', '$http', '$location', 'PatientDiagnoseID', function($scope, $http, $location, PatientDiagnoseID) {
 
   $scope.patient_id = PatientDiagnoseID.get();
@@ -258,6 +263,32 @@ app.controller('CreateSymptomController', ['$scope', '$http', '$location', 'Pati
         $location.path('/Diagnose/' + $scope.patient_id + '/ChooseSymptoms');
       });
   };
+
+}]);
+
+
+app.controller('DiagnoseController', ['$scope', '$http', '$location', 'PatientDiagnoseID', 'CurrentSymptoms', function($scope, $http, $location, PatientDiagnoseID, CurrentSymptoms) {
+
+  $scope.patient_id = PatientDiagnoseID.get();
+  $scope.symptomsToDiagnose = CurrentSymptoms.get();
+
+  $scope.diagnose = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/diagnose/diagnosedDiseases/' + $scope.collectIds()).
+      success(function(data) {
+        $scope.diagnosedDiseases = data;
+      });
+  };
+
+  $scope.collectIds = function() {
+    var idSymptoms = "";
+    for (var i = $scope.symptomsToDiagnose.length - 1; i >= 1; i--) {
+      idSymptoms = idSymptoms + $scope.symptomsToDiagnose[i].id +  " "; 
+    };
+    idSymptoms = idSymptoms + $scope.symptomsToDiagnose[0].id;
+    return idSymptoms;
+  };
+
+  $scope.diagnose();
 
 }]);
 
