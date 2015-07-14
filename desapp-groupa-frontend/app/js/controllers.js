@@ -49,10 +49,13 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/diagnose.html',
           controller: 'DiagnoseController'
         }).
+        when('/Treatment/:patientId/:diseaseId', {
+          templateUrl: 'views/treatment.html',
+          controller: 'TreatmentController'
+        }).
         otherwise({
           redirectTo: '/Home'
       });
-
 }]);
 
 
@@ -319,7 +322,7 @@ app.controller('CreateSymptomController', ['$scope', '$http', '$location', 'Pati
 }]);
 
 
-app.controller('DiagnoseController', ['$scope', '$http', '$location', 'PatientDiagnoseID', 'CurrentSymptoms', function($scope, $http, $location, PatientDiagnoseID, CurrentSymptoms) {
+app.controller('DiagnoseController', ['$scope', '$http', 'PatientDiagnoseID', 'CurrentSymptoms', function($scope, $http, PatientDiagnoseID, CurrentSymptoms) {
 
   $scope.patient_id = PatientDiagnoseID.get();
   $scope.symptomsToDiagnose = CurrentSymptoms.get();
@@ -344,6 +347,60 @@ app.controller('DiagnoseController', ['$scope', '$http', '$location', 'PatientDi
 
 }]);
 
+app.controller('TreatmentController', ['$scope', '$http', '$routeParams', 'PatientDiagnoseID', function($scope, $http, $routeParams, PatientDiagnoseID) {
+
+  $scope.patient_id = $routeParams.patientId;
+
+  $scope.getDisease = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/diseases/' + $routeParams.diseaseId).
+      success(function(data) {
+        $scope.diagnosedDisease = data;
+      });
+  }
+
+  $scope.getMedicines = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/medicines/list').
+      success(function(data) {
+        $scope.medicines = data;
+      });
+  };
+
+  $scope.getMedicalPractices = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/medicalPractices/list').
+      success(function(data) {
+        $scope.medicalPractices = data;
+      });
+  };
+
+  $scope.diagnose = function() {
+    $http.get('http://localhost:8080/desapp-groupa-backend/rest/diagnose/' + $scope.patient_id + '/makeTreatment/' + $routeParams.diseaseId).
+      success(function(data) {
+        $scope.diagnosedTreatment = data;
+      });
+  };
+
+  $scope.addMedicine = function(medicine) {
+    $scope.diagnosedTreatment.medicines.addIfNotExist(medicine);
+  };
+
+  $scope.deleteMedicine = function(medicine) {
+    $scope.diagnosedTreatment.medicines.removeIfExist(medicine);
+  };
+
+  $scope.addMedicalPractice = function(medicalPractice) {
+    $scope.diagnosedTreatment.medicalPractices.addIfNotExist(medicalPractice);
+  };
+
+  $scope.deleteMedicalPractice = function(medicalPractice) {
+    $scope.diagnosedTreatment.medicalPractice.removeIfExist(medicalPractice);
+  };
+
+  $scope.getDisease();
+  $scope.getMedicines();
+  $scope.getMedicalPractices();
+  $scope.diagnose();
+
+}]);
 
 //////////////////////////////////////////
 ///////// SERVICES

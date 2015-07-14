@@ -1,0 +1,96 @@
+<div class="col-md-12">
+	<div class="col-md-10">
+		<h1>Diagnose: Treatment</h1> 
+	</div>
+	<div class="col-md-2">
+		<a type="button" title="Go back" class="btn btn-link pull-right" ng-href="#Diagnose"><h3><i class="fa fa-arrow-left"></i></h3></a>
+	</div>
+</div>
+
+<div class="col-md-12 vertical-padding-30 low-opacity-black">
+	<div class="text-center">
+      	<h3><u>This could be the possible treatment for your</u></h3>
+      	<h1><span class="label label-primary">{{diagnosedDisease.name}}</span></h1>
+  	</div>
+	<div class="row divider-50">
+	<div class="col-md-12">
+	    <div class="col-md-6">
+    	<div class="panel panel-primary">
+		  	<div class="panel-heading">Medicines</div>
+		  	<div class="panel-body">
+		    	<div class="list-group record-list">
+					<div class="list-group-item" ng-repeat="medicine in diagnosedTreatment.medicines">
+						<table>
+		            		<tr>
+		            			<td class="col-md-10">
+		            				{{medicine.drug.name}}, {{medicine.concentration}} mg
+		            			</td>
+		            			<td >
+		            				<a type="button" class="btn btn-danger btn-sm" tooltip="Delete allergy" ng-click="deleteMedicine(medicine)"><i class="fa fa-trash"></i></a>
+		            			</td>
+		            		</tr>
+		            	</table>
+					</div>
+				</div>
+				<div class="dropdown">
+		          	<a class="dropdown-toggle btn btn-primary btn-block" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Medicine <span class="caret"></span></a>
+		          	<ul class="dropdown-menu">
+			            <li ng-repeat="medicine in medicines">
+			            	<table>
+			            		<tr>
+			            			<td class="col-md-10">
+			            				{{medicine.drug.name}}, {{medicine.concentration}} mg
+			            			</td>
+			            			<td >
+			            				<a type="button" class="btn btn-link btn-md" tooltip="Add medicine" ng-click="addMedicine(medicine)"><i class="fa fa-plus"></i></a>
+			            			</td>
+			            		</tr>
+			            	</table>
+			            </li>
+		          	</ul>
+		        </div>
+				<a type="button" class="btn btn-warning btn-block" href="#Treatment/{{patient.id}}/CreateMedicine">Create Medicine</a>	
+			</div>
+		</div>
+	    </div>
+	    <div class="col-md-6">
+	    	<div class="panel panel-primary">
+			  	<div class="panel-heading">Medical Practices</div>
+			  	<div class="panel-body">
+			    	<div class="list-group record-list">
+						<div class="list-group-item" ng-repeat="medicalPractice in diagnosedTreatment.medicalPractices">
+							<table>
+			            		<tr>
+			            			<td class="col-md-10">
+			            				{{medicalPractice.name}}
+			            			</td>
+			            			<td >
+			            				<a type="button" class="btn btn-danger btn-sm" tooltip="Delete Disease" ng-click="deleteMedicalPractice(medicalPractice)"><i class="fa fa-trash"></i></a>
+			            			</td>
+			            		</tr>
+			            	</table>
+						</div>
+					</div>
+					<div class="dropdown">
+			          	<a class="dropdown-toggle btn btn-primary btn-block" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Medical Practice <span class="caret"></span></a>
+			          	<ul class="dropdown-menu">
+				            <li ng-repeat="medicalPractice in medicalPractices">
+				            	<table>
+				            		<tr>
+				            			<td class="col-md-10">
+				            				{{medicalPractice.name}}
+				            			</td>
+				            			<td >
+				            				<a type="button" class="btn btn-link btn-md" tooltip="Add Medical Practice" ng-click="addMedicalPractice(medicalPractice)"><i class="fa fa-plus"></i></a>
+				            			</td>
+				            		</tr>
+				            	</table>
+				            </li>
+			          	</ul>
+			        </div>
+					<a type="button" class="btn btn-warning btn-block" href="#Treatment/{{patient.id}}/CreateMedicalPractice">Create Medical Practice</a>	
+				</div>
+		    </div>
+		</div>
+	</div>
+</div>
