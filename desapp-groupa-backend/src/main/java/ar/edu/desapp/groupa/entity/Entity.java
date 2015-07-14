@@ -15,5 +15,9 @@ public abstract class Entity implements Serializable {
 	public void setId(final int id) {
 		this.id = id;
 	}
+
+	public Boolean sameId(Entity element2) {
+		return this.getId() == element2.getId();
+	}
 	
 }

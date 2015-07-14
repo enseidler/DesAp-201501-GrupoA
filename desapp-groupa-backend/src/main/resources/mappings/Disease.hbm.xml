@@ -13,7 +13,7 @@
 		<list name="symptoms" lazy="false">
 			<key column="symptomID" />
 			<list-index column="id" />
-			<one-to-many class="ar.edu.desapp.groupa.model.symptom.Symptom" />
+			<many-to-many class="ar.edu.desapp.groupa.model.symptom.Symptom" />
 		</list>
 
 	</class>

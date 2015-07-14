@@ -1,14 +1,38 @@
-<h1>Symptoms</h1>
-<div class="panel-body">
-	<div class="list-group record-list">
-		<div class="list-group-item" ng-repeat="symptom in medicalConsultation.diagnoseDisease.symptoms">
-			<table style="width:100%;">
-				<tr>
-					<td>
-						<h3 class="list-group-item-heading">{{symptom.description}} </h3>
-					</td>
-				</tr>
-			</table>
-		</div>
+<div class="col-md-12">
+	<div class="col-md-10">
+		<h1>Diagnose</h1> 
 	</div>
+	<div class="col-md-2">
+		<a type="button" title="Go back" class="btn btn-link pull-right" ng-href="#Diagnose/{{patient_id}}/ChooseSymptoms"><h3><i class="fa fa-arrow-left"></i></h3></a>
+	</div>
+</div>
+
+<div class="col-md-12 vertical-padding-30 low-opacity-black">
+	<div class="text-center">
+      	<h3><u>These could be the possible diagnoses</u></h3>
+  	</div>
+	<div class="row divider-50">
+	  	<div class="col-sm-6 col-sm-offset-3">
+	      	<div class="panel panel-warning">
+	        	<div class="panel-heading">Diseases</div>
+	        	<div class="panel-body">
+	          		<div class="list-group scroll-list-250"> 
+	            		<div class="list-group-item unselectable" ng-repeat="disease in diagnosedDiseases">
+	              			<table>
+	                			<tr>
+	                  				<td class="col-md-12">
+	                    				{{disease.name}} 
+	                  				</td>
+	                  				<td>
+	                    				<a type="button" class="btn btn-link btn-md pull-right" tooltip="Make a treatment for this disease" ng-href="#Treatment/{{disease.id}}"><i class="fa fa-arrow-right"></i></a>
+	                  				</td>
+	                			</tr>
+	              			</table>
+	            		</div>
+	          		</div>
+	          		<a type="button" class="btn btn-warning btn-block" ng-href="#Diagnose/CreateDisease">Create Disease</a>
+	        	</div>
+	      	</div>
+	    </div>
+    </div>
 </div>

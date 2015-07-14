@@ -3,6 +3,8 @@ package ar.edu.desapp.groupa.model.system;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import static ar.edu.desapp.groupa.model.builders.DiseaseBuilder.*;
 import static ar.edu.desapp.groupa.model.utils.ListUtils.*;
 import ar.edu.desapp.groupa.model.disease.Disease;
@@ -15,6 +17,7 @@ import ar.edu.desapp.groupa.model.symptom.Symptom;
 import ar.edu.desapp.groupa.model.treatment.Treatment;
 import ar.edu.desapp.groupa.model.user.Doctor;
 import ar.edu.desapp.groupa.model.user.Patient;
+import static ar.edu.desapp.groupa.model.utils.FaceMedUtils.intersection;
 
 public class Hospital {
 	
@@ -137,6 +140,7 @@ public class Hospital {
 	
 	public Integer matchs(Disease disease, List<Symptom> symptoms) {
 		return (intersection(disease.getSymptoms(), symptoms)).size();
+//		return CollectionUtils.intersection(disease.getSymptoms(), symptoms).size();
 	}
 	
 	public Treatment makeATreatmentFor(MedicalRecord medicalRecord, Disease disease) {

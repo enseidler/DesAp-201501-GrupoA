@@ -3,6 +3,7 @@ package ar.edu.desapp.groupa.model.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ListUtils {
 	public static <E> void addIfNotExist(List<E> list, E element) {
 		if(!list.contains(element)) {
@@ -16,13 +17,15 @@ public class ListUtils {
 		}
 	}
 	
-	public static <E> List<E> intersection(List<E> list1, List<E> list2) {
-		List<E> intersection = new ArrayList<E>();
-		for(E element : list1) {
-			if(list2.contains(element)) {
-				intersection.add(element);
+	public static <E> List<E> getFirsts(List<E> list, Integer amount) {
+		List<E> result = new ArrayList<E>();
+		if(list.size() <= amount) {
+			result = list;
+		} else {
+			for(Integer i=0; i<amount; i++) {
+				result.add(list.get(i));
 			}
 		}
-		return intersection;
+		return result;
 	}
 }

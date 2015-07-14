@@ -1,10 +1,13 @@
 package ar.edu.desapp.groupa.services;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.desapp.groupa.entity.Entity;
+import ar.edu.desapp.groupa.model.symptom.Symptom;
 import ar.edu.desapp.groupa.repositories.GenericRepository;
 
 public class GenericService<T> implements Serializable {
@@ -45,5 +48,16 @@ public class GenericService<T> implements Serializable {
     public T findById(final Integer id) {
     	return this.getRepository().findById(id);
     }
+    
+    @Transactional
+    public List<T> retriveAllById(List<Integer> ids) {
+    	List<T> list = new ArrayList<T>();
+    	for(T entity : this.retriveAll()) {
+    		if(ids.contains(((Entity) entity).getId())) {
+    			list.add(entity);
+    		}
+    	}
+		return list;
+	}
 
 }
