@@ -22,6 +22,11 @@ public class MedicalConsultation extends Entity {
 		this.doctor = doctor;
 	}
 	
+	public MedicalConsultation(Treatment treatment2) {
+		super();
+		this.treatment = treatment2;
+	}
+
 	public Doctor getDoctor() {
 		return doctor;
 	}
@@ -52,8 +57,8 @@ public class MedicalConsultation extends Entity {
 		this.treatment = treatament;
 	}
 	
-	public void addDiagnoseDisease(Disease diagnoseDiase) {
-		this.diagnoseDisease = diagnoseDiase;
+	public void addDiagnoseDisease(Disease diagnoseDisease) {
+		this.diagnoseDisease = diagnoseDisease;
 	}
 	
 }

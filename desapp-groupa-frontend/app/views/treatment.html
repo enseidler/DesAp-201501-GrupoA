@@ -10,12 +10,12 @@
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
 	<div class="text-center">
       	<h3><u>This could be the possible treatment for your</u></h3>
-      	<h1><span class="label label-primary">{{diagnosedDisease.name}}</span></h1>
+      	<h1><span class="label label-success">{{diagnosedDisease.name}}</span></h1>
   	</div>
 	<div class="row divider-50">
 	<div class="col-md-12">
 	    <div class="col-md-6">
-    	<div class="panel panel-primary">
+    	<div class="panel panel-warning">
 		  	<div class="panel-heading">Medicines</div>
 		  	<div class="panel-body">
 		    	<div class="list-group record-list">
@@ -33,7 +33,7 @@
 					</div>
 				</div>
 				<div class="dropdown">
-		          	<a class="dropdown-toggle btn btn-primary btn-block" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Medicine <span class="caret"></span></a>
+		          	<a class="dropdown-toggle btn btn-default btn-block" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Medicine<span class="caret"></span></a>
 		          	<ul class="dropdown-menu">
 			            <li ng-repeat="medicine in medicines">
 			            	<table>
@@ -54,7 +54,7 @@
 		</div>
 	    </div>
 	    <div class="col-md-6">
-	    	<div class="panel panel-primary">
+	    	<div class="panel panel-warning">
 			  	<div class="panel-heading">Medical Practices</div>
 			  	<div class="panel-body">
 			    	<div class="list-group record-list">
@@ -72,7 +72,7 @@
 						</div>
 					</div>
 					<div class="dropdown">
-			          	<a class="dropdown-toggle btn btn-primary btn-block" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Medical Practice <span class="caret"></span></a>
+			          	<a class="dropdown-toggle btn btn-default btn-block" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add Medical Practice <span class="caret"></span></a>
 			          	<ul class="dropdown-menu">
 				            <li ng-repeat="medicalPractice in medicalPractices">
 				            	<table>
@@ -93,4 +93,7 @@
 		    </div>
 		</div>
 	</div>
+	<div class="col-md-3 col-md-offset-9 divider-50">
+    	<a type="submit" tooltip="Save Treatment" ng-click="create()" class="btn btn-success btn-block">Finish</a>
+  </div>
 </div>

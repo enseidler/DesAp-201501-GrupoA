@@ -14,7 +14,7 @@
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
     <div class="col-md-12 search-list">
 		<div class="list-group">
-			<div class="list-group-item" ng-repeat="patient in (searchResult = (patients | filter: last_search)) | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
+			<div class="list-group-item" ng-repeat="patient in (searchResult = (patients | filter: last_search | offset: currentPage*itemsPerPage | limitTo: itemsPerPage)) ">
 				<table style="width:100%;">
 					<tr>
 						<td>

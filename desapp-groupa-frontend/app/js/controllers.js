@@ -392,7 +392,13 @@ app.controller('TreatmentController', ['$scope', '$http', '$routeParams', 'Patie
   };
 
   $scope.deleteMedicalPractice = function(medicalPractice) {
-    $scope.diagnosedTreatment.medicalPractice.removeIfExist(medicalPractice);
+    $scope.diagnosedTreatment.medicalPractices.removeIfExist(medicalPractice);
+  };
+
+  $scope.create = function() {
+    $http.put('http://localhost:8080/desapp-groupa-backend/rest/consultations/create/' +  $scope.patient_id, $scope.diagnosedTreatment, $scope.diagnosedTreatment).
+      success(function(data) {
+      });
   };
 
   $scope.getDisease();
