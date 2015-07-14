@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.desapp.groupa.entity.Entity;
+import ar.edu.desapp.groupa.model.disease.Disease;
 import ar.edu.desapp.groupa.model.medicalPractice.MedicalPractice;
+import ar.edu.desapp.groupa.model.medicalRecord.MedicalRecord;
 import ar.edu.desapp.groupa.model.medicine.Medicine;
 import ar.edu.desapp.groupa.model.repose.Repose;
 
@@ -64,6 +66,14 @@ public class Treatment extends Entity {
 
 	public void addMedicalPractices(MedicalPractice medicalPractices) {
 		this.getMedicalPractices().add(medicalPractices);
+	}
+
+	public boolean availableFor(MedicalRecord medicalRecord) {
+		Boolean available = false;
+		for(Medicine medicine : this.getMedicines()) {
+			available = available || !medicalRecord.canConsume(medicine);
+		}
+		return available;
 	}
 	
 }

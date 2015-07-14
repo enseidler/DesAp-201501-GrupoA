@@ -118,5 +118,13 @@
 	<bean id="persistence.drugRepository" class="ar.edu.desapp.groupa.repositories.DrugRepository">
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
+
+	<bean id="persistence.medicineRepository" class="ar.edu.desapp.groupa.repositories.MedicineRepository">
+		<property name="sessionFactory" ref="persistence.sessionFactory" />
+	</bean>
+	
+	<bean id="persistence.medicalPracticeRepository" class="ar.edu.desapp.groupa.repositories.MedicalPracticeRepository">
+		<property name="sessionFactory" ref="persistence.sessionFactory" />
+	</bean>
 	
 </beans>
