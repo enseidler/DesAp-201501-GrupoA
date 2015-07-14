@@ -39,9 +39,19 @@ public class Disease extends Entity {
 
 	public boolean hasASymptom(List<Symptom> symptomss) {
 		Boolean has = false;
-		for (Symptom symptom : symptomss) {
-			has = has || this.getSymptoms().contains(symptom);
+		for(Symptom symptom : symptomss) {
+			has = has || (this.hasSymptomWithDescription(symptom.getDescription()));
+		}
+		return has;
+//		return Collections.disjoint(this.getSymptoms(), symptomss);
+	}
+	
+	public boolean hasSymptomWithDescription(String description) {
+		Boolean has = false;
+		for(Symptom symptom : this.getSymptoms()) {
+			has = has || (symptom.getDescription() == description);
 		}
 		return has;
 	}
+	
 }

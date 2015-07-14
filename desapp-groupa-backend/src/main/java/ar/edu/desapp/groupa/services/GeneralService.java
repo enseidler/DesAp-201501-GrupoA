@@ -2,6 +2,7 @@ package ar.edu.desapp.groupa.services;
 
 import ar.edu.desapp.groupa.model.symptom.Symptom;
 import ar.edu.desapp.groupa.model.user.Patient;
+import static ar.edu.desapp.groupa.model.builders.DiseaseBuilder.*;
 import static ar.edu.desapp.groupa.application.FaceMedApplication.*;
 
 public class GeneralService {
@@ -19,7 +20,7 @@ public class GeneralService {
 
 	public void setPatientService(final PatientService patientService) {
 		this.patientService = patientService;
-		this.getPatientService().save(patient());
+//		this.getPatientService().save(patient());
 		this.getPatientService().save(new Patient("Cacho", "Castaña", 1111111, "cafelahumeda", 80, 1.7));
 		this.getPatientService().save(new Patient("Ramona", "Gutierrez", 2222222, "753214896", 56.7, 1.67));
 		this.getPatientService().save(new Patient("Santiago", "Ramirez", 3333333, "951478632", 84.5, 1.82));
@@ -35,13 +36,6 @@ public class GeneralService {
 
 	public void setSymptomService(final SymptomService symptomService) {
 		this.symptomService = symptomService;
-		this.getSymptomService().save(new Symptom("Dolor de Cabeza"));
-		this.getSymptomService().save(new Symptom("Dolor de Estomago"));
-		this.getSymptomService().save(new Symptom("Dolor de Garganta"));
-		this.getSymptomService().save(new Symptom("Fiebre"));
-		this.getSymptomService().save(new Symptom("Erupciones en la piel"));
-		this.getSymptomService().save(new Symptom("Diarrea"));
-		this.getSymptomService().save(new Symptom("Vomitos"));
 	}
 
 	public DiseaseService getDiseaseService() {
@@ -50,6 +44,16 @@ public class GeneralService {
 
 	public void setDiseaseService(final DiseaseService diseaseService) {
 		this.diseaseService = diseaseService;
+		this.getDiseaseService().save(aDisease("Varicela")
+				.with(new Symptom("Erupciones en la piel"))
+				.with(new Symptom("Dolor de Cabeza"))
+				.with(new Symptom("Fiebre"))
+				.build());
+		this.getDiseaseService().save(aDisease("Diarrea")
+				.with(new Symptom("Dolor de Estomago"))
+				.with(new Symptom("Deshidratacion"))
+				.with(new Symptom("Cacona floja"))
+				.build());
 	}
 
 	public MedicalConsultationService getMedicalConsultationService() {
