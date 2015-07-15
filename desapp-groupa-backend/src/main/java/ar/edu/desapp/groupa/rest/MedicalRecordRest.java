@@ -12,8 +12,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import ar.edu.desapp.groupa.model.disease.Disease;
+import ar.edu.desapp.groupa.model.medicalConsultation.MedicalConsultation;
 import ar.edu.desapp.groupa.model.medicalRecord.MedicalRecord;
 import ar.edu.desapp.groupa.model.medicine.Drug;
+import ar.edu.desapp.groupa.model.treatment.Treatment;
+import ar.edu.desapp.groupa.services.DiseaseService;
 import ar.edu.desapp.groupa.services.MedicalRecordService;
 
 
@@ -21,9 +24,15 @@ import ar.edu.desapp.groupa.services.MedicalRecordService;
 public class MedicalRecordRest {
 	
 	private MedicalRecordService medicalRecordService; 
+	private DiseaseService diseaseService;
+	
 	
 	public void setMedicalRecordService(final MedicalRecordService medicalRecordService) {
 		this.medicalRecordService = medicalRecordService;
+	}
+
+	public void setDiseaseService(DiseaseService diseaseService) {
+		this.diseaseService = diseaseService;
 	}
 
 	@GET
@@ -86,6 +95,22 @@ public class MedicalRecordRest {
 		return Response.ok(finalRecord).build();
 	}
 	
-	
+	@PUT
+	@Path("/{medicalRecordId}/createConsultation/{diseaseId}")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Response createConsultation(
+			@PathParam("medicalRecordId") Integer medicalRecordId,
+			@PathParam("diseaseId") Integer diseaseId,
+			Treatment treatment) {
+		MedicalRecord medicalRecord = medicalRecordService.findById(medicalRecordId);
+		Disease diagnosedDisease = diseaseService.findById(diseaseId);
+		MedicalConsultation finalMedicalConsultation = new MedicalConsultation();
+		finalMedicalConsultation.addTreatment(treatment);
+		finalMedicalConsultation.addDiagnoseDisease(diagnosedDisease);
+		medicalRecord.addConsultation(finalMedicalConsultation);
+		medicalRecordService.update(medicalRecord);
+		return Response.ok(medicalRecord).build();
+	}
 	
 }

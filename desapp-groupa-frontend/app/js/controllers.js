@@ -396,7 +396,7 @@ app.controller('TreatmentController', ['$scope', '$http', '$routeParams', 'Patie
   };
 
   $scope.create = function() {
-    $http.put('http://localhost:8080/desapp-groupa-backend/rest/consultations/create/' +  $scope.patient_id, $scope.diagnosedTreatment, $scope.diagnosedTreatment).
+    $http.put('http://localhost:8080/desapp-groupa-backend/rest/records/' +  $scope.patient_id + '/createConsultation/' + $scope.diagnosedDisease.id, $scope.diagnosedTreatment).
       success(function(data) {
       });
   };
