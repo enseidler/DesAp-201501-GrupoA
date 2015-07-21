@@ -409,6 +409,14 @@ app.controller('TreatmentController', ['$scope', '$http', '$routeParams', '$loca
       });
   };
 
+  $scope.createMedicalPractice = function() {
+    $http.post('http://localhost:8080/desapp-groupa-backend/rest/medicalPractices/create', $scope.newMedicalPractice).
+      success(function(data) {
+        $scope.getMedicalPractices();
+        $scope.newMedicalPractice.name = "";
+      });
+  };
+
   $scope.getDisease();
   $scope.getMedicines();
   $scope.getMedicalPractices();
