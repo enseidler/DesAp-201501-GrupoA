@@ -347,7 +347,7 @@ app.controller('DiagnoseController', ['$scope', '$http', 'PatientDiagnoseID', 'C
 
 }]);
 
-app.controller('TreatmentController', ['$scope', '$http', '$routeParams', 'PatientDiagnoseID', function($scope, $http, $routeParams, PatientDiagnoseID) {
+app.controller('TreatmentController', ['$scope', '$http', '$routeParams', '$location', 'PatientDiagnoseID', function($scope, $http, $routeParams, $location, PatientDiagnoseID) {
 
   $scope.patient_id = $routeParams.patientId;
 
@@ -398,6 +398,7 @@ app.controller('TreatmentController', ['$scope', '$http', '$routeParams', 'Patie
   $scope.create = function() {
     $http.put('http://localhost:8080/desapp-groupa-backend/rest/records/' +  $scope.patient_id + '/createConsultation/' + $scope.diagnosedDisease.id, $scope.diagnosedTreatment).
       success(function(data) {
+        $location.path('/MedicalRecord/' + $scope.patient_id);
       });
   };
 
