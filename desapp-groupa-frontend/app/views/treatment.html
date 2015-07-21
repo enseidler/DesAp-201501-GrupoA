@@ -6,7 +6,11 @@
 		<a type="button" title="Go back" class="btn btn-link pull-right" ng-href="#Diagnose"><h3><i class="fa fa-arrow-left"></i></h3></a>
 	</div>
 </div>
-
+<ol class="breadcrumb">
+  <li><a ng-href="#Diagnose/{{patient_id}}/ChooseSymptoms">Symptoms</a></li>
+  <li><a ng-href="#Diagnose">Disease</a></li>
+  <li class="active">Treatment</li>
+</ol>
 <div class="col-md-12 vertical-padding-30 low-opacity-black">
 	<div class="text-center">
       	<h3><u>This could be the possible treatment for your</u></h3>
@@ -22,8 +26,7 @@
 					<div class="list-group-item" ng-repeat="medicine in diagnosedTreatment.medicines">
 						<table>
 		            		<tr>
-		            			<td class="col-mTypeError: Converting circular structure to JSON
-    at Object.stringify (native)d-10">
+		            			<td class="col-md-10">
 		            				{{medicine.drug.name}}, {{medicine.concentration}} mg
 		            			</td>
 		            			<td >
@@ -50,7 +53,7 @@
 			            </li>
 		          	</ul>
 		        </div>
-				<a type="button" class="btn btn-warning btn-block" href="#Treatment/{{patient.id}}/CreateMedicine">Create Medicine</a>	
+				
 			</div>
 		</div>
 	    </div>
@@ -89,7 +92,12 @@
 				            </li>
 			          	</ul>
 			        </div>
-					<a type="button" class="btn btn-warning btn-block" href="#Treatment/{{patient.id}}/CreateMedicalPractice">Create Medical Practice</a>	
+			        <div class="input-group">
+					   	<input type="text" ng-model="newMedicalPractice.name" class="form-control" placeholder="Medical Practice name..." >
+                        <span class="input-group-btn">
+							<a type="button" tooltip="Create Medical Practice" class="btn btn-warning btn-block" ng-click="createMedicalPractice()" ><i class="fa fa-plus"></i></a>	
+                        </span>
+					</div>
 				</div>
 		    </div>
 		</div>
