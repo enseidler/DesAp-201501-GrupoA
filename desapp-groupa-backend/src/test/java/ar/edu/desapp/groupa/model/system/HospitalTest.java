@@ -50,6 +50,9 @@ public class HospitalTest {
 		dolorDeCabeza = mock(Symptom.class);
 		dolorDeGarganta = mock(Symptom.class);
 		dolorDeEstomago = mock(Symptom.class);
+		when(dolorDeCabeza.getDescription()).thenReturn("Dolor de Cabeza");
+		when(dolorDeGarganta.getDescription()).thenReturn("Dolor de Garganta");
+		when(dolorDeEstomago.getDescription()).thenReturn("Dolor de Estomago");
 		migraña = aDisease("Migraña")
 					.with(dolorDeCabeza)
 					.build();

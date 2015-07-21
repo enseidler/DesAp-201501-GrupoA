@@ -54,7 +54,6 @@ public class Disease extends Entity {
 			has = has || (this.hasSymptomWithDescription(symptom.getDescription()));
 		}
 		return has;
-//		return Collections.disjoint(this.getSymptoms(), symptomss);
 	}
 	
 	public boolean hasSymptomWithDescription(String description) {

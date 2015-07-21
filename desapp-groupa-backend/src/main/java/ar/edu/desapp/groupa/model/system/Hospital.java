@@ -139,8 +139,8 @@ public class Hospital {
 	}
 	
 	public Integer matchs(Disease disease, List<Symptom> symptoms) {
-		return (intersection(disease.getSymptoms(), symptoms)).size();
-//		return CollectionUtils.intersection(disease.getSymptoms(), symptoms).size();
+//		return (intersection(disease.getSymptoms(), symptoms)).size();
+		return CollectionUtils.intersection(disease.getSymptoms(), symptoms).size();
 	}
 	
 	public Treatment makeATreatmentFor(MedicalRecord medicalRecord, Disease disease) {

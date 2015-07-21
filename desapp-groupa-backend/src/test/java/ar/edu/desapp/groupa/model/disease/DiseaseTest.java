@@ -22,6 +22,8 @@ public class DiseaseTest {
 	public void setUp() {
 		dolorDeCabeza = mock(Symptom.class);
 		sofocacion = mock(Symptom.class);
+		when(sofocacion.getDescription()).thenReturn("Sofocacion");
+		when(dolorDeCabeza.getDescription()).thenReturn("Dolor de Cabeza");
 		migraña = aDisease("Migraña")
 					.with(dolorDeCabeza)
 					.build();
