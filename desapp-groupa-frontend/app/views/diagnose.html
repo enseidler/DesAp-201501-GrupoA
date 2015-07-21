@@ -30,7 +30,12 @@
 	              			</table>
 	            		</div>
 	          		</div>
-	          		<a type="button" class="btn btn-warning btn-block" ng-href="#Diagnose/CreateDisease">Create Disease</a>
+	          		<div class="input-group">
+					   	<input type="text" ng-model="newDisease.name" class="form-control" placeholder="Disease name..." >
+                        <span class="input-group-btn">
+	          				<a type="button" tooltip="Create Disease" class="btn btn-warning btn-block" ng-click="createDisease()" ><i class="fa fa-plus"></i></a>
+                        </span>
+					</div>
 	        	</div>
 	      	</div>
 	    </div>

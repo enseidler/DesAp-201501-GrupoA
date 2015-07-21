@@ -343,6 +343,13 @@ app.controller('DiagnoseController', ['$scope', '$http', 'PatientDiagnoseID', 'C
     return idSymptoms;
   };
 
+  $scope.createDisease = function() {
+    $http.post('http://localhost:8080/desapp-groupa-backend/rest/diseases/create/' + $scope.collectIds(), $scope.newDisease).
+      success(function() {
+        $scope.diagnose();
+      });
+  };
+
   $scope.diagnose();
 
 }]);
