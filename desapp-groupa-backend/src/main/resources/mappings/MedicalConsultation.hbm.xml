@@ -8,8 +8,8 @@
 			<generator class="native" />
 		</id>
 		
- 		<one-to-one name="diagnoseDisease" class="ar.edu.desapp.groupa.model.disease.Disease" cascade="save-update" />
-  		<one-to-one name="treatment" class="ar.edu.desapp.groupa.model.treatment.Treatment" cascade="save-update" /> 
+ 		<many-to-one name="diagnoseDisease" class="ar.edu.desapp.groupa.model.disease.Disease" lazy="false" cascade="persist" />
+  		<many-to-one name="treatment" class="ar.edu.desapp.groupa.model.treatment.Treatment" lazy="false" /> 
 
 	</class>
 </hibernate-mapping>

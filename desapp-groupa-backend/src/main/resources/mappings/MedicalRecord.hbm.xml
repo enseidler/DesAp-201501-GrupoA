@@ -13,12 +13,12 @@
 			<list-index column="id" />
 			<many-to-many class="ar.edu.desapp.groupa.model.medicalConsultation.MedicalConsultation" />
 		</list>
-		<list name="diseases" lazy="false">
+		<list name="diseases" lazy="false" cascade="persist" >
 			<key column="diseaseID" />
 			<list-index column="id" />
 			<many-to-many class="ar.edu.desapp.groupa.model.disease.Disease" />
 		</list>
-		<list name="allergies" lazy="false">
+		<list name="allergies" lazy="false" cascade="persist" >
 			<key column="drugID" />
 			<list-index column="id" />
 			<many-to-many class="ar.edu.desapp.groupa.model.medicine.Drug" />

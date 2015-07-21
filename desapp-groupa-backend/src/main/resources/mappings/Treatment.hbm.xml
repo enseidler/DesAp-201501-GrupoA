@@ -8,13 +8,13 @@
 			<generator class="native" />
 		</id>
 		
- 		<list name="medicines" lazy="false">
+ 		<list name="medicines" lazy="false" cascade="persist" >
 			<key column="medicineID" />
 			<list-index column="id" />
 			<many-to-many class="ar.edu.desapp.groupa.model.medicine.Medicine" />
 		</list>
 		
-		<list name="medicalPractices" lazy="false">
+		<list name="medicalPractices" lazy="false" cascade="persist" >
 			<key column="practiceID" />
 			<list-index column="id" />
 			<many-to-many class="ar.edu.desapp.groupa.model.medicalPractice.MedicalPractice" />
