@@ -1,5 +1,6 @@
 /target
 /.settings
 /logs/login.log
+/logs/ServicesErrors.log
 .classpath
 .project
