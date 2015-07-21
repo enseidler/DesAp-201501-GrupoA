@@ -64,7 +64,7 @@ public class MedicalRecordRest {
 		return Response.ok(finalRecord).build();
 	}
 	
-	@DELETE
+	@PUT
 	@Path("/{id}/deleteAllergy/{idAllergy}")
 	@Produces("application/json")
 	public Response deleteAllergy(@PathParam("id") Integer id, @PathParam("idAllergy") Integer idAllergy){
@@ -85,7 +85,7 @@ public class MedicalRecordRest {
 		return Response.ok(finalRecord).build();
 	}
 	
-	@DELETE
+	@PUT
 	@Path("/{id}/deleteDisease/{idDisease}")
 	@Produces("application/json")
 	public Response deleteDisease(@PathParam("id") Integer id, @PathParam("idDisease") Integer idDisease){

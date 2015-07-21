@@ -54,7 +54,7 @@
 		    <div class="form-group ">
 		        <label for="inputPassword" class="col-md-3 control-label">Password</label>
 		        <div class="col-md-9 input-group">
-		    	    <input class="form-control" id="inputPassword" placeholder="Password" name="password" ng-model="newPatient.password" required ng-minlength='6' ng-maxlength='12'>
+		    	    <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" ng-model="newPatient.password" required ng-minlength='6' ng-maxlength='12'>
 		    	    <span class="error" data-ng-show="!cretionPatientForm.password.$pristine && cretionPatientForm.password.$error.required">Required Password!</span>
 		    	    <span class="error" ng-show="cretionPatientForm.password.$error.minlength">Too short!</span>
 		    	    <span class="error" ng-show="cretionPatientForm.password.$error.maxlength">Too long!</span>

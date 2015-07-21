@@ -70,6 +70,7 @@ app.controller('CreatePatientController', ['$scope', '$http', '$location', funct
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/patients/create', $scope.newPatient).
       success(function() {
         $location.path('/SearchPatient');
+        successAlert("GREAT!", "Patient [" + $scope.newPatient.name + " " + $scope.newPatient.surname + "] has been created successfuly");
       });
   };
 }]);
@@ -157,6 +158,7 @@ app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', '$
         } else {
           $location.path('/SearchPatient/');
         }
+        successAlert("GREAT!", "Patient [" + $scope.newPatient.name + " " + $scope.newPatient.surname + "] has been modified successfuly");
       });
   };
 
@@ -202,14 +204,16 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
       success(function(data) {
         $scope.loadMedicalRecord();
         $scope.allergiesList();
+        successAlert("GREAT!", "Drug [" + allergy.name + "] has been added to [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record allergies");
       });      
   };
 
   $scope.deleteAllergy = function(allergy) {
-    $http.delete('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.patientId + '/deleteAllergy/'+ allergy.id).
+    $http.put('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.patientId + '/deleteAllergy/'+ allergy.id).
       success(function(data) {
         $scope.loadMedicalRecord();
         $scope.allergiesList();
+        successAlert("GREAT!", "Drug [" + allergy.name + "] has been deleted from [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record allergies");
       });      
   };
 
@@ -225,17 +229,18 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
       success(function(data) {
         $scope.loadMedicalRecord();
         $scope.diseasesList();
-      });      
+        successAlert("GREAT!", "Disease [" + disease.name + "] has been added to [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record diseases");
+      });
   };
 
   $scope.deleteDisease = function(disease) {
-    $http.delete('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.patientId + '/deleteDisease/'+ disease.id).
+    $http.put('http://localhost:8080/desapp-groupa-backend/rest/records/' + $routeParams.patientId + '/deleteDisease/'+ disease.id).
       success(function(data) {
         $scope.loadMedicalRecord();
         $scope.diseasesList();
+        successAlert("GREAT!", "Disease [" + disease.name + "] has been deleted from [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record diseases");
       });      
   };
-
 
 
   $scope.loadPatient();
@@ -264,17 +269,21 @@ app.controller('ChooseSymptomsController', ['$scope', '$http', '$routeParams', '
   $scope.chooseSymptom = function(symptom) {
     $scope.currentSymptoms.addIfNotExist(symptom);
     CurrentSymptoms.save($scope.currentSymptoms);
-  }
+  };
 
   $scope.removeSymptom = function(symptom) {
     $scope.currentSymptoms.removeIfExist(symptom);
     CurrentSymptoms.save($scope.currentSymptoms);
-  }
+  };
 
   $scope.removeCurrentSymptoms = function() {
     $scope.currentSymptoms = [];
     CurrentSymptoms.save($scope.currentSymptoms);
-  }
+  };
+
+  $scope.noSymptomsChoosed = function() {
+    return $scope.currentSymptoms.length == 0;
+  };
 
   $scope.getSymptoms();
 
@@ -288,6 +297,7 @@ app.controller('CreateAllergyController', ['$scope', '$http', '$routeParams', '$
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/drugs/create', $scope.newAllergy).
       success(function() {
         $location.path('/MedicalRecord/' + $scope.patient_id);
+        successAlert("GREAT!", "Drug [" + $scope.newAllergy.name + "] has been created successfuly");
       });
   };
 
@@ -302,6 +312,7 @@ app.controller('CreateDiseaseController', ['$scope', '$http', '$routeParams', '$
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/diseases/create', $scope.newDisease).
       success(function() {
         $location.path('/MedicalRecord/' + $scope.patient_id);
+        successAlert("GREAT!", "Disease [" + $scope.newDisease.name + "] has been created successfuly");
       });
   };
 
@@ -347,6 +358,7 @@ app.controller('DiagnoseController', ['$scope', '$http', 'PatientDiagnoseID', 'C
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/diseases/create/' + $scope.collectIds(), $scope.newDisease).
       success(function() {
         $scope.diagnose();
+        successAlert("GREAT!", "Disease [" + $scope.newDisease.name + "] has been created successfuly");
       });
   };
 
@@ -406,6 +418,7 @@ app.controller('TreatmentController', ['$scope', '$http', '$routeParams', '$loca
     $http.put('http://localhost:8080/desapp-groupa-backend/rest/records/' +  $scope.patient_id + '/createConsultation/' + $scope.diagnosedDisease.id, $scope.diagnosedTreatment).
       success(function(data) {
         $location.path('/MedicalRecord/' + $scope.patient_id);
+        successAlert("GREAT!", "A new medical consultation has been added to current patient");
       });
   };
 
@@ -414,6 +427,7 @@ app.controller('TreatmentController', ['$scope', '$http', '$routeParams', '$loca
       success(function(data) {
         $scope.getMedicalPractices();
         $scope.newMedicalPractice.name = "";
+        successAlert("GREAT!", "Disease [" + $scope.newMedicalPractice.name + "] has been created successfuly");
       });
   };
 
