@@ -69,6 +69,7 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 	
 	<bean id="diseaseRest" class="ar.edu.desapp.groupa.rest.DiseaseRest">
 		<property name="diseaseService" ref="services.disease" />
+		<property name="symptomService" ref="services.symptom" />
 	</bean>
 
 	<bean id="diagnoseRest" class="ar.edu.desapp.groupa.rest.DiagnoseRest">
