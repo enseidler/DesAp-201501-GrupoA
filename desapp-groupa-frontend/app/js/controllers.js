@@ -70,7 +70,10 @@ app.controller('CreatePatientController', ['$scope', '$http', '$location', funct
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/patients/create', $scope.newPatient).
       success(function() {
         $location.path('/SearchPatient');
-        successAlert("GREAT!", "Patient [" + $scope.newPatient.name + " " + $scope.newPatient.surname + "] has been created successfuly");
+        successAlert("Patient [" + $scope.newPatient.name + " " + $scope.newPatient.surname + "] has been created successfuly");
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to create the patient [" + $scope.newPatient.name + " " + $scope.newPatient.surname + "]. Try later");
       });
   };
 }]);
@@ -87,6 +90,9 @@ app.controller('SearchPatientController', ['$scope', '$http', '$routeParams', 'L
     $http.get('http://localhost:8080/desapp-groupa-backend/rest/patients/list').
       success(function(data) {
         $scope.patients = data;
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to search the patients. Try later");
       });
   };
 
@@ -158,7 +164,10 @@ app.controller('ModifyPatientController', ['$scope', '$http', '$routeParams', '$
         } else {
           $location.path('/SearchPatient/');
         }
-        successAlert("GREAT!", "Patient [" + $scope.newPatient.name + " " + $scope.newPatient.surname + "] has been modified successfuly");
+        successAlert("Patient [" + $scope.newPatient.name + " " + $scope.newPatient.surname + "] has been modified successfuly");
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to modify the patient [" + $scope.newPatient.name + " " + $scope.newPatient.surname + "]. Try later");
       });
   };
 
@@ -204,8 +213,11 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
       success(function(data) {
         $scope.loadMedicalRecord();
         $scope.allergiesList();
-        successAlert("GREAT!", "Drug [" + allergy.name + "] has been added to [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record allergies");
-      });      
+        successAlert("Drug [" + allergy.name + "] has been added to [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record allergies");
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to add the allergy to [" + allergy.name + "]. Try later");
+      });     
   };
 
   $scope.deleteAllergy = function(allergy) {
@@ -213,8 +225,11 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
       success(function(data) {
         $scope.loadMedicalRecord();
         $scope.allergiesList();
-        successAlert("GREAT!", "Drug [" + allergy.name + "] has been deleted from [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record allergies");
-      });      
+        successAlert("Drug [" + allergy.name + "] has been deleted from [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record allergies");
+      }).
+        error(function() {
+        errorAlert("An error occurred while trying to delete the allergy to [" + allergy.name + "]. Try later");
+      });
   };
 
   $scope.diseasesList = function() {
@@ -229,7 +244,10 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
       success(function(data) {
         $scope.loadMedicalRecord();
         $scope.diseasesList();
-        successAlert("GREAT!", "Disease [" + disease.name + "] has been added to [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record diseases");
+        successAlert("Disease [" + disease.name + "] has been added to [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record diseases");
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to add the disease [" + disease.name + "]. Try later");
       });
   };
 
@@ -238,7 +256,10 @@ app.controller('MedicalRecordController', ['$scope', '$http', '$routeParams', 'L
       success(function(data) {
         $scope.loadMedicalRecord();
         $scope.diseasesList();
-        successAlert("GREAT!", "Disease [" + disease.name + "] has been deleted from [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record diseases");
+        successAlert("Disease [" + disease.name + "] has been deleted from [" + $scope.patient.name + " " + $scope.patient.surname + "] medical record diseases");
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to delete the disease [" + disease.name + "]. Try later");
       });      
   };
 
@@ -297,7 +318,10 @@ app.controller('CreateAllergyController', ['$scope', '$http', '$routeParams', '$
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/drugs/create', $scope.newAllergy).
       success(function() {
         $location.path('/MedicalRecord/' + $scope.patient_id);
-        successAlert("GREAT!", "Drug [" + $scope.newAllergy.name + "] has been created successfuly");
+        successAlert("Drug [" + $scope.newAllergy.name + "] has been created successfuly");
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to create the drug [" + $scope.newAllergy.name + "]. Try later");
       });
   };
 
@@ -312,7 +336,10 @@ app.controller('CreateDiseaseController', ['$scope', '$http', '$routeParams', '$
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/diseases/create', $scope.newDisease).
       success(function() {
         $location.path('/MedicalRecord/' + $scope.patient_id);
-        successAlert("GREAT!", "Disease [" + $scope.newDisease.name + "] has been created successfuly");
+        successAlert("Disease [" + $scope.newDisease.name + "] has been created successfuly");
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to create the disease [" + $scope.newDisease.name + "]. Try later");
       });
   };
 
@@ -358,7 +385,10 @@ app.controller('DiagnoseController', ['$scope', '$http', 'PatientDiagnoseID', 'C
     $http.post('http://localhost:8080/desapp-groupa-backend/rest/diseases/create/' + $scope.collectIds(), $scope.newDisease).
       success(function() {
         $scope.diagnose();
-        successAlert("GREAT!", "Disease [" + $scope.newDisease.name + "] has been created successfuly");
+        successAlert("Disease [" + $scope.newDisease.name + "] has been created successfuly");
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to create the disease [" + $scope.newDisease.name + "]. Try later");
       });
   };
 
@@ -418,7 +448,10 @@ app.controller('TreatmentController', ['$scope', '$http', '$routeParams', '$loca
     $http.put('http://localhost:8080/desapp-groupa-backend/rest/records/' +  $scope.patient_id + '/createConsultation/' + $scope.diagnosedDisease.id, $scope.diagnosedTreatment).
       success(function(data) {
         $location.path('/MedicalRecord/' + $scope.patient_id);
-        successAlert("GREAT!", "A new medical consultation has been added to current patient");
+        successAlert("A new medical consultation has been added to current patient");
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to add a new medical consultation to current patient. Try later");
       });
   };
 
@@ -427,7 +460,10 @@ app.controller('TreatmentController', ['$scope', '$http', '$routeParams', '$loca
       success(function(data) {
         $scope.getMedicalPractices();
         $scope.newMedicalPractice.name = "";
-        successAlert("GREAT!", "Disease [" + $scope.newMedicalPractice.name + "] has been created successfuly");
+        successAlert("Disease [" + $scope.newMedicalPractice.name + "] has been created successfuly");
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to create the medical practice [" + $scope.newMedicalPractice.name + "]. Try later");
       });
   };
 

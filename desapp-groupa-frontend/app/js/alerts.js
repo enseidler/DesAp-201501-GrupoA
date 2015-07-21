@@ -1,7 +1,7 @@
 
-function successAlert(title, text) {
+function successAlert(text) {
 	swal({
-		title: title,
+		title: "GREAT!",
 		text: text,
 		timer: 2000,
 		type: "success",
@@ -9,9 +9,9 @@ function successAlert(title, text) {
 	});
 }
 
-function errorAlert(title, text) {
+function errorAlert(text) {
 	swal({
-		title: title,
+		title: "FUCK!",
 		text: text,
 		timer: 2000,
 		type: "error",
