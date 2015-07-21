@@ -53,6 +53,10 @@ app.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/treatment.html',
           controller: 'TreatmentController'
         }).
+        when('/CreateMedicine', {
+          templateUrl: 'views/create-medicine.html',
+          controller: 'TreatmentController'
+        }).
         otherwise({
           redirectTo: '/Home'
       });
@@ -464,6 +468,17 @@ app.controller('TreatmentController', ['$scope', '$http', '$routeParams', '$loca
       }).
       error(function() {
         errorAlert("An error occurred while trying to create the medical practice [" + $scope.newMedicalPractice.name + "]. Try later");
+      });
+  };
+
+  $scope.createMedicine = function() {
+    $http.post('http://localhost:8080/desapp-groupa-backend/rest/medicines/create', $scope.newMedicine).
+      success(function(data) {
+        $scope.getMedicines();
+        $scope.newMedicine.drug.name = "";
+      }).
+      error(function() {
+        errorAlert("An error occurred while trying to create the medicine [" + $scope.newMedicine.drug.name + "]. Try later");
       });
   };
 
